@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+data/reports/test_notifyops.db
+docs/evidencias/

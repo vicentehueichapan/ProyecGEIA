@@ -1,0 +1,6 @@
+pandas
+Pillow
+python-docx
+reportlab
+pypdf
+

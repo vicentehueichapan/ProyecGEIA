@@ -1,0 +1,328 @@
+from __future__ import annotations
+
+import csv
+import json
+import logging
+import sqlite3
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, Iterable, Tuple
+
+import pandas as pd
+from PIL import Image, ImageDraw, ImageFont
+
+
+ROOT = Path(__file__).resolve().parents[2]
+DATA = ROOT / "data"
+RAW = DATA / "raw"
+PROCESSED = DATA / "processed"
+VALIDATED = DATA / "validated"
+REPORTS = DATA / "reports"
+LOGS = ROOT / "logs"
+EVIDENCE = ROOT / "docs" / "evidencias"
+DB_PATH = DATA / "notifyops.db"
+
+
+@dataclass(frozen=True)
+class DataQualityRules:
+    allowed_event_types: Tuple[str, ...] = ("like", "comment", "follow")
+    required_columns: Tuple[str, ...] = (
+        "event_id",
+        "event_type",
+        "source_user_id",
+        "target_user_id",
+        "created_at",
+        "content",
+    )
+
+
+def ensure_directories() -> None:
+    for directory in [RAW, PROCESSED, VALIDATED, REPORTS, LOGS, EVIDENCE]:
+        directory.mkdir(parents=True, exist_ok=True)
+
+
+def configure_logging() -> None:
+    ensure_directories()
+    logging.basicConfig(
+        filename=LOGS / "notifyops.log",
+        level=logging.INFO,
+        format="%(asctime)s | %(levelname)s | %(message)s",
+        force=True,
+    )
+
+
+def create_sample_dataset(path: Path = RAW / "social_events.csv") -> Path:
+    """Create deterministic input data with valid events and intentional anomalies."""
+    ensure_directories()
+    rows = [
+        ["evt-001", "like", "u100", "u200", "2026-05-14 09:00:01", ""],
+        ["evt-002", "comment", "u101", "u200", "2026-05-14 09:00:08", "Gran publicacion"],
+        ["evt-003", "follow", "u102", "u201", "2026-05-14 09:00:15", ""],
+        ["evt-004", "LIKE", "u103", "u202", "2026-05-14 09:00:20", ""],
+        ["evt-005", "comment", "u104", "u203", "2026-05-14 09:00:25", "Me interesa"],
+        ["evt-006", "share", "u105", "u204", "2026-05-14 09:00:31", ""],
+        ["evt-007", "follow", "u106", "", "2026-05-14 09:00:38", ""],
+        ["evt-008", "comment", "u107", "u205", "fecha-invalida", "Hola"],
+        ["evt-009", "like", "u108", "u206", "2026-05-14 09:00:43", ""],
+        ["evt-009", "like", "u108", "u206", "2026-05-14 09:00:43", ""],
+        ["evt-010", "follow", "u109", "u207", "2026-05-14 09:00:55", ""],
+        ["evt-011", "comment", "u110", "u208", "2026-05-14 09:01:03", "Buen dato"],
+        ["evt-012", "", "u111", "u209", "2026-05-14 09:01:12", ""],
+    ]
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(DataQualityRules().required_columns)
+        writer.writerows(rows)
+    logging.info("Dataset raw creado en %s con %s filas", path, len(rows))
+    return path
+
+
+def ingest_events(path: Path) -> pd.DataFrame:
+    logging.info("INICIO etapa 1: ingesta")
+    frame = pd.read_csv(path, dtype=str).fillna("")
+    logging.info("FIN ingesta: %s registros leidos desde %s", len(frame), path)
+    return frame
+
+
+def notification_text(event_type: str, source_user_id: str) -> str:
+    templates = {
+        "like": f"{source_user_id} reacciono a tu publicacion",
+        "comment": f"{source_user_id} comento tu publicacion",
+        "follow": f"{source_user_id} comenzo a seguirte",
+    }
+    return templates.get(event_type, "evento no soportado")
+
+
+def clean_transform_events(raw: pd.DataFrame, rules: DataQualityRules | None = None) -> pd.DataFrame:
+    logging.info("INICIO etapa 2: limpieza y transformacion")
+    rules = rules or DataQualityRules()
+    frame = raw.copy()
+    for column in rules.required_columns:
+        if column not in frame.columns:
+            frame[column] = ""
+        frame[column] = frame[column].astype(str).str.strip()
+    frame["event_type"] = frame["event_type"].str.lower()
+    frame["created_at"] = pd.to_datetime(frame["created_at"], errors="coerce")
+    before = len(frame)
+    frame = frame.drop_duplicates(subset=["event_id"], keep="first").reset_index(drop=True)
+    frame["notification_text"] = frame.apply(
+        lambda row: notification_text(row["event_type"], row["source_user_id"]), axis=1
+    )
+    logging.info("FIN limpieza: %s registros iniciales, %s despues de deduplicar", before, len(frame))
+    return frame
+
+
+def _row_errors(row: pd.Series, rules: DataQualityRules) -> list[str]:
+    errors: list[str] = []
+    if not str(row.get("event_id", "")).strip():
+        errors.append("event_id vacio")
+    if row.get("event_type") not in rules.allowed_event_types:
+        errors.append("tipo de evento invalido")
+    if not str(row.get("source_user_id", "")).strip():
+        errors.append("source_user_id vacio")
+    if not str(row.get("target_user_id", "")).strip():
+        errors.append("target_user_id vacio")
+    if pd.isna(row.get("created_at")):
+        errors.append("fecha invalida")
+    return errors
+
+
+def validate_events(processed: pd.DataFrame, rules: DataQualityRules | None = None) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    logging.info("INICIO etapa 3: validacion estructural y semantica")
+    rules = rules or DataQualityRules()
+    missing_columns = [column for column in rules.required_columns if column not in processed.columns]
+    if missing_columns:
+        raise ValueError(f"Columnas obligatorias ausentes: {', '.join(missing_columns)}")
+
+    valid_rows = []
+    rejected_rows = []
+    for _, row in processed.iterrows():
+        errors = _row_errors(row, rules)
+        payload = row.to_dict()
+        if errors:
+            payload["error_reason"] = "; ".join(errors)
+            rejected_rows.append(payload)
+        else:
+            valid_rows.append(payload)
+
+    valid = pd.DataFrame(valid_rows)
+    rejected = pd.DataFrame(rejected_rows)
+    logging.info("FIN validacion: %s validos, %s rechazados", len(valid), len(rejected))
+    return valid, rejected
+
+
+def generate_notifications(valid: pd.DataFrame) -> pd.DataFrame:
+    rows = []
+    for index, row in valid.reset_index(drop=True).iterrows():
+        created_at = pd.Timestamp(row["created_at"])
+        delivered_at = created_at + pd.Timedelta(seconds=2 + index)
+        rows.append(
+            {
+                "notification_id": f"ntf-{row['event_id']}",
+                "event_id": row["event_id"],
+                "target_user_id": row["target_user_id"],
+                "message": row["notification_text"],
+                "delivery_status": "sent",
+                "created_at": created_at.isoformat(),
+                "delivered_at": delivered_at.isoformat(),
+                "latency_seconds": float((delivered_at - created_at).total_seconds()),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def _serialize_for_sql(frame: pd.DataFrame) -> pd.DataFrame:
+    output = frame.copy()
+    for column in output.columns:
+        if pd.api.types.is_datetime64_any_dtype(output[column]):
+            output[column] = output[column].dt.strftime("%Y-%m-%d %H:%M:%S")
+    return output
+
+
+def load_to_sqlite(valid: pd.DataFrame, rejected: pd.DataFrame, notifications: pd.DataFrame, db_path: Path = DB_PATH) -> None:
+    logging.info("INICIO etapa 4: carga a base de datos")
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    if db_path.exists():
+        db_path.unlink()
+
+    with sqlite3.connect(db_path) as connection:
+        _serialize_for_sql(valid).to_sql("validated_events", connection, index=False, if_exists="replace")
+        _serialize_for_sql(rejected).to_sql("rejected_events", connection, index=False, if_exists="replace")
+        notifications.to_sql("notifications", connection, index=False, if_exists="replace")
+        connection.execute("CREATE INDEX IF NOT EXISTS idx_notifications_event ON notifications(event_id)")
+        connection.execute("CREATE INDEX IF NOT EXISTS idx_notifications_target ON notifications(target_user_id)")
+    logging.info("FIN carga: base creada en %s", db_path)
+
+
+def calculate_kpis(valid: pd.DataFrame, rejected: pd.DataFrame, notifications: pd.DataFrame) -> Dict[str, float]:
+    processed = len(valid) + len(rejected)
+    sent = int((notifications.get("delivery_status", pd.Series(dtype=str)) == "sent").sum())
+    return {
+        "events_processed": int(processed),
+        "valid_events": int(len(valid)),
+        "rejected_events": int(len(rejected)),
+        "notifications_generated": int(len(notifications)),
+        "delivery_success_rate_pct": round((sent / len(notifications) * 100) if len(notifications) else 0.0, 2),
+        "error_rate_pct": round((len(rejected) / processed * 100) if processed else 0.0, 2),
+        "avg_latency_seconds": round(float(notifications["latency_seconds"].mean()) if len(notifications) else 0.0, 2),
+        "completeness_rate_pct": round((len(valid) / processed * 100) if processed else 0.0, 2),
+    }
+
+
+def write_report_artifacts(
+    processed: pd.DataFrame,
+    valid: pd.DataFrame,
+    rejected: pd.DataFrame,
+    notifications: pd.DataFrame,
+    kpis: Dict[str, float],
+) -> None:
+    logging.info("INICIO escritura de artefactos")
+    processed.to_csv(PROCESSED / "events_processed.csv", index=False)
+    valid.to_csv(VALIDATED / "events_validated.csv", index=False)
+    rejected.to_csv(REPORTS / "validation_errors.csv", index=False)
+    notifications.to_csv(REPORTS / "notifications.csv", index=False)
+    pd.DataFrame([kpis]).to_csv(REPORTS / "kpi_report.csv", index=False)
+    (REPORTS / "kpi_report.json").write_text(json.dumps(kpis, indent=2, ensure_ascii=True), encoding="utf-8")
+    summary = [
+        "NotifyOps - Resumen empirico de ejecucion MVP",
+        f"Eventos procesados: {kpis['events_processed']}",
+        f"Eventos validos: {kpis['valid_events']}",
+        f"Eventos rechazados: {kpis['rejected_events']}",
+        f"Notificaciones generadas: {kpis['notifications_generated']}",
+        f"Tasa de entrega: {kpis['delivery_success_rate_pct']}%",
+        f"Tasa de error: {kpis['error_rate_pct']}%",
+        f"Completitud: {kpis['completeness_rate_pct']}%",
+        f"Latencia promedio: {kpis['avg_latency_seconds']} segundos",
+    ]
+    (REPORTS / "demo_summary.txt").write_text("\n".join(summary), encoding="utf-8")
+    logging.info("FIN escritura de artefactos")
+
+
+def _load_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+    for font_name in ("arial.ttf", "calibri.ttf"):
+        try:
+            return ImageFont.truetype(font_name, size)
+        except OSError:
+            continue
+    return ImageFont.load_default()
+
+
+def draw_evidence_card(filename: str, title: str, subtitle: str, lines: Iterable[str]) -> None:
+    image = Image.new("RGB", (1400, 850), "#f5f7fb")
+    draw = ImageDraw.Draw(image)
+    title_font = _load_font(56)
+    subtitle_font = _load_font(34)
+    body_font = _load_font(28)
+    small_font = _load_font(22)
+    draw.rectangle((0, 0, 1400, 130), fill="#13293d")
+    draw.text((70, 38), "NotifyOps MVP", fill="white", font=subtitle_font)
+    draw.rounded_rectangle((80, 190, 1320, 730), radius=22, fill="white", outline="#d8dee9", width=3)
+    draw.text((130, 245), title, fill="#13293d", font=title_font)
+    draw.text((130, 330), subtitle, fill="#0f766e", font=subtitle_font)
+    y = 420
+    for line in lines:
+        draw.text((155, y), f"- {line}", fill="#243142", font=body_font)
+        y += 48
+    draw.text((130, 675), "Evidencia generada automaticamente desde la ejecucion del MVP", fill="#64748b", font=small_font)
+    image.save(EVIDENCE / filename)
+
+
+def create_evidence_images(kpis: Dict[str, float]) -> None:
+    draw_evidence_card(
+        "01_ejecucion_pipeline.png",
+        "Pipeline ejecutado",
+        f"{kpis['events_processed']} eventos procesados",
+        [
+            "Ingesta, limpieza, validacion y carga completadas.",
+            f"{kpis['valid_events']} eventos validos.",
+            f"{kpis['rejected_events']} eventos rechazados con motivo.",
+        ],
+    )
+    draw_evidence_card(
+        "02_kpis_monitoreo.png",
+        "KPIs de monitoreo",
+        f"{kpis['delivery_success_rate_pct']}% entrega | {kpis['avg_latency_seconds']}s latencia",
+        [
+            f"Tasa de error: {kpis['error_rate_pct']}%.",
+            f"Completitud: {kpis['completeness_rate_pct']}%.",
+            f"Notificaciones generadas: {kpis['notifications_generated']}.",
+        ],
+    )
+    draw_evidence_card(
+        "03_validacion_anomalias.png",
+        "Validacion de anomalias",
+        f"{kpis['rejected_events']} registros rechazados",
+        [
+            "Tipos de evento invalidos.",
+            "Usuarios destino vacios.",
+            "Fechas invalidas.",
+        ],
+    )
+
+
+def run_pipeline() -> Dict[str, float]:
+    ensure_directories()
+    configure_logging()
+    logging.info("===== INICIO MVP NotifyOps =====")
+    raw_path = create_sample_dataset()
+    raw = ingest_events(raw_path)
+    processed = clean_transform_events(raw)
+    valid, rejected = validate_events(processed)
+    notifications = generate_notifications(valid)
+    load_to_sqlite(valid, rejected, notifications)
+    kpis = calculate_kpis(valid, rejected, notifications)
+    write_report_artifacts(processed, valid, rejected, notifications, kpis)
+    create_evidence_images(kpis)
+    logging.info("KPIs finales: %s", kpis)
+    logging.info("===== FIN MVP NotifyOps =====")
+    return kpis
+
+
+def main() -> None:
+    metrics = run_pipeline()
+    for key, value in metrics.items():
+        print(f"{key}: {value}")
+
+
+if __name__ == "__main__":
+    main()

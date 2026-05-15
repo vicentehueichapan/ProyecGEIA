@@ -1,0 +1,10 @@
+{
+  "events_processed": 12,
+  "valid_events": 8,
+  "rejected_events": 4,
+  "notifications_generated": 8,
+  "delivery_success_rate_pct": 100.0,
+  "error_rate_pct": 33.33,
+  "avg_latency_seconds": 5.5,
+  "completeness_rate_pct": 66.67
+}
