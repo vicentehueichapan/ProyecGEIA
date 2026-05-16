@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
+import src.notifyops.pipeline as pipeline
 from src.notifyops.pipeline import (
     DataQualityRules,
     calculate_kpis,
@@ -131,6 +132,55 @@ class NotifyOpsPipelineTests(unittest.TestCase):
         self.assertEqual(kpis["delivery_success_rate_pct"], 100.0)
         self.assertEqual(kpis["error_rate_pct"], 33.33)
         self.assertEqual(kpis["avg_latency_seconds"], 3.0)
+
+    def test_generate_recent_event_views_orders_all_and_groups_by_type(self):
+        valid = pd.DataFrame(
+            [
+                {
+                    "event_id": "evt-001",
+                    "event_type": "like",
+                    "source_user_id": "u01",
+                    "target_user_id": "u02",
+                    "created_at": pd.Timestamp("2026-05-14 09:00:00"),
+                    "content": "",
+                    "notification_text": "u01 reacciono a tu publicacion",
+                },
+                {
+                    "event_id": "evt-002",
+                    "event_type": "comment",
+                    "source_user_id": "u03",
+                    "target_user_id": "u04",
+                    "created_at": pd.Timestamp("2026-05-14 09:05:00"),
+                    "content": "hola",
+                    "notification_text": "u03 comento tu publicacion",
+                },
+                {
+                    "event_id": "evt-003",
+                    "event_type": "follow",
+                    "source_user_id": "u05",
+                    "target_user_id": "u06",
+                    "created_at": pd.Timestamp("2026-05-14 09:02:00"),
+                    "content": "",
+                    "notification_text": "u05 comenzo a seguirte",
+                },
+                {
+                    "event_id": "evt-004",
+                    "event_type": "like",
+                    "source_user_id": "u07",
+                    "target_user_id": "u08",
+                    "created_at": pd.Timestamp("2026-05-14 09:10:00"),
+                    "content": "",
+                    "notification_text": "u07 reacciono a tu publicacion",
+                },
+            ]
+        )
+
+        views = pipeline.generate_recent_event_views(valid)
+
+        self.assertEqual(views["all"]["event_id"].tolist(), ["evt-004", "evt-002", "evt-003", "evt-001"])
+        self.assertEqual(views["like"]["event_id"].tolist(), ["evt-004", "evt-001"])
+        self.assertEqual(views["comment"]["event_id"].tolist(), ["evt-002"])
+        self.assertEqual(views["follow"]["event_id"].tolist(), ["evt-003"])
 
 
 if __name__ == "__main__":

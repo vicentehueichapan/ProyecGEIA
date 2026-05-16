@@ -5,3 +5,7 @@ __pycache__/
 venv/
 data/reports/test_notifyops.db
 docs/evidencias/
+airflow.db
+airflow.cfg
+standalone_admin_password.txt
+logs/scheduler/

@@ -55,19 +55,19 @@ def create_sample_dataset(path: Path = RAW / "social_events.csv") -> Path:
     """Create deterministic input data with valid events and intentional anomalies."""
     ensure_directories()
     rows = [
-        ["evt-001", "like", "u100", "u200", "2026-05-14 09:00:01", ""],
-        ["evt-002", "comment", "u101", "u200", "2026-05-14 09:00:08", "Gran publicacion"],
-        ["evt-003", "follow", "u102", "u201", "2026-05-14 09:00:15", ""],
-        ["evt-004", "LIKE", "u103", "u202", "2026-05-14 09:00:20", ""],
-        ["evt-005", "comment", "u104", "u203", "2026-05-14 09:00:25", "Me interesa"],
-        ["evt-006", "share", "u105", "u204", "2026-05-14 09:00:31", ""],
-        ["evt-007", "follow", "u106", "", "2026-05-14 09:00:38", ""],
-        ["evt-008", "comment", "u107", "u205", "fecha-invalida", "Hola"],
-        ["evt-009", "like", "u108", "u206", "2026-05-14 09:00:43", ""],
-        ["evt-009", "like", "u108", "u206", "2026-05-14 09:00:43", ""],
         ["evt-010", "follow", "u109", "u207", "2026-05-14 09:00:55", ""],
-        ["evt-011", "comment", "u110", "u208", "2026-05-14 09:01:03", "Buen dato"],
+        ["evt-001", "like", "u100", "u200", "2026-05-14 09:00:01", ""],
+        ["evt-006", "share", "u105", "u204", "2026-05-14 09:00:31", ""],
+        ["evt-005", "comment", "u104", "u203", "2026-05-14 09:00:25", "Me interesa"],
+        ["evt-003", "follow", "u102", "u201", "2026-05-14 09:00:15", ""],
+        ["evt-007", "follow", "u106", "", "2026-05-14 09:00:38", ""],
+        ["evt-002", "comment", "u101", "u200", "2026-05-14 09:00:08", "Gran publicacion"],
         ["evt-012", "", "u111", "u209", "2026-05-14 09:01:12", ""],
+        ["evt-008", "comment", "u107", "u205", "fecha-invalida", "Hola"],
+        ["evt-004", "LIKE", "u103", "u202", "2026-05-14 09:00:20", ""],
+        ["evt-009", "like", "u108", "u206", "2026-05-14 09:00:43", ""],
+        ["evt-009", "like", "u108", "u206", "2026-05-14 09:00:43", ""],
+        ["evt-011", "comment", "u110", "u208", "2026-05-14 09:01:03", "Buen dato"],
     ]
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)
@@ -209,6 +209,14 @@ def calculate_kpis(valid: pd.DataFrame, rejected: pd.DataFrame, notifications: p
     }
 
 
+def generate_recent_event_views(valid: pd.DataFrame) -> Dict[str, pd.DataFrame]:
+    sorted_events = valid.sort_values("created_at", ascending=False).reset_index(drop=True)
+    views = {"all": sorted_events}
+    for event_type in DataQualityRules().allowed_event_types:
+        views[event_type] = sorted_events[sorted_events["event_type"] == event_type].reset_index(drop=True)
+    return views
+
+
 def write_report_artifacts(
     processed: pd.DataFrame,
     valid: pd.DataFrame,
@@ -221,6 +229,11 @@ def write_report_artifacts(
     valid.to_csv(VALIDATED / "events_validated.csv", index=False)
     rejected.to_csv(REPORTS / "validation_errors.csv", index=False)
     notifications.to_csv(REPORTS / "notifications.csv", index=False)
+    recent_views = generate_recent_event_views(valid)
+    recent_views["all"].to_csv(REPORTS / "events_recent_all.csv", index=False)
+    recent_views["like"].to_csv(REPORTS / "likes_recent.csv", index=False)
+    recent_views["comment"].to_csv(REPORTS / "comments_recent.csv", index=False)
+    recent_views["follow"].to_csv(REPORTS / "follows_recent.csv", index=False)
     pd.DataFrame([kpis]).to_csv(REPORTS / "kpi_report.csv", index=False)
     (REPORTS / "kpi_report.json").write_text(json.dumps(kpis, indent=2, ensure_ascii=True), encoding="utf-8")
     summary = [
