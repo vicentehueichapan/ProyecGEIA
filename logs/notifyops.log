@@ -110,3 +110,33 @@
 2026-05-16 18:08:24,080 | INFO | FIN escritura de artefactos
 2026-05-16 18:08:24,451 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67}
 2026-05-16 18:08:24,451 | INFO | ===== FIN MVP NotifyOps =====
+2026-05-16 22:52:28,145 | INFO | ===== INICIO MVP NotifyOps =====
+2026-05-16 22:52:28,200 | INFO | Dataset raw creado en /opt/airflow/notifyops/data/raw/social_events.csv con 13 filas
+2026-05-16 22:52:28,201 | INFO | INICIO etapa 1: ingesta
+2026-05-16 22:52:28,236 | INFO | FIN ingesta: 13 registros leidos desde /opt/airflow/notifyops/data/raw/social_events.csv
+2026-05-16 22:52:28,237 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-05-16 22:52:28,266 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-05-16 22:52:28,267 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-05-16 22:52:28,273 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-05-16 22:52:28,277 | INFO | INICIO etapa 4: carga a base de datos
+2026-05-16 22:52:28,537 | INFO | FIN carga: base creada en /opt/airflow/notifyops/data/notifyops.db
+2026-05-16 22:52:28,539 | INFO | INICIO escritura de artefactos
+2026-05-16 22:52:28,872 | INFO | FIN escritura de artefactos
+2026-05-16 22:52:28,874 | WARNING | Pillow no esta disponible; se omite la generacion de evidencias PNG.
+2026-05-16 22:52:28,875 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67}
+2026-05-16 22:52:28,876 | INFO | ===== FIN MVP NotifyOps =====
+2026-05-16 22:53:08,772 | INFO | ===== INICIO MVP NotifyOps =====
+2026-05-16 22:53:08,815 | INFO | Dataset raw creado en /opt/airflow/notifyops/data/raw/social_events.csv con 13 filas
+2026-05-16 22:53:08,816 | INFO | INICIO etapa 1: ingesta
+2026-05-16 22:53:08,836 | INFO | FIN ingesta: 13 registros leidos desde /opt/airflow/notifyops/data/raw/social_events.csv
+2026-05-16 22:53:08,837 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-05-16 22:53:08,858 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-05-16 22:53:08,859 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-05-16 22:53:08,867 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-05-16 22:53:08,873 | INFO | INICIO etapa 4: carga a base de datos
+2026-05-16 22:53:09,226 | INFO | FIN carga: base creada en /opt/airflow/notifyops/data/notifyops.db
+2026-05-16 22:53:09,228 | INFO | INICIO escritura de artefactos
+2026-05-16 22:53:09,360 | INFO | FIN escritura de artefactos
+2026-05-16 22:53:09,361 | WARNING | Pillow no esta disponible; se omite la generacion de evidencias PNG.
+2026-05-16 22:53:09,362 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67}
+2026-05-16 22:53:09,362 | INFO | ===== FIN MVP NotifyOps =====
