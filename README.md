@@ -33,6 +33,8 @@ docker run --rm -v "${PWD}\data:/app/data" -v "${PWD}\logs:/app/logs" notifyops-
 
 Airflow se incluye como complemento de automatizacion ETL. El DAG no reemplaza el pipeline Python: lo orquesta.
 
+Importante: el compose no tiene reinicio automatico. Si cierras Docker Desktop, Airflow no se volvera a prender solo.
+
 ```powershell
 docker compose -f docker-compose.airflow.yml up
 ```
@@ -54,6 +56,12 @@ En Airflow, activar y ejecutar manualmente el DAG:
 
 ```text
 notifyops_etl_dag
+```
+
+El DAG tambien queda configurado con frecuencia quincenal para representar el ciclo de mejora del caso:
+
+```text
+schedule=timedelta(days=14)
 ```
 
 El DAG ejecuta estas tareas:

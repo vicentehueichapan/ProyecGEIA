@@ -9,7 +9,6 @@ from pathlib import Path
 from typing import Dict, Iterable, Tuple
 
 import pandas as pd
-from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -251,7 +250,9 @@ def write_report_artifacts(
     logging.info("FIN escritura de artefactos")
 
 
-def _load_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+def _load_font(size: int):
+    from PIL import ImageFont
+
     for font_name in ("arial.ttf", "calibri.ttf"):
         try:
             return ImageFont.truetype(font_name, size)
@@ -261,6 +262,8 @@ def _load_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
 
 
 def draw_evidence_card(filename: str, title: str, subtitle: str, lines: Iterable[str]) -> None:
+    from PIL import Image, ImageDraw
+
     image = Image.new("RGB", (1400, 850), "#f5f7fb")
     draw = ImageDraw.Draw(image)
     title_font = _load_font(56)
@@ -281,36 +284,39 @@ def draw_evidence_card(filename: str, title: str, subtitle: str, lines: Iterable
 
 
 def create_evidence_images(kpis: Dict[str, float]) -> None:
-    draw_evidence_card(
-        "01_ejecucion_pipeline.png",
-        "Pipeline ejecutado",
-        f"{kpis['events_processed']} eventos procesados",
-        [
-            "Ingesta, limpieza, validacion y carga completadas.",
-            f"{kpis['valid_events']} eventos validos.",
-            f"{kpis['rejected_events']} eventos rechazados con motivo.",
-        ],
-    )
-    draw_evidence_card(
-        "02_kpis_monitoreo.png",
-        "KPIs de monitoreo",
-        f"{kpis['delivery_success_rate_pct']}% entrega | {kpis['avg_latency_seconds']}s latencia",
-        [
-            f"Tasa de error: {kpis['error_rate_pct']}%.",
-            f"Completitud: {kpis['completeness_rate_pct']}%.",
-            f"Notificaciones generadas: {kpis['notifications_generated']}.",
-        ],
-    )
-    draw_evidence_card(
-        "03_validacion_anomalias.png",
-        "Validacion de anomalias",
-        f"{kpis['rejected_events']} registros rechazados",
-        [
-            "Tipos de evento invalidos.",
-            "Usuarios destino vacios.",
-            "Fechas invalidas.",
-        ],
-    )
+    try:
+        draw_evidence_card(
+            "01_ejecucion_pipeline.png",
+            "Pipeline ejecutado",
+            f"{kpis['events_processed']} eventos procesados",
+            [
+                "Ingesta, limpieza, validacion y carga completadas.",
+                f"{kpis['valid_events']} eventos validos.",
+                f"{kpis['rejected_events']} eventos rechazados con motivo.",
+            ],
+        )
+        draw_evidence_card(
+            "02_kpis_monitoreo.png",
+            "KPIs de monitoreo",
+            f"{kpis['delivery_success_rate_pct']}% entrega | {kpis['avg_latency_seconds']}s latencia",
+            [
+                f"Tasa de error: {kpis['error_rate_pct']}%.",
+                f"Completitud: {kpis['completeness_rate_pct']}%.",
+                f"Notificaciones generadas: {kpis['notifications_generated']}.",
+            ],
+        )
+        draw_evidence_card(
+            "03_validacion_anomalias.png",
+            "Validacion de anomalias",
+            f"{kpis['rejected_events']} registros rechazados",
+            [
+                "Tipos de evento invalidos.",
+                "Usuarios destino vacios.",
+                "Fechas invalidas.",
+            ],
+        )
+    except ImportError:
+        logging.warning("Pillow no esta disponible; se omite la generacion de evidencias PNG.")
 
 
 def run_pipeline() -> Dict[str, float]:

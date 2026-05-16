@@ -2,18 +2,19 @@ services:
   airflow:
     image: apache/airflow:2.9.3
     container_name: notifyops-airflow
-    restart: unless-stopped
     environment:
       AIRFLOW__CORE__EXECUTOR: SequentialExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "false"
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
-      _AIRFLOW_WWW_USER_USERNAME: admin
-      _AIRFLOW_WWW_USER_PASSWORD: admin
-      _PIP_ADDITIONAL_REQUIREMENTS: pandas Pillow
     volumes:
       - ./dags:/opt/airflow/dags
       - ./:/opt/airflow/notifyops
     ports:
       - "8080:8080"
-    command: standalone
+    command: >
+      bash -c "set -e;
+      airflow db migrate;
+      airflow users create --username admin --password admin --firstname Notify --lastname Ops --role Admin --email admin@example.com || true;
+      airflow scheduler &
+      exec airflow webserver --host 0.0.0.0 --port 8080"

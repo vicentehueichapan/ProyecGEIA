@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
@@ -14,7 +14,7 @@ with DAG(
     dag_id="notifyops_etl_dag",
     description="Orquesta la ETL de eventos sociales NotifyOps para likes, comentarios y seguidores.",
     start_date=datetime(2026, 5, 14),
-    schedule=None,
+    schedule=timedelta(days=14),
     catchup=False,
     tags=["notifyops", "etl", "dataops", "social-network"],
 ) as dag:
