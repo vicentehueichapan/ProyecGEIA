@@ -1,9 +1,9 @@
-notification_id,event_id,target_user_id,message,delivery_status,created_at,delivered_at,latency_seconds
-ntf-evt-010,evt-010,u207,u109 comenzo a seguirte,sent,2026-05-14T09:00:55,2026-05-14T09:00:57,2.0
-ntf-evt-001,evt-001,u200,u100 reacciono a tu publicacion,sent,2026-05-14T09:00:01,2026-05-14T09:00:04,3.0
-ntf-evt-005,evt-005,u203,u104 comento tu publicacion,sent,2026-05-14T09:00:25,2026-05-14T09:00:29,4.0
-ntf-evt-003,evt-003,u201,u102 comenzo a seguirte,sent,2026-05-14T09:00:15,2026-05-14T09:00:20,5.0
-ntf-evt-002,evt-002,u200,u101 comento tu publicacion,sent,2026-05-14T09:00:08,2026-05-14T09:00:14,6.0
-ntf-evt-004,evt-004,u202,u103 reacciono a tu publicacion,sent,2026-05-14T09:00:20,2026-05-14T09:00:27,7.0
-ntf-evt-009,evt-009,u206,u108 reacciono a tu publicacion,sent,2026-05-14T09:00:43,2026-05-14T09:00:51,8.0
-ntf-evt-011,evt-011,u208,u110 comento tu publicacion,sent,2026-05-14T09:01:03,2026-05-14T09:01:12,9.0
+notification_id,event_id,event_type,target_user_id,message,delivery_status,created_at,delivered_at,latency_seconds
+ntf-evt-011,evt-011,comment,u208,u110 comento tu publicacion,sent,2026-05-14 09:01:03,2026-05-14 09:01:05,2
+ntf-evt-010,evt-010,follow,u207,u109 comenzo a seguirte,sent,2026-05-14 09:00:55,2026-05-14 09:00:58,3
+ntf-evt-009,evt-009,like,u206,u108 reacciono a tu publicacion,sent,2026-05-14 09:00:43,2026-05-14 09:00:47,4
+ntf-evt-005,evt-005,comment,u203,u104 comento tu publicacion,sent,2026-05-14 09:00:25,2026-05-14 09:00:30,5
+ntf-evt-004,evt-004,like,u202,u103 reacciono a tu publicacion,sent,2026-05-14 09:00:20,2026-05-14 09:00:26,6
+ntf-evt-003,evt-003,follow,u201,u102 comenzo a seguirte,sent,2026-05-14 09:00:15,2026-05-14 09:00:22,7
+ntf-evt-002,evt-002,comment,u200,u101 comento tu publicacion,sent,2026-05-14 09:00:08,2026-05-14 09:00:16,8
+ntf-evt-001,evt-001,like,u200,u100 reacciono a tu publicacion,sent,2026-05-14 09:00:01,2026-05-14 09:00:10,9

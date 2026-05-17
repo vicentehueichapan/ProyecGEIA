@@ -114,6 +114,38 @@ class NotifyOpsPipelineTests(unittest.TestCase):
         self.assertEqual(event_count, 1)
         self.assertEqual(notification_count, 1)
 
+    def test_generate_notifications_orders_recent_first_and_uses_readable_dates(self):
+        valid = pd.DataFrame(
+            [
+                {
+                    "event_id": "evt-old",
+                    "event_type": "like",
+                    "source_user_id": "u01",
+                    "target_user_id": "u02",
+                    "created_at": pd.Timestamp("2026-05-14 09:00:01"),
+                    "content": "",
+                    "notification_text": "u01 reacciono a tu publicacion",
+                },
+                {
+                    "event_id": "evt-new",
+                    "event_type": "comment",
+                    "source_user_id": "u03",
+                    "target_user_id": "u04",
+                    "created_at": pd.Timestamp("2026-05-14 09:01:03"),
+                    "content": "hola",
+                    "notification_text": "u03 comento tu publicacion",
+                },
+            ]
+        )
+
+        notifications = generate_notifications(valid)
+
+        self.assertEqual(notifications["event_id"].tolist(), ["evt-new", "evt-old"])
+        self.assertEqual(notifications.iloc[0]["event_type"], "comment")
+        self.assertEqual(notifications.iloc[0]["created_at"], "2026-05-14 09:01:03")
+        self.assertEqual(notifications.iloc[0]["delivered_at"], "2026-05-14 09:01:05")
+        self.assertEqual(notifications.iloc[0]["latency_seconds"], 2)
+
     def test_calculate_kpis_quantifies_mvp_execution(self):
         valid = pd.DataFrame([{"event_id": "evt-001"}, {"event_id": "evt-002"}])
         rejected = pd.DataFrame([{"event_id": "evt-003", "error_reason": "fecha invalida"}])

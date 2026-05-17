@@ -152,19 +152,22 @@ def validate_events(processed: pd.DataFrame, rules: DataQualityRules | None = No
 
 def generate_notifications(valid: pd.DataFrame) -> pd.DataFrame:
     rows = []
-    for index, row in valid.reset_index(drop=True).iterrows():
+    ordered_valid = valid.sort_values("created_at", ascending=False).reset_index(drop=True)
+    for index, row in ordered_valid.iterrows():
         created_at = pd.Timestamp(row["created_at"])
         delivered_at = created_at + pd.Timedelta(seconds=2 + index)
+        latency_seconds = int((delivered_at - created_at).total_seconds())
         rows.append(
             {
                 "notification_id": f"ntf-{row['event_id']}",
                 "event_id": row["event_id"],
+                "event_type": row["event_type"],
                 "target_user_id": row["target_user_id"],
                 "message": row["notification_text"],
                 "delivery_status": "sent",
-                "created_at": created_at.isoformat(),
-                "delivered_at": delivered_at.isoformat(),
-                "latency_seconds": float((delivered_at - created_at).total_seconds()),
+                "created_at": created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                "delivered_at": delivered_at.strftime("%Y-%m-%d %H:%M:%S"),
+                "latency_seconds": latency_seconds,
             }
         )
     return pd.DataFrame(rows)
