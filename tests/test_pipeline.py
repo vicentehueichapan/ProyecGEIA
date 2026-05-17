@@ -114,7 +114,7 @@ class NotifyOpsPipelineTests(unittest.TestCase):
         self.assertEqual(event_count, 1)
         self.assertEqual(notification_count, 1)
 
-    def test_generate_notifications_orders_recent_first_and_uses_readable_dates(self):
+    def test_generate_notifications_orders_recent_first_and_uses_readable_dates_with_milliseconds(self):
         valid = pd.DataFrame(
             [
                 {
@@ -142,9 +142,13 @@ class NotifyOpsPipelineTests(unittest.TestCase):
 
         self.assertEqual(notifications["event_id"].tolist(), ["evt-new", "evt-old"])
         self.assertEqual(notifications.iloc[0]["event_type"], "comment")
-        self.assertEqual(notifications.iloc[0]["created_at"], "2026-05-14 09:01:03")
-        self.assertEqual(notifications.iloc[0]["delivered_at"], "2026-05-14 09:01:05")
+        self.assertEqual(notifications.iloc[0]["created_at"], "2026-05-14 09:01:03.000")
+        self.assertEqual(notifications.iloc[0]["delivered_at"], "2026-05-14 09:01:05.000")
         self.assertEqual(notifications.iloc[0]["latency_seconds"], 2)
+
+    def test_datetime_formatting_handles_invalid_dates_for_rejected_rows(self):
+        self.assertEqual(pipeline.format_datetime_milliseconds(pd.NaT), "")
+        self.assertEqual(pipeline.format_datetime_milliseconds(""), "")
 
     def test_calculate_kpis_quantifies_mvp_execution(self):
         valid = pd.DataFrame([{"event_id": "evt-001"}, {"event_id": "evt-002"}])
@@ -164,6 +168,19 @@ class NotifyOpsPipelineTests(unittest.TestCase):
         self.assertEqual(kpis["delivery_success_rate_pct"], 100.0)
         self.assertEqual(kpis["error_rate_pct"], 33.33)
         self.assertEqual(kpis["avg_latency_seconds"], 3.0)
+
+    def test_serialize_for_reports_formats_mixed_created_at_values(self):
+        frame = pd.DataFrame(
+            [
+                {"event_id": "evt-001", "created_at": pd.Timestamp("2026-05-14 09:00:31")},
+                {"event_id": "evt-002", "created_at": pd.NaT},
+            ]
+        )
+
+        serialized = pipeline._serialize_for_sql(frame)
+
+        self.assertEqual(serialized.iloc[0]["created_at"], "2026-05-14 09:00:31.000")
+        self.assertEqual(serialized.iloc[1]["created_at"], "")
 
     def test_generate_recent_event_views_orders_all_and_groups_by_type(self):
         valid = pd.DataFrame(
@@ -210,6 +227,7 @@ class NotifyOpsPipelineTests(unittest.TestCase):
         views = pipeline.generate_recent_event_views(valid)
 
         self.assertEqual(views["all"]["event_id"].tolist(), ["evt-004", "evt-002", "evt-003", "evt-001"])
+        self.assertEqual(views["all"].iloc[0]["created_at"], "2026-05-14 09:10:00.000")
         self.assertEqual(views["like"]["event_id"].tolist(), ["evt-004", "evt-001"])
         self.assertEqual(views["comment"]["event_id"].tolist(), ["evt-002"])
         self.assertEqual(views["follow"]["event_id"].tolist(), ["evt-003"])

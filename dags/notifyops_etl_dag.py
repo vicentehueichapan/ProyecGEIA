@@ -14,7 +14,7 @@ with DAG(
     dag_id="notifyops_etl_dag",
     description="Orquesta la ETL de eventos sociales NotifyOps para likes, comentarios y seguidores.",
     start_date=datetime(2026, 5, 14),
-    schedule=timedelta(days=14),
+    schedule=timedelta(weeks=2),
     catchup=False,
     tags=["notifyops", "etl", "dataops", "social-network"],
 ) as dag:

@@ -12,6 +12,7 @@ class NotifyOpsAirflowDagTests(unittest.TestCase):
         ast.parse(source)
         self.assertIn("notifyops_etl_dag", source)
         self.assertIn("python -m src.notifyops.pipeline", source)
+        self.assertIn("schedule=timedelta(weeks=2)", source)
         self.assertIn("verify_input_dataset", source)
         self.assertIn("verify_outputs", source)
 

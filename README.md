@@ -61,7 +61,7 @@ notifyops_etl_dag
 El DAG tambien queda configurado con frecuencia quincenal para representar el ciclo de mejora del caso:
 
 ```text
-schedule=timedelta(days=14)
+schedule=timedelta(weeks=2)
 ```
 
 El DAG ejecuta estas tareas:

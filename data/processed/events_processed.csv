@@ -1,13 +1,13 @@
 event_id,event_type,source_user_id,target_user_id,created_at,content,notification_text
-evt-010,follow,u109,u207,2026-05-14 09:00:55,,u109 comenzo a seguirte
-evt-001,like,u100,u200,2026-05-14 09:00:01,,u100 reacciono a tu publicacion
-evt-006,share,u105,u204,2026-05-14 09:00:31,,evento no soportado
-evt-005,comment,u104,u203,2026-05-14 09:00:25,Me interesa,u104 comento tu publicacion
-evt-003,follow,u102,u201,2026-05-14 09:00:15,,u102 comenzo a seguirte
-evt-007,follow,u106,,2026-05-14 09:00:38,,u106 comenzo a seguirte
-evt-002,comment,u101,u200,2026-05-14 09:00:08,Gran publicacion,u101 comento tu publicacion
-evt-012,,u111,u209,2026-05-14 09:01:12,,evento no soportado
+evt-010,follow,u109,u207,2026-05-14 09:00:55.000,,u109 comenzo a seguirte
+evt-001,like,u100,u200,2026-05-14 09:00:01.000,,u100 reacciono a tu publicacion
+evt-006,share,u105,u204,2026-05-14 09:00:31.000,,evento no soportado
+evt-005,comment,u104,u203,2026-05-14 09:00:25.000,Me interesa,u104 comento tu publicacion
+evt-003,follow,u102,u201,2026-05-14 09:00:15.000,,u102 comenzo a seguirte
+evt-007,follow,u106,,2026-05-14 09:00:38.000,,u106 comenzo a seguirte
+evt-002,comment,u101,u200,2026-05-14 09:00:08.000,Gran publicacion,u101 comento tu publicacion
+evt-012,,u111,u209,2026-05-14 09:01:12.000,,evento no soportado
 evt-008,comment,u107,u205,,Hola,u107 comento tu publicacion
-evt-004,like,u103,u202,2026-05-14 09:00:20,,u103 reacciono a tu publicacion
-evt-009,like,u108,u206,2026-05-14 09:00:43,,u108 reacciono a tu publicacion
-evt-011,comment,u110,u208,2026-05-14 09:01:03,Buen dato,u110 comento tu publicacion
+evt-004,like,u103,u202,2026-05-14 09:00:20.000,,u103 reacciono a tu publicacion
+evt-009,like,u108,u206,2026-05-14 09:00:43.000,,u108 reacciono a tu publicacion
+evt-011,comment,u110,u208,2026-05-14 09:01:03.000,Buen dato,u110 comento tu publicacion

@@ -1,4 +1,4 @@
 event_id,event_type,source_user_id,target_user_id,created_at,content,notification_text
-evt-009,like,u108,u206,2026-05-14 09:00:43,,u108 reacciono a tu publicacion
-evt-004,like,u103,u202,2026-05-14 09:00:20,,u103 reacciono a tu publicacion
-evt-001,like,u100,u200,2026-05-14 09:00:01,,u100 reacciono a tu publicacion
+evt-009,like,u108,u206,2026-05-14 09:00:43.000,,u108 reacciono a tu publicacion
+evt-004,like,u103,u202,2026-05-14 09:00:20.000,,u103 reacciono a tu publicacion
+evt-001,like,u100,u200,2026-05-14 09:00:01.000,,u100 reacciono a tu publicacion

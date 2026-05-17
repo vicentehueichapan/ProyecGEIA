@@ -20,6 +20,7 @@ REPORTS = DATA / "reports"
 LOGS = ROOT / "logs"
 EVIDENCE = ROOT / "docs" / "evidencias"
 DB_PATH = DATA / "notifyops.db"
+DISPLAY_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
 
 
 @dataclass(frozen=True)
@@ -90,6 +91,18 @@ def notification_text(event_type: str, source_user_id: str) -> str:
         "follow": f"{source_user_id} comenzo a seguirte",
     }
     return templates.get(event_type, "evento no soportado")
+
+
+def format_datetime_milliseconds(value: pd.Timestamp) -> str:
+    if pd.isna(value) or str(value).strip() == "":
+        return ""
+    try:
+        timestamp = pd.Timestamp(value)
+    except (TypeError, ValueError):
+        return str(value)
+    if pd.isna(timestamp):
+        return ""
+    return timestamp.strftime(DISPLAY_DATETIME_FORMAT)[:-3]
 
 
 def clean_transform_events(raw: pd.DataFrame, rules: DataQualityRules | None = None) -> pd.DataFrame:
@@ -165,8 +178,8 @@ def generate_notifications(valid: pd.DataFrame) -> pd.DataFrame:
                 "target_user_id": row["target_user_id"],
                 "message": row["notification_text"],
                 "delivery_status": "sent",
-                "created_at": created_at.strftime("%Y-%m-%d %H:%M:%S"),
-                "delivered_at": delivered_at.strftime("%Y-%m-%d %H:%M:%S"),
+                "created_at": format_datetime_milliseconds(created_at),
+                "delivered_at": format_datetime_milliseconds(delivered_at),
                 "latency_seconds": latency_seconds,
             }
         )
@@ -176,8 +189,8 @@ def generate_notifications(valid: pd.DataFrame) -> pd.DataFrame:
 def _serialize_for_sql(frame: pd.DataFrame) -> pd.DataFrame:
     output = frame.copy()
     for column in output.columns:
-        if pd.api.types.is_datetime64_any_dtype(output[column]):
-            output[column] = output[column].dt.strftime("%Y-%m-%d %H:%M:%S")
+        if pd.api.types.is_datetime64_any_dtype(output[column]) or column in {"created_at", "delivered_at"}:
+            output[column] = output[column].apply(format_datetime_milliseconds)
     return output
 
 
@@ -213,6 +226,7 @@ def calculate_kpis(valid: pd.DataFrame, rejected: pd.DataFrame, notifications: p
 
 def generate_recent_event_views(valid: pd.DataFrame) -> Dict[str, pd.DataFrame]:
     sorted_events = valid.sort_values("created_at", ascending=False).reset_index(drop=True)
+    sorted_events = _serialize_for_sql(sorted_events)
     views = {"all": sorted_events}
     for event_type in DataQualityRules().allowed_event_types:
         views[event_type] = sorted_events[sorted_events["event_type"] == event_type].reset_index(drop=True)
@@ -227,9 +241,9 @@ def write_report_artifacts(
     kpis: Dict[str, float],
 ) -> None:
     logging.info("INICIO escritura de artefactos")
-    processed.to_csv(PROCESSED / "events_processed.csv", index=False)
-    valid.to_csv(VALIDATED / "events_validated.csv", index=False)
-    rejected.to_csv(REPORTS / "validation_errors.csv", index=False)
+    _serialize_for_sql(processed).to_csv(PROCESSED / "events_processed.csv", index=False)
+    _serialize_for_sql(valid).to_csv(VALIDATED / "events_validated.csv", index=False)
+    _serialize_for_sql(rejected).to_csv(REPORTS / "validation_errors.csv", index=False)
     notifications.to_csv(REPORTS / "notifications.csv", index=False)
     recent_views = generate_recent_event_views(valid)
     recent_views["all"].to_csv(REPORTS / "events_recent_all.csv", index=False)

@@ -1,5 +1,5 @@
 event_id,event_type,source_user_id,target_user_id,created_at,content,notification_text,error_reason
-evt-006,share,u105,u204,2026-05-14 09:00:31,,evento no soportado,tipo de evento invalido
-evt-007,follow,u106,,2026-05-14 09:00:38,,u106 comenzo a seguirte,target_user_id vacio
-evt-012,,u111,u209,2026-05-14 09:01:12,,evento no soportado,tipo de evento invalido
+evt-006,share,u105,u204,2026-05-14 09:00:31.000,,evento no soportado,tipo de evento invalido
+evt-007,follow,u106,,2026-05-14 09:00:38.000,,u106 comenzo a seguirte,target_user_id vacio
+evt-012,,u111,u209,2026-05-14 09:01:12.000,,evento no soportado,tipo de evento invalido
 evt-008,comment,u107,u205,,Hola,u107 comento tu publicacion,fecha invalida

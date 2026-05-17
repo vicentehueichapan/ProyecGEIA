@@ -1,3 +1,3 @@
 event_id,event_type,source_user_id,target_user_id,created_at,content,notification_text
-evt-010,follow,u109,u207,2026-05-14 09:00:55,,u109 comenzo a seguirte
-evt-003,follow,u102,u201,2026-05-14 09:00:15,,u102 comenzo a seguirte
+evt-010,follow,u109,u207,2026-05-14 09:00:55.000,,u109 comenzo a seguirte
+evt-003,follow,u102,u201,2026-05-14 09:00:15.000,,u102 comenzo a seguirte
