@@ -2,6 +2,18 @@
 
 Sistema MVP para automatizar una ETL de notificaciones de una red social. Procesa eventos mezclados de likes, comentarios y seguidores, valida anomalias, genera notificaciones, calcula KPIs y produce vistas recientes ordenadas desde el evento mas nuevo al mas antiguo.
 
+Las fechas de los reportes se muestran en formato legible con hora, minuto, segundo y milisegundos:
+
+```text
+YYYY-MM-DD HH:MM:SS.mmm
+```
+
+Ejemplo:
+
+```text
+2026-05-14 09:01:03.000
+```
+
 ## Ejecutar pruebas
 
 ```powershell
@@ -64,6 +76,8 @@ El DAG tambien queda configurado con frecuencia quincenal para representar el ci
 schedule=timedelta(weeks=2)
 ```
 
+Esto equivale a automatizar la ETL cada dos semanas, alineado con el caso de estudio donde el equipo experimenta y ajusta funcionalidades en ciclos quincenales. Se usa `timedelta(weeks=2)` en vez de un cron ambiguo para expresar exactamente el intervalo de dos semanas.
+
 El DAG ejecuta estas tareas:
 
 ```text
@@ -81,6 +95,7 @@ start -> verify_input_dataset -> run_notifyops_pipeline -> verify_outputs -> sum
 - `data/reports/likes_recent.csv`: likes ordenados de reciente a antiguo.
 - `data/reports/comments_recent.csv`: comentarios ordenados de reciente a antiguo.
 - `data/reports/follows_recent.csv`: seguidores ordenados de reciente a antiguo.
+- `data/reports/notifications.csv`: notificaciones generadas, tambien ordenadas de reciente a antiguo.
 - `data/reports/validation_errors.csv`: errores/anomalias.
 - `data/reports/kpi_report.csv`: KPIs.
 - `logs/notifyops.log`: trazabilidad.
