@@ -175,6 +175,14 @@ El DAG ejecuta estas tareas:
 start -> verify_input_dataset -> run_notifyops_pipeline -> verify_outputs -> summarize_kpis -> finish
 ```
 
+Para apagar Airflow correctamente al finalizar la revision, abrir otra PowerShell en la misma carpeta del repositorio y ejecutar:
+
+```powershell
+docker compose -f docker-compose.airflow.yml down -v --remove-orphans
+```
+
+Esto detiene el contenedor y elimina los volumenes temporales de Airflow usados solo para la demo. El proyecto no queda configurado para reiniciarse automaticamente.
+
 ## Archivos principales
 
 - `src/notifyops/pipeline.py`: pipeline MVP.
