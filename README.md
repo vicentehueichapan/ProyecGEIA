@@ -70,7 +70,7 @@ Import-Csv .\data\reports\validation_errors.csv | Select-Object event_id,event_t
 
 Los registros rechazados quedan con el motivo tecnico del error.
 
-### 6. Ver salidas finales ordenadas de reciente a antiguo
+### 6. Ver salidas finales ordenadas 
 
 ```powershell
 Import-Csv .\data\reports\events_recent_all.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
