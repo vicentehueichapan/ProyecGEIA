@@ -14,6 +14,97 @@ Ejemplo:
 2026-05-14 09:01:03.000
 ```
 
+## Orden recomendado de ejecucion para revisar el MVP
+
+Ejecutar todos los comandos desde la carpeta raiz del repositorio:
+
+```powershell
+cd "C:\ruta\donde\descargaste\ProyecGEIA"
+```
+
+### 1. Ver datos originales antes de la ETL
+
+```powershell
+Import-Csv .\data\raw\social_events.csv | Format-Table -AutoSize
+```
+
+Los datos de entrada vienen mezclados, desordenados y con anomalias intencionales para demostrar limpieza y validacion.
+
+### 2. Ejecutar pruebas automatizadas
+
+```powershell
+python -m unittest discover -v
+```
+
+Resultado esperado:
+
+```text
+OK
+```
+
+### 3. Ejecutar pipeline DataOps
+
+```powershell
+python -m src.notifyops.pipeline
+```
+
+El pipeline ejecuta ingesta, limpieza, transformacion, validacion, carga, generacion de notificaciones, reportes, KPIs y logs.
+
+### 4. Ver datos despues de la transformacion
+
+```powershell
+Import-Csv .\data\processed\events_processed.csv | Select-Object event_id,event_type,source_user_id,target_user_id,created_at,notification_text | Format-Table -AutoSize
+```
+
+Aqui se observa la normalizacion de tipos de evento, eliminacion de duplicados y creacion del texto de notificacion.
+
+### 5. Ver datos validos y datos rechazados
+
+```powershell
+Import-Csv .\data\validated\events_validated.csv | Select-Object event_id,event_type,source_user_id,target_user_id,created_at,notification_text | Format-Table -AutoSize
+```
+
+```powershell
+Import-Csv .\data\reports\validation_errors.csv | Select-Object event_id,event_type,created_at,error_reason | Format-Table -AutoSize
+```
+
+Los registros rechazados quedan con el motivo tecnico del error.
+
+### 6. Ver salidas finales ordenadas de reciente a antiguo
+
+```powershell
+Import-Csv .\data\reports\events_recent_all.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
+```
+
+```powershell
+Import-Csv .\data\reports\likes_recent.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
+Import-Csv .\data\reports\comments_recent.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
+Import-Csv .\data\reports\follows_recent.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
+```
+
+### 7. Ver notificaciones, KPIs y logs
+
+```powershell
+Import-Csv .\data\reports\notifications.csv | Select-Object notification_id,event_id,event_type,target_user_id,created_at,delivered_at,latency_seconds | Format-Table -AutoSize
+```
+
+```powershell
+Get-Content .\data\reports\demo_summary.txt
+Get-Content .\logs\notifyops.log -Tail 30
+```
+
+### 8. Revisar automatizacion con Airflow
+
+```powershell
+docker compose -f docker-compose.airflow.yml up
+```
+
+Abrir `http://localhost:8080`, ingresar con usuario `admin` y clave `admin`, activar `notifyops_etl_dag` y ejecutar el DAG manualmente. Al terminar, apagar Airflow:
+
+```powershell
+docker compose -f docker-compose.airflow.yml down -v --remove-orphans
+```
+
 ## Ejecutar pruebas
 
 ```powershell
