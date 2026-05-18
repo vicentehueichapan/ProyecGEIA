@@ -82,18 +82,29 @@ Import-Csv .\data\reports\comments_recent.csv | Select-Object event_id,event_typ
 Import-Csv .\data\reports\follows_recent.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
 ```
 
-### 7. Ver notificaciones, KPIs y logs
+### 7. Ver KPIs
+
+```powershell
+Import-Csv .\data\reports\kpi_report.csv | Format-List
+```
+
+```powershell
+Get-Content .\data\reports\demo_summary.txt
+```
+
+### 8. Ver notificaciones generadas
 
 ```powershell
 Import-Csv .\data\reports\notifications.csv | Select-Object notification_id,event_id,event_type,target_user_id,created_at,delivered_at,latency_seconds | Format-Table -AutoSize
 ```
 
+### 9. Ver logs de ejecucion
+
 ```powershell
-Get-Content .\data\reports\demo_summary.txt
 Get-Content .\logs\notifyops.log -Tail 30
 ```
 
-### 8. Revisar automatizacion con Airflow
+### 10. Revisar automatizacion con Airflow
 
 ```powershell
 docker compose -f docker-compose.airflow.yml up
