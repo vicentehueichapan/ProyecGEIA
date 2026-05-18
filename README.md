@@ -22,7 +22,15 @@ Ejecutar todos los comandos desde la carpeta raiz del repositorio:
 cd "C:\ruta\donde\descargaste\ProyecGEIA"
 ```
 
-### 1. Ver datos originales antes de la ETL
+### 1. Instalar dependencias
+
+```powershell
+pip install -r requirements.txt
+```
+
+Este paso prepara las librerias necesarias para ejecutar el pipeline, las pruebas y la generacion de evidencias.
+
+### 2. Ver datos originales antes de la ETL
 
 ```powershell
 Import-Csv .\data\raw\social_events.csv | Format-Table -AutoSize
@@ -30,7 +38,7 @@ Import-Csv .\data\raw\social_events.csv | Format-Table -AutoSize
 
 Los datos de entrada vienen mezclados, desordenados y con anomalias intencionales para demostrar limpieza y validacion.
 
-### 2. Ejecutar pruebas automatizadas
+### 3. Ejecutar pruebas automatizadas
 
 ```powershell
 python -m unittest discover -v
@@ -42,7 +50,7 @@ Resultado esperado:
 OK
 ```
 
-### 3. Ejecutar pipeline DataOps
+### 4. Ejecutar pipeline DataOps
 
 ```powershell
 python -m src.notifyops.pipeline
@@ -50,7 +58,7 @@ python -m src.notifyops.pipeline
 
 El pipeline ejecuta ingesta, limpieza, transformacion, validacion, carga, generacion de notificaciones, reportes, KPIs y logs.
 
-### 4. Ver datos despues de la transformacion
+### 5. Ver datos despues de la transformacion
 
 ```powershell
 Import-Csv .\data\processed\events_processed.csv | Select-Object event_id,event_type,source_user_id,target_user_id,created_at,notification_text | Format-Table -AutoSize
@@ -58,7 +66,7 @@ Import-Csv .\data\processed\events_processed.csv | Select-Object event_id,event_
 
 Aqui se observa la normalizacion de tipos de evento, eliminacion de duplicados y creacion del texto de notificacion.
 
-### 5. Ver datos validos y datos rechazados
+### 6. Ver datos validos y datos rechazados
 
 ```powershell
 Import-Csv .\data\validated\events_validated.csv | Select-Object event_id,event_type,source_user_id,target_user_id,created_at,notification_text | Format-Table -AutoSize
@@ -70,7 +78,7 @@ Import-Csv .\data\reports\validation_errors.csv | Select-Object event_id,event_t
 
 Los registros rechazados quedan con el motivo tecnico del error.
 
-### 6. Ver salidas finales ordenadas del mas reciente al mas antiguo
+### 7. Ver salidas finales ordenadas del mas reciente al mas antiguo
 
 ```powershell
 Import-Csv .\data\reports\events_recent_all.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
@@ -82,7 +90,7 @@ Import-Csv .\data\reports\comments_recent.csv | Select-Object event_id,event_typ
 Import-Csv .\data\reports\follows_recent.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
 ```
 
-### 7. Ver KPIs
+### 8. Ver KPIs
 
 ```powershell
 Import-Csv .\data\reports\kpi_report.csv | Format-List
@@ -92,19 +100,19 @@ Import-Csv .\data\reports\kpi_report.csv | Format-List
 Get-Content .\data\reports\demo_summary.txt
 ```
 
-### 8. Ver notificaciones generadas
+### 9. Ver notificaciones generadas
 
 ```powershell
 Import-Csv .\data\reports\notifications.csv | Select-Object notification_id,event_id,event_type,target_user_id,created_at,delivered_at,latency_seconds | Format-Table -AutoSize
 ```
 
-### 9. Ver logs de ejecucion
+### 10. Ver logs de ejecucion
 
 ```powershell
 Get-Content .\logs\notifyops.log -Tail 30
 ```
 
-### 10. Revisar automatizacion con Airflow
+### 11. Revisar automatizacion con Airflow
 
 ```powershell
 docker compose -f docker-compose.airflow.yml up
