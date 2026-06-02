@@ -140,7 +140,7 @@ python -m src.notifyops.pipeline
 
 ## Ejecutar extension IA Parcial 3
 
-La extension de Parcial 3 adapta el notebook de clasificacion binaria del profesor al caso NotifyOps. En vez de clasificar mensajes como `spam/no_spam`, clasifica eventos sociales como `valido/riesgoso`.
+La extension de Parcial 3 adapta el notebook de clasificacion binaria del profesor al caso NotifyOps. En vez de clasificar mensajes como `spam/no_spam`, le dimos un uso praactico para nuestro caso para poder clasificar eventos sociales como `valido/riesgoso`.
 
 La mejora se integra conceptualmente despues de limpieza y transformacion: primero se calcula riesgo con IA, luego se mantiene la validacion por reglas duras y finalmente se genera una decision final.
 
