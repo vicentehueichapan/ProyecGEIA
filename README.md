@@ -1,4 +1,4 @@
-# NotifyOps MVP
+# NotifyOps MVP + Extension IA
 
 Sistema MVP para automatizar una ETL de notificaciones de una red social. Procesa eventos mezclados de likes, comentarios y seguidores, valida anomalias, genera notificaciones, calcula KPIs y produce vistas recientes ordenadas desde el evento mas nuevo al mas antiguo.
 
@@ -13,6 +13,100 @@ Ejemplo:
 ```text
 2026-05-14 09:01:03.000
 ```
+
+## Estado actual de la entrega
+
+El repositorio contiene la entrega tecnica ejecutable del proyecto:
+
+- MVP DataOps/ETL con datos de entrada, datos procesados, validacion, KPIs, logs y reportes.
+- Automatizacion complementaria con Airflow mediante un DAG quincenal.
+- Ejecucion reproducible con Docker.
+- Extension IA de Parcial 3 con dataset, entrenamiento, metricas, matriz de confusion, graficos, dashboard y decision final.
+- Pruebas automatizadas para verificar pipeline, DAG e integracion IA.
+
+## Vision general del proyecto actual
+
+NotifyOps se encuentra organizado en dos fases:
+
+- **Fase 1 - Pipeline DataOps / ETL:** procesa eventos sociales, limpia datos, valida anomalias, carga resultados, genera notificaciones, KPIs y logs.
+- **Fase 2 - Extension IA Parcial 3:** agrega un modelo de clasificacion binaria que estima si un evento social es `valido` o `riesgoso` antes de generar o aprobar notificaciones.
+
+La mejora de IA no reemplaza la validacion anterior. La complementa como una capa predictiva:
+
+```text
+Reglas duras del pipeline + scoring IA = decision final mas confiable
+```
+
+## Flujo antes de IA
+
+```mermaid
+flowchart LR
+    A["Datos raw: social_events.csv"] --> B["Ingesta"]
+    B --> C["Limpieza y transformacion"]
+    C --> D["Validacion por reglas"]
+    D --> E["Eventos validos"]
+    D --> F["Eventos rechazados con motivo"]
+    E --> G["Notificaciones"]
+    G --> H["KPIs, logs y reportes"]
+```
+
+En la Fase 1, el sistema decidia con reglas estructurales y semanticas. Por ejemplo: tipo de evento permitido, usuario destino presente, fecha valida y control de duplicados.
+
+## Flujo con IA integrada
+
+```mermaid
+flowchart LR
+    A["Datos raw / eventos sociales"] --> B["Ingesta"]
+    B --> C["Limpieza y transformacion"]
+    C --> D["Scoring IA de riesgo"]
+    C --> E["Validacion por reglas duras"]
+    D --> F["Decision final"]
+    E --> F
+    F --> G["rechazado_por_reglas"]
+    F --> H["revision_por_ia"]
+    F --> I["aprobado_para_notificar"]
+    I --> J["Notificaciones"]
+    F --> K["Metricas IA, graficos y dashboard"]
+```
+
+La IA se aplica despues de la limpieza y transformacion porque en ese punto los datos ya estan normalizados y pueden convertirse en variables predictivas.
+La decision final combina el resultado de reglas duras con la probabilidad de riesgo del modelo.
+
+## Comparativa antes y despues
+
+| Aspecto | Fase 1: ETL DataOps | Fase 2: IA integrada |
+|---|---|---|
+| Objetivo | Procesar y validar eventos sociales | Anticipar riesgo de eventos antes de notificar |
+| Decision | Reglas duras | Reglas duras + probabilidad de riesgo IA |
+| Salida principal | Validado / rechazado | `rechazado_por_reglas`, `revision_por_ia`, `aprobado_para_notificar` |
+| Evidencia | CSV, SQLite, logs, KPIs | Metricas IA, matriz de confusion, ROC, Gini, dashboard |
+| Valor | Ordena y controla el pipeline | Agrega capa predictiva y analisis de rendimiento |
+| Utilidad | Evita datos invalidos evidentes | Ayuda a priorizar eventos riesgosos y mejorar reglas |
+
+## Valor agregado de la IA
+
+La extension IA permite demostrar lo solicitado en la Evaluacion Parcial 3:
+
+- entrenamiento de un modelo de clasificacion;
+- analisis de calidad de datos;
+- analisis univariado y bivariado mediante graficos y correlaciones;
+- metricas de rendimiento: accuracy, precision, recall, F1, ROC-AUC y Gini;
+- matriz de confusion;
+- dashboard local tipo BI;
+- identificacion de limitaciones y oportunidades de mejora.
+
+El modelo funciona como un filtro inteligente: calcula una probabilidad de riesgo para cada evento y apoya la decision final del pipeline.
+
+## Evidencia tecnica generada
+
+Despues de ejecutar el proyecto, las evidencias quedan dentro del mismo repositorio:
+
+- `data/reports/ai/model_metrics.csv`: rendimiento del modelo.
+- `data/reports/ai/confusion_matrix.csv`: matriz de confusion.
+- `data/reports/ai/final_event_decisions.csv`: salida final integrada entre reglas e IA.
+- `data/reports/ai/charts/`: graficos para analisis, informe y presentacion.
+- `dashboard/notifyops_ai_dashboard.html`: dashboard local para revisar metricas y resultados.
+- `logs/notifyops.log`: trazabilidad de ejecucion del pipeline.
 
 ## Orden recomendado de ejecucion para revisar el MVP
 
@@ -180,6 +274,12 @@ Ver decision final integrada:
 Import-Csv .\data\reports\ai\final_event_decisions.csv | Select-Object event_id,event_type,rule_error_reason,ai_risk_probability,ai_prediction,final_decision | Format-Table -AutoSize
 ```
 
+Si PowerShell corta columnas por ancho de pantalla:
+
+```powershell
+Import-Csv .\data\reports\ai\final_event_decisions.csv | Select-Object -First 5 | Format-List
+```
+
 ## Ejecutar con Docker
 
 ```powershell
@@ -248,8 +348,10 @@ Esto detiene el contenedor y elimina los volumenes temporales de Airflow usados 
 
 - `src/notifyops/pipeline.py`: pipeline MVP.
 - `dags/notifyops_etl_dag.py`: DAG complementario de Airflow para automatizar la ETL.
+- `src/notifyops_ai/modeling.py`: extension IA de Parcial 3 para clasificar eventos validos/riesgosos.
 - `tests/test_pipeline.py`: pruebas unitarias del pipeline.
 - `tests/test_airflow_dag.py`: prueba de existencia y estructura del DAG.
+- `tests/test_notifyops_ai.py`: pruebas de dataset IA, variables, metricas y decision final.
 - `data/raw/social_events.csv`: dataset de entrada con eventos mezclados.
 - `data/reports/events_recent_all.csv`: todos los eventos validos ordenados de reciente a antiguo.
 - `data/reports/likes_recent.csv`: likes ordenados de reciente a antiguo.
@@ -258,9 +360,36 @@ Esto detiene el contenedor y elimina los volumenes temporales de Airflow usados 
 - `data/reports/notifications.csv`: notificaciones generadas, tambien ordenadas de reciente a antiguo.
 - `data/reports/validation_errors.csv`: errores/anomalias.
 - `data/reports/kpi_report.csv`: KPIs.
+- `data/ai/notifyops_ai_events.csv`: dataset sintetico de entrenamiento IA.
+- `data/ai/feature_matrix.csv`: variables predictivas usadas por el modelo.
+- `data/reports/ai/model_metrics.csv`: metricas del modelo IA.
+- `data/reports/ai/confusion_matrix.csv`: matriz de confusion.
+- `data/reports/ai/final_event_decisions.csv`: decision final integrada entre reglas duras e IA.
+- `data/reports/ai/charts/`: graficos para informe, presentacion y dashboard.
+- `dashboard/notifyops_ai_dashboard.html`: dashboard local de metricas IA.
+- `notebooks/modelo_validacion_eventos_notifyops.ipynb`: notebook adaptado desde el ejemplo de clasificacion binaria del profesor.
+- `README_PARCIAL3_IA.md`: guia especifica para ejecutar y defender la extension IA.
 - `logs/notifyops.log`: trazabilidad.
 - `data/notifyops.db`: base SQLite.
 
-## Defensa breve
+## Defensa breve actualizada
 
 El dataset de entrada contiene eventos sociales mezclados y desordenados. La ETL limpia, transforma, valida y carga la informacion. Luego genera una vista general reciente y tres vistas separadas por tipo de interaccion. Airflow permite automatizar ese flujo como proceso DataOps, mientras Docker permite ejecutarlo en un entorno reproducible.
+
+En la extension de Parcial 3, NotifyOps incorpora una capa de IA inspirada en el notebook de clasificacion binaria entregado por el profesor. En vez de clasificar mensajes como `spam/no_spam`, le dimos un uso practico al caso para clasificar eventos sociales como `valido/riesgoso`.
+
+La extension se aplica despues de limpiar y transformar los eventos, porque en ese punto los datos ya estan normalizados. El modelo usa variables como tipo de evento, presencia de usuarios, fecha valida, duplicidad, largo del contenido y hora del evento para estimar una probabilidad de riesgo.
+
+La decision final combina dos niveles:
+
+- reglas duras: controlan errores objetivos como fecha invalida, usuario destino vacio, tipo fuera del alcance o duplicados;
+- IA: calcula una probabilidad de riesgo para apoyar la revision, medir rendimiento y detectar casos que requieren mayor atencion.
+
+Esto permite explicar el proyecto como una evolucion completa:
+
+```text
+Fase 1: pipeline ETL/DataOps funcional
+Fase 2: pipeline mejorado con modelo IA, metricas, dashboard y analisis de rendimiento
+```
+
+El valor agregado de la extension es mejorar la capacidad de deteccion, generar evidencia cuantitativa del rendimiento del modelo y entregar una base para futuras mejoras como reentrenamiento quincenal, alertas, integracion BI y monitoreo de calidad de datos. Antes de la IA, el sistema solo separaba eventos validos o rechazados por reglas. Despues de la IA, el sistema conserva esas reglas y agrega una capa predictiva que permite priorizar revision, interpretar metricas y justificar mejoras con evidencia.
