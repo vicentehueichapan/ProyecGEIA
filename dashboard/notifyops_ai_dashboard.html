@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>NotifyOps AI Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 32px; background: #f8fafc; color: #111827; }
+    h1 { margin-bottom: 4px; }
+    .subtitle { color: #475569; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(140px, 1fr)); gap: 14px; }
+    .card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }
+    .value { font-size: 28px; font-weight: 700; color: #0f766e; }
+    .charts { display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: 18px; margin-top: 24px; }
+    img { width: 100%; background: white; border: 1px solid #e5e7eb; border-radius: 8px; }
+    code { background: #e5e7eb; padding: 2px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>NotifyOps AI Dashboard</h1>
+  <div class="subtitle">Filtro inteligente para clasificar eventos sociales como validos o riesgosos.</div>
+  <div class="grid">
+    <div class="card"><div>Accuracy</div><div class="value">0.9375</div></div>
+    <div class="card"><div>Precision</div><div class="value">1.0</div></div>
+    <div class="card"><div>Recall</div><div class="value">0.875</div></div>
+    <div class="card"><div>Gini</div><div class="value">0.9188</div></div>
+  </div>
+  <div class="charts">
+    <img src="../data/reports/ai/charts/class_distribution.png" alt="Distribucion de clases">
+    <img src="../data/reports/ai/charts/confusion_matrix.png" alt="Matriz de confusion">
+    <img src="../data/reports/ai/charts/roc_curve.png" alt="Curva ROC">
+    <img src="../data/reports/ai/charts/feature_weights.png" alt="Importancia de variables">
+  </div>
+  <p>Archivos principales: <code>data/ai/notifyops_ai_events.csv</code>, <code>data/reports/ai/model_metrics.csv</code>, <code>data/reports/ai/new_event_predictions.csv</code>.</p>
+</body>
+</html>

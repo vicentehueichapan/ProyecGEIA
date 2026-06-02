@@ -1,6 +1,7 @@
 pandas
+numpy
+matplotlib
 Pillow
 python-docx
 reportlab
 pypdf
-

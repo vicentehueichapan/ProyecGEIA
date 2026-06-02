@@ -1,0 +1,321 @@
+event_id,event_type,source_user_id,target_user_id,created_at,content,is_duplicate,historical_feedback_risk,label_risky_event
+evt-ai-0001,share,u158,,2026-05-15 07:54:57,,0,0,1
+evt-ai-0002,like,u170,u275,2026-05-14 23:00:46,,0,0,0
+evt-ai-0003,like,u108,u249,2026-05-15 07:21:02,,0,0,0
+evt-ai-0004,reaction,u131,,2026-05-15 14:45:03,,0,0,1
+evt-ai-0005,,u167,u236,2026-05-14 19:00:23,evento externo,0,0,1
+evt-ai-0006,follow,u120,u284,2026-05-14 22:34:18,,0,0,0
+evt-ai-0007,comment,u180,u225,fecha-invalida,Buen dato,0,0,1
+evt-ai-0008,follow,u142,u263,2026-05-14 16:10:57,,0,0,0
+evt-ai-0009,comment,u110,u276,2026-05-15 10:29:49,Me interesa,0,1,1
+evt-ai-0008,comment,u127,u288,2026-05-14 17:22:46,Buen dato,1,0,1
+evt-ai-0011,comment,u139,u259,2026-05-15 02:34:03,Gran publicacion,0,0,0
+evt-ai-0012,like,u109,u208,2026-05-15 15:16:06,,0,0,0
+evt-ai-0013,comment,u113,u214,2026-05-14 19:25:10,Buen dato,0,0,0
+evt-ai-0014,reaction,u110,u244,2026-05-15 08:33:50,,0,0,1
+evt-ai-0015,like,u124,u240,2026-05-15 14:05:12,,0,0,0
+evt-ai-0016,reaction,u101,u268,2026-05-15 04:57:29,,0,0,1
+evt-ai-0017,comment,u107,u270,2026-05-14 13:50:22,Gran publicacion,0,0,0
+evt-ai-0018,unknown,u152,,2026-05-14 23:34:12,contenido no soportado,0,0,1
+evt-ai-0019,like,u170,u224,2026-05-15 00:13:18,,0,0,0
+evt-ai-0020,comment,,u246,2026-05-14 22:37:49,Hola,0,0,1
+evt-ai-0021,follow,u128,u209,2026-05-15 15:17:31,,0,0,0
+evt-ai-0022,unknown,u169,u287,2026-05-15 16:06:25,evento externo,0,0,1
+evt-ai-0007,unknown,u128,u257,2026-05-14 17:57:35,,1,0,1
+evt-ai-0024,,u139,u213,2026-05-15 13:43:21,,0,0,1
+evt-ai-0025,share,u130,u259,2026-05-14 11:08:56,,0,0,1
+evt-ai-0026,like,u106,u274,2026-05-14 09:29:34,,0,0,0
+evt-ai-0027,share,u117,,2026-05-15 16:23:39,,0,0,1
+evt-ai-0028,follow,u187,u210,2026-05-15 12:48:37,,0,0,0
+evt-ai-0029,follow,u172,u274,2026-05-14 12:22:06,,0,0,0
+evt-ai-0030,follow,u128,u286,fecha-invalida,,0,0,1
+evt-ai-0031,like,u157,u265,2026-05-14 12:40:40,,0,0,0
+evt-ai-0032,comment,u157,u270,2026-05-14 08:35:40,Hola,0,0,0
+evt-ai-0033,follow,u183,u278,2026-05-14 11:47:27,,0,0,0
+evt-ai-0034,comment,u158,u247,2026-05-15 13:23:15,Buen dato,0,0,0
+evt-ai-0035,like,u105,u217,2026-05-15 11:29:19,,0,0,0
+evt-ai-0016,like,,,2026-05-15 03:42:17,,1,0,1
+evt-ai-0037,follow,u172,u235,2026-05-15 01:53:01,,0,0,0
+evt-ai-0038,like,u103,u220,fecha-invalida,,0,0,1
+evt-ai-0039,comment,u180,u209,fecha-invalida,Gran publicacion,0,0,1
+evt-ai-0040,reaction,u121,u288,2026-05-15 11:32:06,,0,0,1
+evt-ai-0041,comment,u148,u287,2026-05-14 10:02:15,Hola,0,0,0
+evt-ai-0042,comment,u112,u254,2026-05-14 14:05:49,Buen dato,0,0,0
+evt-ai-0043,unknown,u161,u260,2026-05-15 14:32:41,,0,0,1
+evt-ai-0044,share,u149,u247,2026-05-15 00:46:36,,0,0,1
+evt-ai-0045,like,u177,u285,fecha-invalida,,0,0,1
+evt-ai-0046,like,u186,u286,2026-05-15 15:02:44,,0,0,0
+evt-ai-0047,follow,u185,u204,2026-05-14 11:10:05,,0,0,0
+evt-ai-0048,comment,u165,u268,2026-05-15 10:38:29,Hola,0,0,0
+evt-ai-0049,like,u143,u259,2026-05-15 08:36:27,,0,0,0
+evt-ai-0050,like,u180,u271,2026-05-14 20:08:23,,0,0,0
+evt-ai-0051,comment,u111,u265,2026-05-15 02:25:59,Gran publicacion,0,0,0
+evt-ai-0052,follow,u176,u285,2026-05-14 23:56:20,,0,0,0
+evt-ai-0053,like,u152,u208,2026-05-14 23:08:38,,0,0,0
+evt-ai-0054,unknown,u166,u270,2026-05-15 17:14:04,contenido no soportado,0,0,1
+evt-ai-0055,,u102,u259,fecha-invalida,,0,0,1
+evt-ai-0012,share,u112,,fecha-invalida,,1,0,1
+evt-ai-0057,share,u154,u286,2026-05-14 15:57:06,,0,0,1
+evt-ai-0058,follow,u173,u275,2026-05-15 01:59:40,,0,0,0
+evt-ai-0059,reaction,u167,u240,2026-05-14 13:10:25,,0,0,1
+evt-ai-0060,follow,u145,,2026-05-14 21:43:07,,0,0,1
+evt-ai-0061,like,u115,u269,2026-05-14 14:07:03,,0,0,0
+evt-ai-0062,like,u122,u285,2026-05-14 22:45:21,,0,0,0
+evt-ai-0063,comment,u184,,2026-05-14 11:06:49,Me interesa,0,0,1
+evt-ai-0064,comment,u127,u270,2026-05-15 15:38:17,Gracias por compartir,0,0,0
+evt-ai-0065,like,u152,u226,2026-05-14 21:56:48,,0,0,0
+evt-ai-0066,follow,u152,u258,2026-05-15 01:39:19,,0,0,0
+evt-ai-0067,comment,u156,u272,2026-05-14 16:57:31,Gracias por compartir,0,0,0
+evt-ai-0068,share,u171,u234,fecha-invalida,contenido no soportado,0,0,1
+evt-ai-0069,like,u130,,2026-05-14 18:27:47,,0,0,1
+evt-ai-0070,comment,u163,u213,2026-05-15 04:01:40,Buen dato,0,0,0
+evt-ai-0071,comment,u169,u261,fecha-invalida,Gran publicacion,0,0,1
+evt-ai-0072,comment,u142,u214,2026-05-14 13:31:48,Gracias por compartir,0,0,0
+evt-ai-0073,like,u145,,2026-05-14 23:59:26,,0,0,1
+evt-ai-0074,like,u142,,2026-05-14 14:01:51,,0,0,1
+evt-ai-0075,comment,u189,u252,2026-05-15 00:26:34,Gracias por compartir,0,0,0
+evt-ai-0076,follow,u171,u268,2026-05-15 15:02:47,,0,0,0
+evt-ai-0077,share,u176,u262,2026-05-15 12:24:01,,0,0,1
+evt-ai-0078,comment,u176,u247,2026-05-14 11:29:57,Me interesa,0,0,0
+evt-ai-0079,like,u123,u202,2026-05-15 02:53:02,,0,0,0
+evt-ai-0080,follow,u100,u247,2026-05-15 05:07:32,,0,0,0
+evt-ai-0081,follow,u125,u286,2026-05-15 10:58:26,,0,0,0
+evt-ai-0082,follow,u139,u237,2026-05-15 16:19:37,,0,0,0
+evt-ai-0083,like,u126,u203,2026-05-14 18:50:31,,0,0,0
+evt-ai-0007,share,u188,u258,2026-05-14 09:50:06,,1,0,1
+evt-ai-0085,like,u133,u233,2026-05-14 11:38:33,,0,0,0
+evt-ai-0086,share,u134,,2026-05-15 04:43:47,evento externo,0,0,1
+evt-ai-0087,like,u168,u236,2026-05-15 01:28:23,,0,0,0
+evt-ai-0088,comment,u131,u263,2026-05-15 06:38:38,Me interesa,0,0,0
+evt-ai-0089,follow,u107,u238,2026-05-15 10:54:51,,0,0,0
+evt-ai-0090,,u177,u263,2026-05-14 11:26:02,,0,0,1
+evt-ai-0091,like,,u231,2026-05-14 14:43:57,,0,0,1
+evt-ai-0092,comment,u179,u286,2026-05-15 09:03:55,Hola,0,0,0
+evt-ai-0093,reaction,u127,u247,2026-05-14 17:59:23,,0,0,1
+evt-ai-0094,like,u129,u231,2026-05-15 13:08:37,,0,0,0
+evt-ai-0095,comment,u185,u289,2026-05-15 06:29:11,Me interesa,0,0,0
+evt-ai-0090,like,u138,u258,2026-05-15 15:59:32,,1,0,1
+evt-ai-0097,like,u126,,2026-05-15 10:20:18,,0,0,1
+evt-ai-0098,like,u128,,2026-05-14 11:43:12,,0,0,1
+evt-ai-0042,comment,,,2026-05-14 11:42:11,Buen dato,1,0,1
+evt-ai-0100,comment,u145,u202,2026-05-14 15:38:02,Buen dato,0,0,0
+evt-ai-0050,comment,u129,u277,2026-05-14 23:21:32,Gracias por compartir,1,0,1
+evt-ai-0092,follow,u117,u213,2026-05-14 14:16:38,,1,0,1
+evt-ai-0103,like,u113,u209,2026-05-15 06:54:56,,0,1,1
+evt-ai-0104,reaction,u176,u247,2026-05-15 02:33:52,contenido no soportado,0,0,1
+evt-ai-0105,follow,u140,u281,2026-05-15 16:49:17,,0,0,0
+evt-ai-0106,like,u146,,fecha-invalida,,0,0,1
+evt-ai-0107,like,u101,u259,2026-05-15 08:10:21,,0,0,0
+evt-ai-0108,like,u169,u212,2026-05-14 16:49:58,,0,1,1
+evt-ai-0109,,u100,u252,2026-05-14 14:04:42,contenido no soportado,0,0,1
+evt-ai-0064,like,u124,u240,2026-05-14 09:43:49,,1,0,1
+evt-ai-0111,like,u153,u276,2026-05-15 13:07:46,,0,0,0
+evt-ai-0112,follow,u168,u251,2026-05-15 15:25:14,,0,0,0
+evt-ai-0113,comment,u101,u238,2026-05-14 23:37:35,Me interesa,0,0,0
+evt-ai-0114,like,u113,u261,2026-05-14 14:39:05,,0,0,0
+evt-ai-0115,reaction,u158,u234,2026-05-14 22:48:46,,0,0,1
+evt-ai-0097,reaction,u109,u262,2026-05-14 15:00:41,,1,0,1
+evt-ai-0117,comment,u188,u272,2026-05-15 03:02:47,Gracias por compartir,0,0,0
+evt-ai-0118,follow,u152,u251,2026-05-15 15:10:45,,0,0,0
+evt-ai-0119,like,u127,u261,2026-05-14 23:45:45,,0,0,0
+evt-ai-0120,like,u167,u243,2026-05-14 14:44:10,,0,1,1
+evt-ai-0121,comment,u108,,2026-05-15 05:45:02,Buen dato,0,0,1
+evt-ai-0049,share,u127,u278,2026-05-14 12:35:35,,1,0,1
+evt-ai-0123,comment,u120,u249,2026-05-14 11:13:57,Me interesa,0,0,0
+evt-ai-0124,like,u109,u276,2026-05-15 11:50:24,,0,0,0
+evt-ai-0125,share,u136,u203,2026-05-14 14:53:37,,0,0,1
+evt-ai-0126,share,u155,u216,2026-05-14 22:59:43,evento externo,0,0,1
+evt-ai-0127,comment,u148,u247,2026-05-14 16:16:48,Gracias por compartir,0,0,0
+evt-ai-0128,comment,u125,u244,2026-05-15 01:39:29,Me interesa,0,0,0
+evt-ai-0020,comment,u175,u285,2026-05-14 20:40:16,Gran publicacion,1,0,1
+evt-ai-0130,unknown,u110,u200,2026-05-14 18:43:03,,0,0,1
+evt-ai-0131,,u112,u273,2026-05-15 02:38:18,,0,0,1
+evt-ai-0132,comment,u104,u205,2026-05-14 15:01:16,Gracias por compartir,0,0,0
+evt-ai-0133,follow,u183,u267,fecha-invalida,,0,0,1
+evt-ai-0134,like,u139,u213,2026-05-14 21:47:52,,0,0,0
+evt-ai-0135,follow,u165,u259,2026-05-15 03:59:23,,0,0,0
+evt-ai-0136,share,u152,u203,2026-05-15 13:44:58,evento externo,0,0,1
+evt-ai-0137,comment,u132,u285,2026-05-14 20:12:40,Gracias por compartir,0,0,0
+evt-ai-0138,reaction,u129,u237,2026-05-15 11:34:28,,0,0,1
+evt-ai-0139,follow,u108,,2026-05-15 05:51:02,,0,0,1
+evt-ai-0140,share,u184,u277,2026-05-15 06:15:41,,0,0,1
+evt-ai-0141,follow,u182,u281,2026-05-15 03:24:45,,0,0,0
+evt-ai-0045,follow,u154,u205,2026-05-15 01:58:28,,1,0,1
+evt-ai-0143,reaction,u136,u286,2026-05-15 07:29:18,contenido no soportado,0,0,1
+evt-ai-0144,follow,u144,u273,2026-05-14 19:08:13,,0,0,0
+evt-ai-0145,follow,u189,u268,2026-05-15 04:12:26,,0,0,0
+evt-ai-0146,like,u158,u241,2026-05-15 03:31:55,,0,0,0
+evt-ai-0147,like,u103,u230,2026-05-15 04:09:49,,0,0,0
+evt-ai-0148,,u110,u225,2026-05-15 05:05:19,evento externo,0,0,1
+evt-ai-0149,like,u106,u252,2026-05-15 10:21:28,,0,0,0
+evt-ai-0150,like,u114,u238,2026-05-14 08:02:29,,0,0,0
+evt-ai-0151,comment,u189,u209,2026-05-14 13:55:40,Gran publicacion,0,1,1
+evt-ai-0152,follow,u138,u268,2026-05-14 19:46:40,,0,0,0
+evt-ai-0153,follow,u164,u272,2026-05-15 14:31:27,,0,0,0
+evt-ai-0154,follow,u108,,2026-05-14 10:15:02,,0,0,1
+evt-ai-0155,like,u130,u258,2026-05-14 16:56:49,,0,0,0
+evt-ai-0156,share,u174,u203,2026-05-15 01:57:34,evento externo,0,0,1
+evt-ai-0157,comment,u167,u227,2026-05-15 09:19:27,Buen dato,0,0,0
+evt-ai-0158,like,u107,u203,2026-05-15 11:26:12,,0,0,0
+evt-ai-0159,comment,u116,u278,2026-05-15 16:31:11,Hola,0,0,0
+evt-ai-0081,follow,u100,u250,2026-05-14 09:38:55,,1,0,1
+evt-ai-0161,follow,u133,u243,2026-05-14 19:37:03,,0,0,0
+evt-ai-0081,like,u150,u211,2026-05-14 20:04:38,,1,0,1
+evt-ai-0163,like,u100,u253,2026-05-15 13:49:01,,0,0,0
+evt-ai-0164,unknown,u142,u205,2026-05-15 03:31:32,contenido no soportado,0,0,1
+evt-ai-0165,like,u109,u238,2026-05-14 19:27:37,,0,1,1
+evt-ai-0166,comment,u132,u230,2026-05-15 07:18:50,Buen dato,0,0,0
+evt-ai-0167,like,u108,u241,2026-05-15 04:39:08,,0,0,0
+evt-ai-0168,,u139,u203,2026-05-14 18:47:52,evento externo,0,0,1
+evt-ai-0169,,u129,u244,2026-05-14 23:40:20,,0,0,1
+evt-ai-0170,comment,u111,u219,2026-05-15 06:13:25,Gran publicacion,0,0,0
+evt-ai-0171,follow,u136,u234,2026-05-15 14:53:32,,0,0,0
+evt-ai-0172,comment,u126,u259,2026-05-15 02:28:47,Buen dato,0,0,0
+evt-ai-0173,follow,u187,u235,2026-05-15 01:32:22,,0,0,0
+evt-ai-0174,follow,u174,u209,2026-05-15 06:17:53,,0,0,0
+evt-ai-0175,like,u155,u203,fecha-invalida,,0,0,1
+evt-ai-0176,comment,,u218,2026-05-15 16:56:45,Me interesa,0,0,1
+evt-ai-0177,follow,u133,u205,2026-05-14 17:00:41,,0,0,0
+evt-ai-0178,,u171,u277,2026-05-15 03:48:32,,0,0,1
+evt-ai-0179,comment,u122,u250,2026-05-15 16:44:17,Gracias por compartir,0,0,0
+evt-ai-0180,share,u119,,2026-05-14 18:07:35,,0,0,1
+evt-ai-0105,follow,u152,u214,2026-05-14 23:23:27,,1,0,1
+evt-ai-0182,comment,u183,u219,fecha-invalida,Me interesa,0,0,1
+evt-ai-0183,comment,u120,u272,2026-05-15 16:28:50,Me interesa,0,0,0
+evt-ai-0184,comment,u132,u203,fecha-invalida,Buen dato,0,0,1
+evt-ai-0008,comment,u146,u281,2026-05-14 08:09:28,Buen dato,1,0,1
+evt-ai-0186,like,u175,u264,2026-05-15 01:49:47,,0,0,0
+evt-ai-0187,,u125,,2026-05-14 17:32:05,contenido no soportado,0,0,1
+evt-ai-0188,share,u111,u287,2026-05-14 20:56:07,,0,0,1
+evt-ai-0189,reaction,u148,u219,2026-05-15 16:23:36,,0,0,1
+evt-ai-0190,comment,u110,u208,2026-05-14 10:34:52,Gracias por compartir,0,1,1
+evt-ai-0191,like,u177,u218,2026-05-15 13:02:15,,0,0,0
+evt-ai-0192,like,u187,u231,2026-05-14 13:07:12,,0,0,0
+evt-ai-0193,follow,u171,u218,2026-05-14 12:15:11,,0,0,0
+evt-ai-0194,like,u131,u236,2026-05-14 22:35:40,,0,0,0
+evt-ai-0195,comment,u116,u258,2026-05-15 06:25:42,Gran publicacion,0,0,0
+evt-ai-0196,like,u173,u209,2026-05-14 17:13:49,,0,0,0
+evt-ai-0197,comment,u189,u282,2026-05-15 04:22:20,Me interesa,0,0,0
+evt-ai-0198,comment,u104,,2026-05-15 08:55:13,Hola,0,0,1
+evt-ai-0199,comment,u170,u241,2026-05-15 09:56:04,Gracias por compartir,0,0,0
+evt-ai-0200,comment,u160,u253,2026-05-15 01:44:51,Me interesa,0,0,0
+evt-ai-0201,like,u119,u234,2026-05-14 14:37:10,,0,0,0
+evt-ai-0202,unknown,u172,u213,2026-05-14 17:42:39,contenido no soportado,0,0,1
+evt-ai-0203,like,u167,u232,2026-05-14 20:44:52,,0,0,0
+evt-ai-0204,follow,u111,u213,2026-05-14 10:19:51,,0,0,0
+evt-ai-0205,share,u124,u221,2026-05-14 13:52:42,evento externo,0,0,1
+evt-ai-0206,comment,u116,u224,2026-05-14 12:21:46,Buen dato,0,0,0
+evt-ai-0207,unknown,u132,u244,2026-05-15 11:44:46,,0,0,1
+evt-ai-0208,share,,u232,2026-05-14 23:02:42,contenido no soportado,0,0,1
+evt-ai-0209,follow,u151,u257,2026-05-15 11:53:13,,0,0,0
+evt-ai-0210,reaction,u110,u280,2026-05-14 21:23:19,evento externo,0,0,1
+evt-ai-0211,follow,u155,u226,fecha-invalida,,0,0,1
+evt-ai-0212,share,u136,u200,2026-05-15 09:38:48,,0,0,1
+evt-ai-0213,follow,u112,u289,2026-05-15 11:08:56,,0,0,0
+evt-ai-0214,comment,u162,u222,2026-05-15 09:51:34,Gracias por compartir,0,1,1
+evt-ai-0215,follow,u132,u289,2026-05-15 09:35:14,,0,0,0
+evt-ai-0216,follow,u108,u214,2026-05-14 20:23:05,,0,0,0
+evt-ai-0217,follow,u166,u262,2026-05-14 10:23:03,,0,0,0
+evt-ai-0218,share,u122,u287,2026-05-14 11:15:34,,0,0,1
+evt-ai-0219,share,u119,u281,2026-05-14 08:47:13,,0,0,1
+evt-ai-0220,comment,u184,u283,fecha-invalida,Buen dato,0,0,1
+evt-ai-0046,share,u157,u214,2026-05-15 12:36:31,,1,0,1
+evt-ai-0222,comment,u178,u208,2026-05-14 11:31:53,Gracias por compartir,0,0,0
+evt-ai-0223,reaction,u165,u216,2026-05-15 01:34:54,,0,0,1
+evt-ai-0224,like,u127,u245,2026-05-15 16:02:00,,0,0,0
+evt-ai-0225,follow,u182,u226,2026-05-15 06:35:56,,0,0,0
+evt-ai-0226,unknown,u114,u288,fecha-invalida,contenido no soportado,0,0,1
+evt-ai-0227,reaction,u108,u225,2026-05-14 16:19:00,,0,0,1
+evt-ai-0228,comment,u169,u221,fecha-invalida,Gracias por compartir,0,0,1
+evt-ai-0114,follow,u164,u254,2026-05-15 12:02:27,,1,0,1
+evt-ai-0230,unknown,u135,u278,2026-05-14 09:41:45,,0,0,1
+evt-ai-0076,like,u149,u247,2026-05-15 15:57:01,,1,0,1
+evt-ai-0232,follow,u109,u257,2026-05-14 10:02:17,,0,0,0
+evt-ai-0233,reaction,u157,u275,2026-05-15 06:36:01,,0,0,1
+evt-ai-0014,comment,u182,,2026-05-15 16:59:38,Gran publicacion,1,0,1
+evt-ai-0235,like,u102,u211,2026-05-14 21:38:39,,0,0,0
+evt-ai-0236,comment,u179,u284,2026-05-14 22:01:25,Gracias por compartir,0,0,0
+evt-ai-0237,like,u171,u267,2026-05-14 16:12:42,,0,0,0
+evt-ai-0238,share,u118,u227,2026-05-15 06:57:48,contenido no soportado,0,0,1
+evt-ai-0239,follow,u125,u255,2026-05-15 04:34:48,,0,0,0
+evt-ai-0240,like,u160,,2026-05-14 22:53:40,,0,0,1
+evt-ai-0241,follow,u169,u221,2026-05-15 02:01:00,,0,0,0
+evt-ai-0242,unknown,u144,u283,fecha-invalida,,0,0,1
+evt-ai-0243,comment,u146,u282,2026-05-15 00:27:00,Buen dato,0,0,0
+evt-ai-0051,like,u152,u200,2026-05-15 02:59:57,,1,0,1
+evt-ai-0245,like,u109,u284,2026-05-14 18:16:07,,0,0,0
+evt-ai-0246,like,u137,u222,2026-05-15 14:11:35,,0,0,0
+evt-ai-0247,comment,u131,u222,2026-05-14 16:45:44,Gracias por compartir,0,0,0
+evt-ai-0248,reaction,u136,u283,2026-05-15 01:37:05,contenido no soportado,0,0,1
+evt-ai-0249,,u182,u281,2026-05-14 13:48:47,,0,0,1
+evt-ai-0250,follow,u145,u237,2026-05-14 21:36:38,,0,0,0
+evt-ai-0251,reaction,u188,,2026-05-15 09:18:40,evento externo,0,0,1
+evt-ai-0006,follow,u180,,2026-05-15 12:17:35,,1,0,1
+evt-ai-0253,like,u146,u254,fecha-invalida,,0,0,1
+evt-ai-0254,like,u180,u249,2026-05-14 13:57:12,,0,0,0
+evt-ai-0255,follow,u117,u253,2026-05-15 09:43:15,,0,0,0
+evt-ai-0256,like,u132,,2026-05-14 19:44:25,,0,0,1
+evt-ai-0257,follow,u156,u269,2026-05-15 04:41:41,,0,0,0
+evt-ai-0258,like,u154,u277,2026-05-14 15:27:10,,0,0,0
+evt-ai-0224,like,,u283,2026-05-15 09:26:02,,1,0,1
+evt-ai-0260,,u117,,2026-05-15 15:16:26,,0,0,1
+evt-ai-0261,comment,u155,u257,fecha-invalida,Me interesa,0,0,1
+evt-ai-0262,comment,u176,u265,2026-05-15 16:19:59,Me interesa,0,0,0
+evt-ai-0263,comment,u115,u253,2026-05-14 14:39:36,Hola,0,0,0
+evt-ai-0264,follow,u176,u242,2026-05-15 14:53:20,,0,0,0
+evt-ai-0265,follow,u177,u230,2026-05-15 01:02:56,,0,0,0
+evt-ai-0266,comment,u130,u228,2026-05-14 19:46:02,Hola,0,0,0
+evt-ai-0267,like,u179,,2026-05-14 13:05:22,,0,0,1
+evt-ai-0268,comment,u162,,2026-05-15 01:23:45,Me interesa,0,0,1
+evt-ai-0269,follow,,u209,2026-05-15 09:29:32,,0,0,1
+evt-ai-0270,comment,u172,,2026-05-15 12:28:33,Me interesa,0,0,1
+evt-ai-0271,like,u137,,2026-05-15 10:05:38,,0,0,1
+evt-ai-0272,comment,u169,u270,fecha-invalida,Me interesa,0,0,1
+evt-ai-0273,follow,u148,u213,fecha-invalida,,0,0,1
+evt-ai-0199,comment,u175,u200,2026-05-15 15:30:49,Me interesa,1,0,1
+evt-ai-0275,like,u170,u245,2026-05-15 16:53:59,,0,0,0
+evt-ai-0276,comment,u187,u265,2026-05-14 18:58:23,Hola,0,0,0
+evt-ai-0277,like,u147,u263,2026-05-14 18:02:48,,0,0,0
+evt-ai-0278,follow,u133,u223,2026-05-15 05:46:10,,0,0,0
+evt-ai-0279,follow,u132,u223,fecha-invalida,,0,0,1
+evt-ai-0280,like,u185,u221,2026-05-14 15:32:37,,0,0,0
+evt-ai-0281,follow,u154,u261,2026-05-15 17:05:36,,0,0,0
+evt-ai-0282,follow,u131,u201,fecha-invalida,,0,0,1
+evt-ai-0283,like,u121,u274,2026-05-14 09:05:37,,0,0,0
+evt-ai-0284,comment,u129,u208,2026-05-14 08:50:24,Gracias por compartir,0,0,0
+evt-ai-0285,follow,u183,u228,2026-05-14 13:39:39,,0,0,0
+evt-ai-0286,share,u139,u268,2026-05-14 18:16:55,,0,0,1
+evt-ai-0287,follow,u112,u203,2026-05-14 19:36:03,,0,0,0
+evt-ai-0288,comment,u108,u276,2026-05-14 09:36:33,Gran publicacion,0,0,0
+evt-ai-0289,reaction,u179,u282,2026-05-14 09:39:24,contenido no soportado,0,0,1
+evt-ai-0290,comment,u113,u254,2026-05-14 08:15:10,Me interesa,0,0,0
+evt-ai-0291,share,u170,u214,2026-05-14 12:44:12,,0,0,1
+evt-ai-0292,unknown,u184,,2026-05-14 08:24:29,,0,0,1
+evt-ai-0293,comment,u106,,2026-05-14 16:37:29,Buen dato,0,0,1
+evt-ai-0294,comment,u116,u210,2026-05-15 08:03:03,Me interesa,0,0,0
+evt-ai-0295,reaction,u189,,2026-05-15 00:04:45,,0,0,1
+evt-ai-0296,comment,u129,u231,2026-05-14 23:04:54,Gracias por compartir,0,0,0
+evt-ai-0297,like,u153,u203,2026-05-15 10:38:12,,0,0,0
+evt-ai-0141,reaction,u185,u243,2026-05-14 20:17:45,evento externo,1,0,1
+evt-ai-0299,like,u159,u234,2026-05-14 16:08:57,,0,0,0
+evt-ai-0300,share,u131,u201,2026-05-14 20:37:44,,0,0,1
+evt-ai-0301,like,u163,u238,2026-05-14 22:47:26,,0,0,0
+evt-ai-0302,share,u150,u202,2026-05-15 00:55:21,,0,0,1
+evt-ai-0303,share,u147,u278,2026-05-15 02:32:22,evento externo,0,0,1
+evt-ai-0304,like,u180,u230,fecha-invalida,,0,0,1
+evt-ai-0305,like,u168,u224,2026-05-14 17:44:37,,0,0,0
+evt-ai-0306,like,u106,,2026-05-14 18:26:15,,0,0,1
+evt-ai-0307,comment,u168,u221,2026-05-14 17:45:33,Me interesa,0,0,0
+evt-ai-0308,,u153,u274,2026-05-14 11:22:23,evento externo,0,0,1
+evt-ai-0309,comment,u168,,2026-05-14 17:45:58,Hola,0,0,1
+evt-ai-0310,,u123,u229,2026-05-14 18:25:09,evento externo,0,0,1
+evt-ai-0311,like,u174,u266,2026-05-14 22:16:47,,0,0,0
+evt-ai-0309,like,u162,u206,2026-05-15 12:45:05,,1,0,1
+evt-ai-0313,share,u106,u208,2026-05-14 09:52:34,,0,0,1
+evt-ai-0088,share,u179,u244,2026-05-14 23:55:17,,1,0,1
+evt-ai-0315,reaction,u110,u259,2026-05-14 16:49:39,,0,0,1
+evt-ai-0316,comment,u141,u262,2026-05-14 15:03:57,Buen dato,0,0,0
+evt-ai-0269,follow,u154,u287,fecha-invalida,,1,0,1
+evt-ai-0318,,u168,u224,2026-05-14 09:29:45,,0,0,1
+evt-ai-0319,like,u127,u253,2026-05-14 21:01:53,,0,0,0
+evt-ai-0320,share,u149,u262,2026-05-15 09:06:08,,0,0,1

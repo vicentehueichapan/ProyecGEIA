@@ -1,0 +1,13 @@
+feature,weight,abs_weight
+has_target_user,-2.78526,2.78526
+is_duplicate,2.577393,2.577393
+is_allowed_event_type,-1.816732,1.816732
+event_type_invalid,1.816732,1.816732
+has_source_user,-1.379903,1.379903
+has_valid_date,-1.349424,1.349424
+day_of_week,-1.139411,1.139411
+event_type_follow,-0.849204,0.849204
+event_type_comment,-0.779958,0.779958
+hour,-0.735488,0.735488
+content_length,0.646395,0.646395
+event_type_like,-0.316805,0.316805

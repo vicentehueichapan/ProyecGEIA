@@ -1,0 +1,9 @@
+indicator,value
+rows,320
+missing_source_user,8
+missing_target_user,37
+invalid_dates,27
+duplicate_events,30
+invalid_event_types,84
+valid_events,161
+risky_events,159

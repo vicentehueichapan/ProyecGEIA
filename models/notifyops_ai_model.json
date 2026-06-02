@@ -1,0 +1,78 @@
+{
+  "model": "logistic_regression_numpy",
+  "target": "label_risky_event",
+  "target_definition": {
+    "0": "evento valido",
+    "1": "evento riesgoso"
+  },
+  "feature_columns": [
+    "content_length",
+    "hour",
+    "day_of_week",
+    "is_duplicate",
+    "has_source_user",
+    "has_target_user",
+    "has_valid_date",
+    "is_allowed_event_type",
+    "event_type_like",
+    "event_type_comment",
+    "event_type_follow",
+    "event_type_invalid"
+  ],
+  "weights": [
+    1.45227465,
+    0.64639491,
+    -0.73548765,
+    -1.13941079,
+    2.57739275,
+    -1.37990321,
+    -2.78525973,
+    -1.34942356,
+    -1.81673158,
+    -0.31680474,
+    -0.77995793,
+    -0.84920403,
+    1.81673158
+  ],
+  "mean": [
+    4.51785714,
+    10.78125,
+    3.09375,
+    0.09375,
+    0.97767857,
+    0.87946429,
+    0.90625,
+    0.71875,
+    0.27678571,
+    0.23214286,
+    0.20982143,
+    0.28125
+  ],
+  "std": [
+    7.23271603,
+    7.16959143,
+    1.39998605,
+    0.2914806,
+    0.14772672,
+    0.32558694,
+    0.2914806,
+    0.44960921,
+    0.44740964,
+    0.42219966,
+    0.40718104,
+    0.44960921
+  ],
+  "metrics": {
+    "accuracy": 0.9375,
+    "precision": 1.0,
+    "recall": 0.875,
+    "f1_score": 0.9333,
+    "roc_auc": 0.9594,
+    "gini": 0.9188,
+    "threshold": 0.5,
+    "true_negatives_valid_detected": 48,
+    "false_positives_valid_marked_risky": 0,
+    "false_negatives_risky_marked_valid": 6,
+    "true_positives_risky_detected": 42
+  }
+}

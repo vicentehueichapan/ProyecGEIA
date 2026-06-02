@@ -138,6 +138,34 @@ python -m unittest discover -v
 python -m src.notifyops.pipeline
 ```
 
+## Ejecutar extension IA Parcial 3
+
+La extension de Parcial 3 adapta el notebook de clasificacion binaria del profesor al caso NotifyOps. En vez de clasificar mensajes como `spam/no_spam`, clasifica eventos sociales como `valido/riesgoso`.
+
+Guia detallada:
+
+```text
+README_PARCIAL3_IA.md
+```
+
+Ejecutar modelo IA:
+
+```powershell
+python -m src.notifyops_ai.modeling
+```
+
+Abrir notebook adaptado:
+
+```text
+notebooks/modelo_validacion_eventos_notifyops.ipynb
+```
+
+Abrir dashboard local:
+
+```text
+dashboard/notifyops_ai_dashboard.html
+```
+
 ## Ejecutar con Docker
 
 ```powershell
