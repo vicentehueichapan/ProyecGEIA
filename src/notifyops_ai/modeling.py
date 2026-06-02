@@ -9,12 +9,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from .bi_export import export_powerbi_workbook
+
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 AI_DATA = DATA / "ai"
 REPORTS = DATA / "reports"
 AI_REPORTS = REPORTS / "ai"
+BI_DATA = DATA / "bi"
 CHARTS = AI_REPORTS / "charts"
 DASHBOARD = ROOT / "dashboard"
 MODELS = ROOT / "models"
@@ -46,7 +49,7 @@ class TrainResult:
 
 
 def ensure_directories() -> None:
-    for directory in (AI_DATA, AI_REPORTS, CHARTS, DASHBOARD, MODELS):
+    for directory in (AI_DATA, AI_REPORTS, BI_DATA, CHARTS, DASHBOARD, MODELS):
         directory.mkdir(parents=True, exist_ok=True)
 
 
@@ -533,6 +536,8 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
     correlation = engineered[FEATURE_COLUMNS + ["label_risky_event"]].corr(numeric_only=True)
     new_event_predictions = predict_new_events(weights, mean, std, threshold=metrics["threshold"])
     final_decisions = build_final_decisions(events, weights, mean, std, threshold=metrics["threshold"])
+    pipeline_kpis_path = REPORTS / "kpi_report.csv"
+    pipeline_kpis = pd.read_csv(pipeline_kpis_path) if pipeline_kpis_path.exists() else pd.DataFrame()
 
     if write_outputs:
         events.to_csv(AI_DATA / "notifyops_ai_events.csv", index=False)
@@ -560,6 +565,16 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
             "metrics": metrics,
         }
         (MODELS / "notifyops_ai_model.json").write_text(json.dumps(model_payload, indent=2), encoding="utf-8")
+        export_powerbi_workbook(
+            BI_DATA / "notifyops_powerbi_dataset.xlsx",
+            metrics=metrics,
+            confusion_matrix=matrix,
+            quality_summary=quality,
+            feature_weights=feature_weights,
+            final_decisions=final_decisions,
+            new_event_predictions=new_event_predictions,
+            pipeline_kpis=pipeline_kpis,
+        )
 
     if save_plots and write_outputs:
         save_bar_chart(
@@ -598,6 +613,7 @@ def main() -> None:
         print(f"{key}: {value}")
     print(f"Dataset IA: {AI_DATA / 'notifyops_ai_events.csv'}")
     print(f"Metricas: {AI_REPORTS / 'model_metrics.csv'}")
+    print(f"Excel Power BI: {BI_DATA / 'notifyops_powerbi_dataset.xlsx'}")
     print(f"Dashboard: {DASHBOARD / 'notifyops_ai_dashboard.html'}")
 
 

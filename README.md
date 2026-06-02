@@ -1,41 +1,48 @@
-# NotifyOps MVP + Extension IA
+# NotifyOps - Entrega Parcial 3
 
-Sistema MVP para automatizar una ETL de notificaciones de una red social. Procesa eventos mezclados de likes, comentarios y seguidores, valida anomalias, genera notificaciones, calcula KPIs y produce vistas recientes ordenadas desde el evento mas nuevo al mas antiguo.
+Proyecto de Gestion de Datos para IA basado en el **Caso de Estudio 2: Motor de Notificaciones para una Red Social**.
 
-Las fechas de los reportes se muestran en formato legible con hora, minuto, segundo y milisegundos:
+NotifyOps parte del pipeline DataOps/ETL construido en Parcial 2 y lo mejora para Parcial 3 con:
 
-```text
-YYYY-MM-DD HH:MM:SS.mmm
-```
+- entrenamiento de un modelo de IA de clasificacion binaria;
+- comparacion e interpretacion de metricas de rendimiento;
+- auditoria de seguridad sobre datos sensibles y roles;
+- fuente Excel lista para integrarse con Power BI;
+- dashboard local complementario;
+- automatizacion con Airflow y ejecucion reproducible con Docker.
 
-Ejemplo:
-
-```text
-2026-05-14 09:01:03.000
-```
-
-## Estado actual de la entrega
-
-El repositorio contiene la entrega tecnica ejecutable del proyecto:
-
-- MVP DataOps/ETL con datos de entrada, datos procesados, validacion, KPIs, logs y reportes.
-- Automatizacion complementaria con Airflow mediante un DAG quincenal.
-- Ejecucion reproducible con Docker.
-- Extension IA de Parcial 3 con dataset, entrenamiento, metricas, matriz de confusion, graficos, dashboard y decision final.
-- Pruebas automatizadas para verificar pipeline, DAG e integracion IA.
-
-## Vision general del proyecto actual
-
-NotifyOps se encuentra organizado en dos fases:
-
-- **Fase 1 - Pipeline DataOps / ETL:** procesa eventos sociales, limpia datos, valida anomalias, carga resultados, genera notificaciones, KPIs y logs.
-- **Fase 2 - Extension IA Parcial 3:** agrega un modelo de clasificacion binaria que estima si un evento social es `valido` o `riesgoso` antes de generar o aprobar notificaciones.
-
-La mejora de IA no reemplaza la validacion anterior. La complementa como una capa predictiva:
+El objetivo no es reemplazar el pipeline anterior. La mejora consiste en agregar una capa predictiva que ayuda a detectar eventos riesgosos antes de aprobar una notificacion.
 
 ```text
-Reglas duras del pipeline + scoring IA = decision final mas confiable
+Pipeline ETL anterior + modelo IA + auditoria + BI = pipeline mejorado Parcial 3
 ```
+
+## Contexto del caso
+
+Una red social necesita enviar notificaciones sobre likes, comentarios y seguidores. El producto cambia cada dos semanas segun metricas y feedback, por eso NotifyOps usa:
+
+- ETL/DataOps para ordenar, limpiar y validar eventos;
+- Airflow con frecuencia quincenal para representar el ciclo de mejora;
+- IA para estimar riesgo de eventos antes de notificar;
+- Power BI/Excel para visualizar rendimiento y decisiones.
+
+## Cambio principal respecto a Parcial 2
+
+Antes, NotifyOps solo decidia con reglas duras:
+
+- tipo de evento permitido;
+- usuario origen y destino presentes;
+- fecha valida;
+- control de duplicados;
+- generacion de notificaciones y KPIs.
+
+Ahora, la entrega agrega IA:
+
+- el modelo calcula una probabilidad de riesgo;
+- las reglas duras siguen siendo obligatorias;
+- la decision final combina reglas + IA;
+- los resultados se exportan a Excel para Power BI;
+- se documentan seguridad, roles, limitaciones y mejoras.
 
 ## Flujo antes de IA
 
@@ -45,94 +52,93 @@ flowchart LR
     B --> C["Limpieza y transformacion"]
     C --> D["Validacion por reglas"]
     D --> E["Eventos validos"]
-    D --> F["Eventos rechazados con motivo"]
+    D --> F["Eventos rechazados"]
     E --> G["Notificaciones"]
     G --> H["KPIs, logs y reportes"]
 ```
-
-En la Fase 1, el sistema decidia con reglas estructurales y semanticas. Por ejemplo: tipo de evento permitido, usuario destino presente, fecha valida y control de duplicados.
 
 ## Flujo con IA integrada
 
 ```mermaid
 flowchart LR
-    A["Datos raw / eventos sociales"] --> B["Ingesta"]
+    A["Eventos sociales"] --> B["Ingesta"]
     B --> C["Limpieza y transformacion"]
-    C --> D["Scoring IA de riesgo"]
-    C --> E["Validacion por reglas duras"]
-    D --> F["Decision final"]
-    E --> F
-    F --> G["rechazado_por_reglas"]
-    F --> H["revision_por_ia"]
-    F --> I["aprobado_para_notificar"]
-    I --> J["Notificaciones"]
-    F --> K["Metricas IA, graficos y dashboard"]
+    C --> D["Feature engineering"]
+    D --> E["Modelo IA: riesgo valido/riesgoso"]
+    C --> F["Reglas duras del pipeline"]
+    E --> G["Decision final"]
+    F --> G
+    G --> H["rechazado_por_reglas"]
+    G --> I["revision_por_ia"]
+    G --> J["aprobado_para_notificar"]
+    G --> K["Metricas, graficos, Excel BI y dashboard"]
 ```
 
-La IA se aplica despues de la limpieza y transformacion porque en ese punto los datos ya estan normalizados y pueden convertirse en variables predictivas.
-La decision final combina el resultado de reglas duras con la probabilidad de riesgo del modelo.
+La IA se ubica despues de limpiar y transformar los datos, porque ahi los registros ya estan normalizados y pueden convertirse en variables predictivas.
+
+## Decision final
+
+```text
+Si fallan reglas duras        -> rechazado_por_reglas
+Si pasan reglas + riesgo alto -> revision_por_ia
+Si pasan reglas + riesgo bajo -> aprobado_para_notificar
+```
+
+Esto es importante para defender el proyecto: la IA no aprueba eventos que tienen errores objetivos. Primero se respetan reglas de calidad y luego se usa el modelo como apoyo predictivo.
 
 ## Comparativa antes y despues
 
-| Aspecto | Fase 1: ETL DataOps | Fase 2: IA integrada |
+| Aspecto | Parcial 2 | Parcial 3 |
 |---|---|---|
-| Objetivo | Procesar y validar eventos sociales | Anticipar riesgo de eventos antes de notificar |
-| Decision | Reglas duras | Reglas duras + probabilidad de riesgo IA |
-| Salida principal | Validado / rechazado | `rechazado_por_reglas`, `revision_por_ia`, `aprobado_para_notificar` |
-| Evidencia | CSV, SQLite, logs, KPIs | Metricas IA, matriz de confusion, ROC, Gini, dashboard |
-| Valor | Ordena y controla el pipeline | Agrega capa predictiva y analisis de rendimiento |
-| Utilidad | Evita datos invalidos evidentes | Ayuda a priorizar eventos riesgosos y mejorar reglas |
+| Objetivo | Procesar eventos y generar notificaciones | Optimizar el pipeline con IA, seguridad y BI |
+| Decision | Reglas duras | Reglas duras + scoring IA |
+| Evidencia | CSV, SQLite, KPIs, logs | Metricas IA, matriz de confusion, ROC, Gini, Excel BI, dashboard |
+| Valor | Control operativo del pipeline | Analisis predictivo y visualizacion ejecutiva |
+| Riesgo controlado | Datos invalidos evidentes | Eventos riesgosos, falsos positivos/negativos y datos sensibles |
 
-## Valor agregado de la IA
+## Checklist de rubrica cubierta
 
-La extension IA permite demostrar lo solicitado en la Evaluacion Parcial 3:
+| Requisito Parcial 3 | Evidencia en el repositorio |
+|---|---|
+| Pipeline anterior mejorado | `src/notifyops/pipeline.py`, `dags/notifyops_etl_dag.py` |
+| Entrenamiento modelo IA | `src/notifyops_ai/modeling.py` |
+| Calidad y preprocesamiento | `data/reports/ai/quality_summary.csv`, `data/ai/feature_matrix.csv` |
+| Analisis univariado/bivariado | `data/reports/ai/charts/`, `correlation_matrix.csv` |
+| Metricas: confusion, accuracy, recall, Gini, ROC | `data/reports/ai/model_metrics.csv`, `confusion_matrix.csv`, `roc_curve.png` |
+| Auditoria seguridad y roles | `data/bi/notifyops_powerbi_dataset.xlsx`, hojas `auditoria_seguridad` y `roles_acceso` |
+| Integracion BI | `data/bi/notifyops_powerbi_dataset.xlsx`, `data/bi/README_POWER_BI.md` |
+| Dashboard | `dashboard/notifyops_ai_dashboard.html` y fuente Power BI |
+| Limitaciones y mejoras | README, informe y guia de defensa |
+| Demo funcional | Comandos de ejecucion paso a paso en este README |
 
-- entrenamiento de un modelo de clasificacion;
-- analisis de calidad de datos;
-- analisis univariado y bivariado mediante graficos y correlaciones;
-- metricas de rendimiento: accuracy, precision, recall, F1, ROC-AUC y Gini;
-- matriz de confusion;
-- dashboard local tipo BI;
-- identificacion de limitaciones y oportunidades de mejora.
+## Instalacion
 
-El modelo funciona como un filtro inteligente: calcula una probabilidad de riesgo para cada evento y apoya la decision final del pipeline.
-
-## Evidencia tecnica generada
-
-Despues de ejecutar el proyecto, las evidencias quedan dentro del mismo repositorio:
-
-- `data/reports/ai/model_metrics.csv`: rendimiento del modelo.
-- `data/reports/ai/confusion_matrix.csv`: matriz de confusion.
-- `data/reports/ai/final_event_decisions.csv`: salida final integrada entre reglas e IA.
-- `data/reports/ai/charts/`: graficos para analisis, informe y presentacion.
-- `dashboard/notifyops_ai_dashboard.html`: dashboard local para revisar metricas y resultados.
-- `logs/notifyops.log`: trazabilidad de ejecucion del pipeline.
-
-## Orden recomendado de ejecucion para revisar el MVP
-
-Ejecutar todos los comandos desde la carpeta raiz del repositorio:
+Clonar el repositorio:
 
 ```powershell
-cd "C:\ruta\donde\descargaste\ProyecGEIA"
+git clone https://github.com/vicentehueichapan/ProyecGEIA.git
+cd ProyecGEIA
 ```
 
-### 1. Instalar dependencias
+Instalar dependencias:
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-Este paso prepara las librerias necesarias para ejecutar el pipeline, las pruebas y la generacion de evidencias.
+## Ejecucion completa recomendada
 
-### 2. Ver datos originales antes de la ETL
+Ejecutar desde la raiz del repositorio.
+
+### 1. Ver datos originales antes de la ETL
 
 ```powershell
 Import-Csv .\data\raw\social_events.csv | Format-Table -AutoSize
 ```
 
-Los datos de entrada vienen mezclados, desordenados y con anomalias intencionales para demostrar limpieza y validacion.
+Los datos vienen mezclados, desordenados y con anomalias intencionales.
 
-### 3. Ejecutar pruebas automatizadas
+### 2. Ejecutar pruebas automatizadas
 
 ```powershell
 python -m unittest discover -v
@@ -144,23 +150,21 @@ Resultado esperado:
 OK
 ```
 
-### 4. Ejecutar pipeline DataOps
+### 3. Ejecutar pipeline DataOps/ETL
 
 ```powershell
 python -m src.notifyops.pipeline
 ```
 
-El pipeline ejecuta ingesta, limpieza, transformacion, validacion, carga, generacion de notificaciones, reportes, KPIs y logs.
+El pipeline genera datos procesados, validos, rechazados, notificaciones, KPIs, SQLite y logs.
 
-### 5. Ver datos despues de la transformacion
+### 4. Ver datos despues de la transformacion
 
 ```powershell
 Import-Csv .\data\processed\events_processed.csv | Select-Object event_id,event_type,source_user_id,target_user_id,created_at,notification_text | Format-Table -AutoSize
 ```
 
-Aqui se observa la normalizacion de tipos de evento, eliminacion de duplicados y creacion del texto de notificacion.
-
-### 6. Ver datos validos y datos rechazados
+### 5. Ver validos y rechazados
 
 ```powershell
 Import-Csv .\data\validated\events_validated.csv | Select-Object event_id,event_type,source_user_id,target_user_id,created_at,notification_text | Format-Table -AutoSize
@@ -170,134 +174,113 @@ Import-Csv .\data\validated\events_validated.csv | Select-Object event_id,event_
 Import-Csv .\data\reports\validation_errors.csv | Select-Object event_id,event_type,created_at,error_reason | Format-Table -AutoSize
 ```
 
-Los registros rechazados quedan con el motivo tecnico del error.
-
-### 7. Ver salidas finales ordenadas del mas reciente al mas antiguo
-
-```powershell
-Import-Csv .\data\reports\events_recent_all.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
-```
-
-```powershell
-Import-Csv .\data\reports\likes_recent.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
-Import-Csv .\data\reports\comments_recent.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
-Import-Csv .\data\reports\follows_recent.csv | Select-Object event_id,event_type,created_at,notification_text | Format-Table -AutoSize
-```
-
-### 8. Ver KPIs
+### 6. Ver KPIs del pipeline
 
 ```powershell
 Import-Csv .\data\reports\kpi_report.csv | Format-List
 ```
 
-```powershell
-Get-Content .\data\reports\demo_summary.txt
-```
-
-### 9. Ver notificaciones generadas
-
-```powershell
-Import-Csv .\data\reports\notifications.csv | Select-Object notification_id,event_id,event_type,target_user_id,created_at,delivered_at,latency_seconds | Format-Table -AutoSize
-```
-
-### 10. Ver logs de ejecucion
-
-```powershell
-Get-Content .\logs\notifyops.log -Tail 30
-```
-
-### 11. Revisar automatizacion con Airflow
-
-```powershell
-docker compose -f docker-compose.airflow.yml up
-```
-
-Abrir `http://localhost:8080`, ingresar con usuario `admin` y clave `admin`, activar `notifyops_etl_dag` y ejecutar el DAG manualmente. Al terminar, apagar Airflow:
-
-```powershell
-docker compose -f docker-compose.airflow.yml down -v --remove-orphans
-```
-
-## Ejecutar pruebas
-
-```powershell
-python -m unittest tests.test_pipeline -v
-python -m unittest tests.test_airflow_dag -v
-python -m unittest discover -v
-```
-
-## Ejecutar pipeline
-
-```powershell
-python -m src.notifyops.pipeline
-```
-
-## Ejecutar extension IA Parcial 3
-
-La extension de Parcial 3 adapta el notebook de clasificacion binaria del profesor al caso NotifyOps. En vez de clasificar mensajes como `spam/no_spam`, le dimos un uso practico para nuestro caso para poder clasificar eventos sociales como `valido/riesgoso`.
-
-La mejora se integra conceptualmente despues de limpieza y transformacion: primero se calcula riesgo con IA, luego se mantiene la validacion por reglas duras y finalmente se genera una decision final.
-
-```text
-reglas fallan -> rechazado_por_reglas
-reglas pasan + riesgo IA alto -> revision_por_ia
-reglas pasan + riesgo IA bajo -> aprobado_para_notificar
-```
-
-Guia detallada:
-
-```text
-README_PARCIAL3_IA.md
-```
-
-Ejecutar modelo IA:
+### 7. Ejecutar modelo IA y generar evidencia Parcial 3
 
 ```powershell
 python -m src.notifyops_ai.modeling
 ```
 
-Abrir notebook adaptado:
+Este comando entrena el modelo y regenera:
 
-```text
-notebooks/modelo_validacion_eventos_notifyops.ipynb
+- dataset IA;
+- matriz de variables;
+- metricas del modelo;
+- matriz de confusion;
+- predicciones;
+- decision final reglas + IA;
+- graficos;
+- modelo guardado;
+- dashboard HTML;
+- Excel para Power BI.
+
+### 8. Ver metricas del modelo
+
+```powershell
+Import-Csv .\data\reports\ai\model_metrics.csv | Format-List
 ```
 
-Abrir dashboard local:
+Metricas esperadas en la ejecucion actual:
 
 ```text
-dashboard/notifyops_ai_dashboard.html
+accuracy: 0.9375
+precision: 1.0
+recall: 0.875
+f1_score: 0.9333
+roc_auc: 0.9594
+gini: 0.9188
 ```
 
-Ver decision final integrada:
+### 9. Ver matriz de confusion
+
+```powershell
+Import-Csv .\data\reports\ai\confusion_matrix.csv | Format-Table -AutoSize
+```
+
+### 10. Ver decision final integrada
 
 ```powershell
 Import-Csv .\data\reports\ai\final_event_decisions.csv | Select-Object event_id,event_type,rule_error_reason,ai_risk_probability,ai_prediction,final_decision | Format-Table -AutoSize
 ```
 
-Si PowerShell corta columnas por ancho de pantalla:
+Si PowerShell corta columnas:
 
 ```powershell
 Import-Csv .\data\reports\ai\final_event_decisions.csv | Select-Object -First 5 | Format-List
 ```
 
-## Ejecutar con Docker
+### 11. Abrir dashboard local
 
-```powershell
-docker build -t notifyops-mvp .
-docker run --rm notifyops-mvp
+Abrir en navegador:
+
+```text
+dashboard/notifyops_ai_dashboard.html
 ```
 
-Para regenerar resultados directamente en la carpeta local:
+Este dashboard es complementario para revisar rapidamente metricas, graficos y resultados.
 
-```powershell
-docker run --rm -v "${PWD}\data:/app/data" -v "${PWD}\logs:/app/logs" notifyops-mvp
+### 12. Usar Excel para Power BI
+
+Archivo:
+
+```text
+data/bi/notifyops_powerbi_dataset.xlsx
 ```
 
-## Ejecutar con Airflow
+En Power BI Desktop:
+
+1. Seleccionar `Obtener datos`.
+2. Elegir `Excel`.
+3. Cargar `data/bi/notifyops_powerbi_dataset.xlsx`.
+4. Usar la hoja `guia_powerbi` para construir las visualizaciones.
+
+Hojas principales:
+
+- `metricas_modelo`: tarjetas KPI de rendimiento.
+- `matriz_confusion`: matriz de confusion.
+- `decisiones_finales`: salida integrada reglas + IA.
+- `resumen_decisiones`: cantidad por decision final.
+- `calidad_datos`: nulos, fechas invalidas, duplicados y tipos invalidos.
+- `pesos_variables`: variables mas influyentes del modelo.
+- `rendimiento_local`: KPIs del pipeline anterior.
+- `auditoria_seguridad`: datos sensibles, riesgos y controles.
+- `roles_acceso`: roles y restricciones.
+- `guia_powerbi`: visuales recomendados.
+
+Guia adicional:
+
+```text
+data/bi/README_POWER_BI.md
+```
+
+## Airflow
 
 Airflow se incluye como complemento de automatizacion ETL. El DAG no reemplaza el pipeline Python: lo orquesta.
-
-Importante: el compose no tiene reinicio automatico. Si cierras Docker Desktop, Airflow no se volvera a prender solo.
 
 ```powershell
 docker compose -f docker-compose.airflow.yml up
@@ -316,80 +299,84 @@ usuario: admin
 clave: admin
 ```
 
-En Airflow, activar y ejecutar manualmente el DAG:
+DAG:
 
 ```text
 notifyops_etl_dag
 ```
 
-El DAG tambien queda configurado con frecuencia quincenal para representar el ciclo de mejora del caso:
+El DAG queda configurado con frecuencia quincenal para representar el ciclo de experimentacion del caso:
 
 ```text
 schedule=timedelta(weeks=2)
 ```
 
-Esto equivale a automatizar la ETL cada dos semanas, alineado con el caso de estudio donde el equipo experimenta y ajusta funcionalidades en ciclos quincenales. Se usa `timedelta(weeks=2)` en vez de un cron ambiguo para expresar exactamente el intervalo de dos semanas.
-
-El DAG ejecuta estas tareas:
-
-```text
-start -> verify_input_dataset -> run_notifyops_pipeline -> verify_outputs -> summarize_kpis -> finish
-```
-
-Para apagar Airflow correctamente al finalizar la revision, abrir otra PowerShell en la misma carpeta del repositorio y ejecutar:
+Apagar Airflow:
 
 ```powershell
 docker compose -f docker-compose.airflow.yml down -v --remove-orphans
 ```
 
-Esto detiene el contenedor y elimina los volumenes temporales de Airflow usados solo para la demo. El proyecto no queda configurado para reiniciarse automaticamente.
+El compose no tiene reinicio automatico; el proyecto no queda configurado para prenderse solo.
+
+## Docker
+
+```powershell
+docker build -t notifyops-mvp .
+docker run --rm notifyops-mvp
+```
+
+Para regenerar resultados en la carpeta local:
+
+```powershell
+docker run --rm -v "${PWD}\data:/app/data" -v "${PWD}\logs:/app/logs" notifyops-mvp
+```
 
 ## Archivos principales
 
-- `src/notifyops/pipeline.py`: pipeline MVP.
-- `dags/notifyops_etl_dag.py`: DAG complementario de Airflow para automatizar la ETL.
-- `src/notifyops_ai/modeling.py`: extension IA de Parcial 3 para clasificar eventos validos/riesgosos.
-- `tests/test_pipeline.py`: pruebas unitarias del pipeline.
-- `tests/test_airflow_dag.py`: prueba de existencia y estructura del DAG.
-- `tests/test_notifyops_ai.py`: pruebas de dataset IA, variables, metricas y decision final.
-- `data/raw/social_events.csv`: dataset de entrada con eventos mezclados.
-- `data/reports/events_recent_all.csv`: todos los eventos validos ordenados de reciente a antiguo.
-- `data/reports/likes_recent.csv`: likes ordenados de reciente a antiguo.
-- `data/reports/comments_recent.csv`: comentarios ordenados de reciente a antiguo.
-- `data/reports/follows_recent.csv`: seguidores ordenados de reciente a antiguo.
-- `data/reports/notifications.csv`: notificaciones generadas, tambien ordenadas de reciente a antiguo.
-- `data/reports/validation_errors.csv`: errores/anomalias.
-- `data/reports/kpi_report.csv`: KPIs.
-- `data/ai/notifyops_ai_events.csv`: dataset sintetico de entrenamiento IA.
-- `data/ai/feature_matrix.csv`: variables predictivas usadas por el modelo.
-- `data/reports/ai/model_metrics.csv`: metricas del modelo IA.
+- `src/notifyops/pipeline.py`: pipeline ETL/DataOps de Parcial 2.
+- `dags/notifyops_etl_dag.py`: automatizacion Airflow.
+- `src/notifyops_ai/modeling.py`: entrenamiento del modelo IA.
+- `src/notifyops_ai/bi_export.py`: generacion del Excel para Power BI.
+- `tests/test_pipeline.py`: pruebas del pipeline.
+- `tests/test_airflow_dag.py`: pruebas del DAG.
+- `tests/test_notifyops_ai.py`: pruebas de IA, decision final y Excel BI.
+- `data/raw/social_events.csv`: datos originales.
+- `data/reports/ai/model_metrics.csv`: metricas del modelo.
 - `data/reports/ai/confusion_matrix.csv`: matriz de confusion.
-- `data/reports/ai/final_event_decisions.csv`: decision final integrada entre reglas duras e IA.
-- `data/reports/ai/charts/`: graficos para informe, presentacion y dashboard.
-- `dashboard/notifyops_ai_dashboard.html`: dashboard local de metricas IA.
-- `notebooks/modelo_validacion_eventos_notifyops.ipynb`: notebook adaptado desde el ejemplo de clasificacion binaria del profesor.
-- `README_PARCIAL3_IA.md`: guia especifica para ejecutar y defender la extension IA.
-- `logs/notifyops.log`: trazabilidad.
-- `data/notifyops.db`: base SQLite.
+- `data/reports/ai/final_event_decisions.csv`: decision final integrada.
+- `data/reports/ai/charts/`: graficos para informe y presentacion.
+- `data/bi/notifyops_powerbi_dataset.xlsx`: fuente BI lista para Power BI.
+- `dashboard/notifyops_ai_dashboard.html`: dashboard local complementario.
+- `models/notifyops_ai_model.json`: modelo guardado.
 
-## Defensa breve actualizada
+## Auditoria de seguridad
 
-El dataset de entrada contiene eventos sociales mezclados y desordenados. La ETL limpia, transforma, valida y carga la informacion. Luego genera una vista general reciente y tres vistas separadas por tipo de interaccion. Airflow permite automatizar ese flujo como proceso DataOps, mientras Docker permite ejecutarlo en un entorno reproducible.
+La auditoria se documenta en el Excel BI y considera:
 
-En la extension de Parcial 3, NotifyOps incorpora una capa de IA inspirada en el notebook de clasificacion binaria entregado por el profesor. En vez de clasificar mensajes como `spam/no_spam`, le dimos un uso practico al caso para clasificar eventos sociales como `valido/riesgoso`.
+- datos sensibles: `source_user_id`, `target_user_id`, `content`, `created_at`;
+- riesgos: reidentificacion, inferencia de relaciones, exposicion de texto y trazabilidad;
+- controles: pseudonimizacion, acceso por rol, visualizacion agregada, minimizacion de datos y revision de logs;
+- roles: Administrador DataOps, Analista BI, Auditor/Profesor y Usuario negocio;
+- alineacion general con la Ley 19.628 de proteccion de datos personales en Chile.
 
-La extension se aplica despues de limpiar y transformar los eventos, porque en ese punto los datos ya estan normalizados. El modelo usa variables como tipo de evento, presencia de usuarios, fecha valida, duplicidad, largo del contenido y hora del evento para estimar una probabilidad de riesgo.
+## Limitaciones reconocidas
 
-La decision final combina dos niveles:
+- El dataset IA es sintetico porque el caso academico no entrega historicos reales de produccion.
+- El dashboard Power BI se construye importando el Excel generado; el repositorio entrega la fuente BI y la guia de visuales.
+- El entorno es local/Docker, no una nube productiva real.
+- El modelo se usa como apoyo predictivo; las reglas duras siguen siendo obligatorias.
 
-- reglas duras: controlan errores objetivos como fecha invalida, usuario destino vacio, tipo fuera del alcance o duplicados;
-- IA: calcula una probabilidad de riesgo para apoyar la revision, medir rendimiento y detectar casos que requieren mayor atencion.
+## Mejoras propuestas
 
-Esto permite explicar el proyecto como una evolucion completa:
+- Reentrenar el modelo cada dos semanas junto al ciclo de experimentacion del producto.
+- Conectar Power BI a una base o almacenamiento compartido en vez de Excel local.
+- Agregar monitoreo de drift y alertas si baja el recall o sube la tasa de errores.
+- Reemplazar dataset sintetico por historicos reales anonimizados.
+- Aplicar control de acceso formal sobre dashboard, logs y datos sensibles.
 
-```text
-Fase 1: pipeline ETL/DataOps funcional
-Fase 2: pipeline mejorado con modelo IA, metricas, dashboard y analisis de rendimiento
-```
+## Defensa breve
 
-El valor agregado de la extension es mejorar la capacidad de deteccion, generar evidencia cuantitativa del rendimiento del modelo y entregar una base para futuras mejoras como reentrenamiento quincenal, alertas, integracion BI y monitoreo de calidad de datos. Antes de la IA, el sistema solo separaba eventos validos o rechazados por reglas. Despues de la IA, el sistema conserva esas reglas y agrega una capa predictiva que permite priorizar revision, interpretar metricas y justificar mejoras con evidencia.
+NotifyOps demuestra la evolucion del pipeline de Parcial 2 hacia una solucion de Parcial 3. Primero procesa eventos sociales con una ETL validada por pruebas. Luego agrega un modelo IA que clasifica eventos como `valido` o `riesgoso`. La decision final combina reglas duras y probabilidad de riesgo, por lo que el sistema mantiene control de calidad y agrega inteligencia predictiva.
+
+La integracion BI se resuelve mediante `data/bi/notifyops_powerbi_dataset.xlsx`, que contiene metricas, matriz de confusion, decisiones finales, rendimiento local, auditoria de seguridad, roles y guia de graficos. Con esto el profesor puede ejecutar el proyecto, revisar evidencia tecnica y construir o validar el dashboard en Power BI.

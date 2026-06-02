@@ -71,6 +71,7 @@ El comando genera:
 - `data/reports/ai/charts`: graficos para informe y presentacion.
 - `models/notifyops_ai_model.json`: modelo guardado.
 - `dashboard/notifyops_ai_dashboard.html`: panel BI local.
+- `data/bi/notifyops_powerbi_dataset.xlsx`: fuente Excel lista para importar en Power BI.
 
 ### 3. Ver metricas del modelo
 
@@ -108,6 +109,20 @@ Abrir este archivo en el navegador:
 
 ```text
 dashboard/notifyops_ai_dashboard.html
+```
+
+### 8. Abrir fuente Power BI
+
+El Excel de integracion BI queda en:
+
+```text
+data/bi/notifyops_powerbi_dataset.xlsx
+```
+
+Ese archivo contiene hojas para metricas, matriz de confusion, calidad de datos, decisiones finales, rendimiento local, auditoria de seguridad, roles y guia de graficos. Para Power BI Desktop, usar `Obtener datos > Excel` y cargar las hojas indicadas en:
+
+```text
+data/bi/README_POWER_BI.md
 ```
 
 ## Como explicarlo

@@ -5,3 +5,4 @@ Pillow
 python-docx
 reportlab
 pypdf
+openpyxl

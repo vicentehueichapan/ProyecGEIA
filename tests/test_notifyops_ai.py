@@ -1,7 +1,12 @@
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
+import numpy as np
 import pandas as pd
+from openpyxl import load_workbook
 
+from src.notifyops_ai import bi_export
 from src.notifyops_ai import modeling
 
 
@@ -89,6 +94,50 @@ class NotifyOpsAITests(unittest.TestCase):
         self.assertEqual(decisions.iloc[0]["final_decision"], "rechazado_por_reglas")
         self.assertIn("target_user_id vacio", decisions.iloc[0]["rule_error_reason"])
         self.assertIn("fecha invalida", decisions.iloc[0]["rule_error_reason"])
+
+    def test_powerbi_workbook_exports_required_sheets(self):
+        metrics = {
+            "accuracy": 0.91,
+            "precision": 0.92,
+            "recall": 0.9,
+            "f1_score": 0.91,
+            "roc_auc": 0.95,
+            "gini": 0.9,
+            "threshold": 0.5,
+        }
+        final_decisions = pd.DataFrame(
+            [
+                {"event_id": "evt-1", "final_decision": "aprobado_para_notificar", "ai_risk_probability": 0.1},
+                {"event_id": "evt-2", "final_decision": "rechazado_por_reglas", "ai_risk_probability": 0.9},
+            ]
+        )
+
+        with TemporaryDirectory() as tmp:
+            output = Path(tmp) / "powerbi.xlsx"
+            bi_export.export_powerbi_workbook(
+                output_path=output,
+                metrics=metrics,
+                confusion_matrix=np.array([[8, 1], [2, 9]]),
+                quality_summary=pd.DataFrame([{"indicator": "rows", "value": 20}]),
+                feature_weights=pd.DataFrame([{"feature": "has_target_user", "weight": -2.1, "abs_weight": 2.1}]),
+                final_decisions=final_decisions,
+                new_event_predictions=pd.DataFrame([{"event_id": "new-1", "prediction": "valido"}]),
+                pipeline_kpis=pd.DataFrame([{"events_processed": 12, "valid_events": 8}]),
+            )
+
+            workbook = load_workbook(output, read_only=True)
+            try:
+                for sheet_name in [
+                    "resumen_bi",
+                    "metricas_modelo",
+                    "matriz_confusion",
+                    "decisiones_finales",
+                    "auditoria_seguridad",
+                    "guia_powerbi",
+                ]:
+                    self.assertIn(sheet_name, workbook.sheetnames)
+            finally:
+                workbook.close()
 
 
 if __name__ == "__main__":
