@@ -58,6 +58,38 @@ class NotifyOpsAITests(unittest.TestCase):
         self.assertEqual(result.confusion_matrix.shape, (2, 2))
         self.assertIn("feature", result.feature_weights.columns)
 
+    def test_final_decision_keeps_hard_rules_before_ai(self):
+        events = modeling.generate_synthetic_events(rows=120, seed=21)
+        engineered = modeling.engineer_features(events)
+        x_train, x_test, y_train, y_test = modeling.stratified_train_test_split(
+            engineered[modeling.FEATURE_COLUMNS],
+            engineered["label_risky_event"].astype(int),
+            seed=21,
+        )
+        x_train_scaled, _, mean, std = modeling.standardize_train_test(x_train, x_test)
+        weights = modeling.train_logistic_regression(x_train_scaled, y_train.to_numpy(dtype=int))
+
+        sample = pd.DataFrame(
+            [
+                {
+                    "event_id": "evt-bad",
+                    "event_type": "share",
+                    "source_user_id": "u01",
+                    "target_user_id": "",
+                    "created_at": "fecha-invalida",
+                    "content": "externo",
+                    "is_duplicate": 0,
+                    "label_risky_event": 1,
+                }
+            ]
+        )
+
+        decisions = modeling.build_final_decisions(sample, weights, mean, std)
+
+        self.assertEqual(decisions.iloc[0]["final_decision"], "rechazado_por_reglas")
+        self.assertIn("target_user_id vacio", decisions.iloc[0]["rule_error_reason"])
+        self.assertIn("fecha invalida", decisions.iloc[0]["rule_error_reason"])
+
 
 if __name__ == "__main__":
     unittest.main()

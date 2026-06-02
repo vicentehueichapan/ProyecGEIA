@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, Tuple
@@ -372,8 +371,9 @@ def save_dashboard_html(metrics: Dict[str, float]) -> None:
     <img src="../data/reports/ai/charts/confusion_matrix.png" alt="Matriz de confusion">
     <img src="../data/reports/ai/charts/roc_curve.png" alt="Curva ROC">
     <img src="../data/reports/ai/charts/feature_weights.png" alt="Importancia de variables">
+    <img src="../data/reports/ai/charts/final_decision_distribution.png" alt="Decision final reglas mas IA">
   </div>
-  <p>Archivos principales: <code>data/ai/notifyops_ai_events.csv</code>, <code>data/reports/ai/model_metrics.csv</code>, <code>data/reports/ai/new_event_predictions.csv</code>.</p>
+  <p>Archivos principales: <code>data/ai/notifyops_ai_events.csv</code>, <code>data/reports/ai/model_metrics.csv</code>, <code>data/reports/ai/final_event_decisions.csv</code>, <code>data/reports/ai/new_event_predictions.csv</code>.</p>
 </body>
 </html>
 """
@@ -440,6 +440,71 @@ def predict_new_events(
     return output
 
 
+def rule_error_reason(row: pd.Series) -> str:
+    errors: list[str] = []
+    event_type = str(row.get("event_type", "")).strip().lower()
+    if not str(row.get("event_id", "")).strip():
+        errors.append("event_id vacio")
+    if event_type not in ALLOWED_EVENT_TYPES:
+        errors.append("tipo de evento fuera del alcance")
+    if not str(row.get("source_user_id", "")).strip():
+        errors.append("source_user_id vacio")
+    if not str(row.get("target_user_id", "")).strip():
+        errors.append("target_user_id vacio")
+    if pd.isna(pd.to_datetime(row.get("created_at", ""), errors="coerce")):
+        errors.append("fecha invalida")
+    if int(row.get("is_duplicate", 0)) == 1:
+        errors.append("evento duplicado")
+    return "; ".join(errors)
+
+
+def build_final_decisions(
+    events: pd.DataFrame,
+    weights: np.ndarray,
+    mean: np.ndarray,
+    std: np.ndarray,
+    threshold: float = 0.50,
+) -> pd.DataFrame:
+    engineered = engineer_features(events)
+    x_values = engineered[FEATURE_COLUMNS].to_numpy(dtype=float)
+    x_scaled = (x_values - mean) / std
+    probabilities = predict_probabilities(x_scaled, weights)
+
+    decisions = events.copy()
+    decisions["rule_error_reason"] = decisions.apply(rule_error_reason, axis=1)
+    decisions["ai_risk_probability"] = np.round(probabilities, 4)
+    decisions["ai_prediction"] = np.where(probabilities >= threshold, "riesgoso", "valido")
+    decisions["final_decision"] = np.where(
+        decisions["rule_error_reason"].ne(""),
+        "rechazado_por_reglas",
+        np.where(decisions["ai_risk_probability"] >= threshold, "revision_por_ia", "aprobado_para_notificar"),
+    )
+    decisions["decision_explanation"] = np.where(
+        decisions["final_decision"].eq("rechazado_por_reglas"),
+        "No pasa reglas duras del pipeline: " + decisions["rule_error_reason"],
+        np.where(
+            decisions["final_decision"].eq("revision_por_ia"),
+            "Pasa reglas duras, pero el modelo IA estima riesgo alto.",
+            "Pasa reglas duras y el modelo IA estima riesgo bajo.",
+        ),
+    )
+    return decisions[
+        [
+            "event_id",
+            "event_type",
+            "source_user_id",
+            "target_user_id",
+            "created_at",
+            "is_duplicate",
+            "rule_error_reason",
+            "ai_risk_probability",
+            "ai_prediction",
+            "final_decision",
+            "decision_explanation",
+        ]
+    ]
+
+
 def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, write_outputs: bool = True) -> TrainResult:
     ensure_directories()
     events = generate_synthetic_events(rows=rows, seed=seed)
@@ -467,6 +532,7 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
     quality = quality_summary(events)
     correlation = engineered[FEATURE_COLUMNS + ["label_risky_event"]].corr(numeric_only=True)
     new_event_predictions = predict_new_events(weights, mean, std, threshold=metrics["threshold"])
+    final_decisions = build_final_decisions(events, weights, mean, std, threshold=metrics["threshold"])
 
     if write_outputs:
         events.to_csv(AI_DATA / "notifyops_ai_events.csv", index=False)
@@ -482,6 +548,7 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
         feature_weights.to_csv(AI_REPORTS / "feature_weights.csv", index=False)
         correlation.to_csv(AI_REPORTS / "correlation_matrix.csv")
         new_event_predictions.to_csv(AI_REPORTS / "new_event_predictions.csv", index=False)
+        final_decisions.to_csv(AI_REPORTS / "final_event_decisions.csv", index=False)
         model_payload = {
             "model": "logistic_regression_numpy",
             "target": "label_risky_event",
@@ -506,6 +573,12 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
             "Distribucion por tipo de evento",
             CHARTS / "event_type_distribution.png",
             "#2563eb",
+        )
+        save_bar_chart(
+            final_decisions["final_decision"].value_counts(),
+            "Decision final: reglas duras + IA",
+            CHARTS / "final_decision_distribution.png",
+            "#7c3aed",
         )
         bivariate = engineered.groupby("event_type")["label_risky_event"].mean().sort_values(ascending=False)
         save_bar_chart(bivariate, "Riesgo promedio por tipo de evento", CHARTS / "risk_by_event_type.png", "#dc2626")

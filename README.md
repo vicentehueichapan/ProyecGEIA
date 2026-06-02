@@ -142,6 +142,14 @@ python -m src.notifyops.pipeline
 
 La extension de Parcial 3 adapta el notebook de clasificacion binaria del profesor al caso NotifyOps. En vez de clasificar mensajes como `spam/no_spam`, clasifica eventos sociales como `valido/riesgoso`.
 
+La mejora se integra conceptualmente despues de limpieza y transformacion: primero se calcula riesgo con IA, luego se mantiene la validacion por reglas duras y finalmente se genera una decision final.
+
+```text
+reglas fallan -> rechazado_por_reglas
+reglas pasan + riesgo IA alto -> revision_por_ia
+reglas pasan + riesgo IA bajo -> aprobado_para_notificar
+```
+
 Guia detallada:
 
 ```text
@@ -164,6 +172,12 @@ Abrir dashboard local:
 
 ```text
 dashboard/notifyops_ai_dashboard.html
+```
+
+Ver decision final integrada:
+
+```powershell
+Import-Csv .\data\reports\ai\final_event_decisions.csv | Select-Object event_id,event_type,rule_error_reason,ai_risk_probability,ai_prediction,final_decision | Format-Table -AutoSize
 ```
 
 ## Ejecutar con Docker
