@@ -247,3 +247,17 @@
 2026-06-02 15:11:18,824 | INFO | FIN escritura de artefactos
 2026-06-02 15:11:18,949 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67}
 2026-06-02 15:11:18,949 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-02 15:17:32,700 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-02 15:17:32,702 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\ENTREGA_LISTA_NOTIFYOPS\data\raw\social_events.csv con 13 filas
+2026-06-02 15:17:32,702 | INFO | INICIO etapa 1: ingesta
+2026-06-02 15:17:32,715 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\ENTREGA_LISTA_NOTIFYOPS\data\raw\social_events.csv
+2026-06-02 15:17:32,715 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-02 15:17:32,720 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-02 15:17:32,720 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-02 15:17:32,723 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-02 15:17:32,725 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-02 15:17:32,754 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\ENTREGA_LISTA_NOTIFYOPS\data\notifyops.db
+2026-06-02 15:17:32,755 | INFO | INICIO escritura de artefactos
+2026-06-02 15:17:32,769 | INFO | FIN escritura de artefactos
+2026-06-02 15:17:32,888 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67}
+2026-06-02 15:17:32,888 | INFO | ===== FIN MVP NotifyOps =====

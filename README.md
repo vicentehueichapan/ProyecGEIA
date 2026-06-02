@@ -41,8 +41,10 @@ Ahora, la entrega agrega IA:
 - el modelo calcula una probabilidad de riesgo;
 - las reglas duras siguen siendo obligatorias;
 - la decision final combina reglas + IA;
-- los resultados se exportan a Excel para Power BI;
+- se incluye un Excel fijo y listo para importar en Power BI;
 - se documentan seguridad, roles, limitaciones y mejoras.
+
+El Excel BI se mantiene fijo de forma intencional. No es una dependencia interna del pipeline ni hace mas compleja la ejecucion: es la fuente de datos que el profesor puede abrir o importar directamente en Power BI para revisar metricas, seguridad y decisiones.
 
 ## Flujo antes de IA
 
@@ -106,10 +108,31 @@ Esto es importante para defender el proyecto: la IA no aprueba eventos que tiene
 | Analisis univariado/bivariado | `data/reports/ai/charts/`, `correlation_matrix.csv` |
 | Metricas: confusion, accuracy, recall, Gini, ROC | `data/reports/ai/model_metrics.csv`, `confusion_matrix.csv`, `roc_curve.png` |
 | Auditoria seguridad y roles | `data/bi/notifyops_powerbi_dataset.xlsx`, hojas `auditoria_seguridad` y `roles_acceso` |
-| Integracion BI | `data/bi/notifyops_powerbi_dataset.xlsx`, `data/bi/README_POWER_BI.md` |
+| Integracion BI | `data/bi/notifyops_powerbi_dataset.xlsx`, hoja `guia_powerbi` y pasos de este README |
 | Dashboard | `dashboard/notifyops_ai_dashboard.html` y fuente Power BI |
-| Limitaciones y mejoras | README, informe y guia de defensa |
+| Limitaciones y mejoras | Secciones `Limitaciones reconocidas` y `Mejoras propuestas` |
 | Demo funcional | Comandos de ejecucion paso a paso en este README |
+
+## Graficos y evidencias visuales incluidas
+
+Los graficos solicitados para rendimiento, interpretacion y BI estan en:
+
+```text
+data/reports/ai/charts/
+```
+
+Archivos principales:
+
+- `confusion_matrix.png`: matriz de confusion visual.
+- `roc_curve.png`: curva ROC.
+- `feature_weights.png`: variables mas influyentes del modelo.
+- `correlation_matrix.png`: matriz de correlacion para analisis bivariado.
+- `class_distribution.png`: distribucion de clases validas/riesgosas.
+- `event_type_distribution.png`: distribucion por tipo de evento.
+- `risk_by_event_type.png`: riesgo promedio por tipo de evento.
+- `final_decision_distribution.png`: decisiones finales entre reglas e IA.
+
+La fuente BI fija `data/bi/notifyops_powerbi_dataset.xlsx` incluye estos mismos resultados en formato tabular para construir el panel en Power BI.
 
 ## Instalacion
 
@@ -196,8 +219,9 @@ Este comando entrena el modelo y regenera:
 - decision final reglas + IA;
 - graficos;
 - modelo guardado;
-- dashboard HTML;
-- Excel para Power BI.
+- dashboard HTML.
+
+El Excel de Power BI no se recalcula en este paso. Queda como artefacto fijo de entrega para que el profesor lo importe directamente y revise la integracion BI sin pasos extra.
 
 ### 8. Ver metricas del modelo
 
@@ -244,7 +268,7 @@ dashboard/notifyops_ai_dashboard.html
 
 Este dashboard es complementario para revisar rapidamente metricas, graficos y resultados.
 
-### 12. Usar Excel para Power BI
+### 12. Usar Excel fijo para Power BI
 
 Archivo:
 
@@ -272,11 +296,7 @@ Hojas principales:
 - `roles_acceso`: roles y restricciones.
 - `guia_powerbi`: visuales recomendados.
 
-Guia adicional:
-
-```text
-data/bi/README_POWER_BI.md
-```
+No se requiere un README adicional para Power BI: las instrucciones estan en esta seccion y dentro de la hoja `guia_powerbi`.
 
 ## Airflow
 
@@ -337,16 +357,15 @@ docker run --rm -v "${PWD}\data:/app/data" -v "${PWD}\logs:/app/logs" notifyops-
 - `src/notifyops/pipeline.py`: pipeline ETL/DataOps de Parcial 2.
 - `dags/notifyops_etl_dag.py`: automatizacion Airflow.
 - `src/notifyops_ai/modeling.py`: entrenamiento del modelo IA.
-- `src/notifyops_ai/bi_export.py`: generacion del Excel para Power BI.
 - `tests/test_pipeline.py`: pruebas del pipeline.
 - `tests/test_airflow_dag.py`: pruebas del DAG.
-- `tests/test_notifyops_ai.py`: pruebas de IA, decision final y Excel BI.
+- `tests/test_notifyops_ai.py`: pruebas de IA, decision final y existencia del Excel BI.
 - `data/raw/social_events.csv`: datos originales.
 - `data/reports/ai/model_metrics.csv`: metricas del modelo.
 - `data/reports/ai/confusion_matrix.csv`: matriz de confusion.
 - `data/reports/ai/final_event_decisions.csv`: decision final integrada.
 - `data/reports/ai/charts/`: graficos para informe y presentacion.
-- `data/bi/notifyops_powerbi_dataset.xlsx`: fuente BI lista para Power BI.
+- `data/bi/notifyops_powerbi_dataset.xlsx`: fuente fija BI lista para Power BI.
 - `dashboard/notifyops_ai_dashboard.html`: dashboard local complementario.
 - `models/notifyops_ai_model.json`: modelo guardado.
 
