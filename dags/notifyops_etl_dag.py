@@ -13,7 +13,7 @@ PROJECT_DIR = "/opt/airflow/notifyops"
 with DAG(
     dag_id="notifyops_etl_dag",
     description="Orquesta ETL, entrenamiento IA y evidencias BI de NotifyOps.",
-    start_date=datetime(2026, 5, 14),
+    start_date=datetime(2026, 6, 9),
     schedule=timedelta(weeks=2),
     catchup=False,
     tags=["notifyops", "etl", "dataops", "ai", "bi", "social-network"],

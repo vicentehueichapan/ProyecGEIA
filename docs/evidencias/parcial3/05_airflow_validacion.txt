@@ -1,0 +1,40 @@
+NotifyOps - Validacion Airflow/Docker
+Fecha de validacion: 2026-06-09
+
+ENTORNO
+Docker Server: 29.0.1
+Imagen: notifyops-airflow:2.9.3
+Estado antes de ejecutar: healthy
+Puerto: 8080
+
+EJECUCION DEL DAG
+dag_id: notifyops_etl_dag
+run_id: final_validation_clean_20260609
+estado final: success
+inicio UTC: 2026-06-09T18:38:55.673564+00:00
+termino UTC: 2026-06-09T18:39:28.019365+00:00
+
+ESTADO DE LAS TAREAS
+start: success
+verify_input_dataset: success
+run_notifyops_pipeline: success
+verify_etl_outputs: success
+run_ai_model: success
+verify_ai_outputs: success
+summarize_results: success
+finish: success
+
+CONTROL DE ARRANQUE
+- El DAG se creo pausado.
+- Antes de la prueba no existian ejecuciones automaticas.
+- La ejecucion manual genero un solo DagRun.
+- Al terminar, el DAG se dejo nuevamente pausado.
+
+APAGADO LIMPIO
+Comando:
+docker compose -f docker-compose.airflow.yml down -v --remove-orphans
+
+Resultado:
+- contenedor notifyops-airflow detenido y eliminado;
+- red notifyops-parcial3-final_default eliminada;
+- docker compose ps -a sin filas de servicios del proyecto.

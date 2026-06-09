@@ -261,3 +261,209 @@
 2026-06-02 15:17:32,769 | INFO | FIN escritura de artefactos
 2026-06-02 15:17:32,888 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67}
 2026-06-02 15:17:32,888 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 13:32:20,351 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 13:32:20,355 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 13:32:20,355 | INFO | INICIO etapa 1: ingesta
+2026-06-09 13:32:20,378 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 13:32:20,378 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 13:32:20,393 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 13:32:20,393 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:32:20,399 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 13:32:20,406 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 13:32:20,479 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 13:32:20,481 | INFO | INICIO escritura de artefactos
+2026-06-09 13:32:20,515 | INFO | FIN escritura de artefactos
+2026-06-09 13:32:20,882 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67}
+2026-06-09 13:32:20,882 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 13:32:52,421 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 13:32:52,425 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 13:32:52,425 | INFO | INICIO etapa 1: ingesta
+2026-06-09 13:32:52,450 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 13:32:52,450 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 13:32:52,464 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 13:32:52,465 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:32:52,470 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 13:32:52,477 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 13:32:52,542 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 13:32:52,543 | INFO | INICIO escritura de artefactos
+2026-06-09 13:32:52,578 | INFO | FIN escritura de artefactos
+2026-06-09 13:32:52,844 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.122782, 'processing_rows_per_second': 97.73, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 13:32:52,844 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 13:56:41,953 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 13:56:41,956 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 13:56:41,957 | INFO | INICIO etapa 1: ingesta
+2026-06-09 13:56:41,967 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 13:56:41,967 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 13:56:41,973 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 13:56:41,973 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:56:41,976 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 13:56:41,980 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 13:56:42,022 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 13:56:42,024 | INFO | INICIO escritura de artefactos
+2026-06-09 13:56:42,050 | INFO | FIN escritura de artefactos
+2026-06-09 13:56:42,205 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.070717, 'processing_rows_per_second': 169.69, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 13:56:42,205 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 13:56:42,208 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:56:42,211 | INFO | FIN validacion: 1 validos, 2 rechazados
+2026-06-09 13:57:28,273 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 13:57:28,276 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 13:57:28,277 | INFO | INICIO etapa 1: ingesta
+2026-06-09 13:57:28,279 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 13:57:28,280 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 13:57:28,284 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 13:57:28,284 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:57:28,287 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 13:57:28,289 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 13:57:28,322 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 13:57:28,323 | INFO | INICIO escritura de artefactos
+2026-06-09 13:57:28,340 | INFO | FIN escritura de artefactos
+2026-06-09 13:57:28,449 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.049775, 'processing_rows_per_second': 241.09, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 13:57:28,449 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 13:57:28,453 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:57:28,455 | INFO | FIN validacion: 1 validos, 2 rechazados
+2026-06-09 13:58:39,642 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 13:58:39,644 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 13:58:39,644 | INFO | INICIO etapa 1: ingesta
+2026-06-09 13:58:39,648 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 13:58:39,648 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 13:58:39,651 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 13:58:39,651 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:58:39,653 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 13:58:39,655 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 13:58:39,682 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 13:58:39,683 | INFO | INICIO escritura de artefactos
+2026-06-09 13:58:39,699 | INFO | FIN escritura de artefactos
+2026-06-09 13:58:39,840 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.040826, 'processing_rows_per_second': 293.93, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 13:58:39,840 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 13:58:39,842 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:58:39,844 | INFO | FIN validacion: 1 validos, 2 rechazados
+2026-06-09 13:58:47,851 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 13:58:47,852 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 13:58:47,852 | INFO | INICIO etapa 1: ingesta
+2026-06-09 13:58:47,857 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 13:58:47,857 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 13:58:47,862 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 13:58:47,862 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 13:58:47,865 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 13:58:47,867 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 13:58:47,897 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 13:58:47,898 | INFO | INICIO escritura de artefactos
+2026-06-09 13:58:47,914 | INFO | FIN escritura de artefactos
+2026-06-09 13:58:48,042 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.047684, 'processing_rows_per_second': 251.66, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 13:58:48,042 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 18:21:58,822 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 18:21:58,840 | INFO | Dataset raw creado en /opt/airflow/notifyops/data/raw/social_events.csv con 13 filas
+2026-06-09 18:21:58,840 | INFO | INICIO etapa 1: ingesta
+2026-06-09 18:21:58,863 | INFO | FIN ingesta: 13 registros leidos desde /opt/airflow/notifyops/data/raw/social_events.csv
+2026-06-09 18:21:58,863 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 18:21:58,880 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 18:21:58,880 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 18:21:58,883 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 18:21:58,886 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 18:21:59,051 | INFO | FIN carga: base creada en /opt/airflow/notifyops/data/notifyops.db
+2026-06-09 18:21:59,052 | INFO | INICIO escritura de artefactos
+2026-06-09 18:21:59,245 | INFO | FIN escritura de artefactos
+2026-06-09 18:21:59,480 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.229564, 'processing_rows_per_second': 52.27, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 18:21:59,480 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 18:34:53,811 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 18:34:53,838 | INFO | Dataset raw creado en /opt/airflow/notifyops/data/raw/social_events.csv con 13 filas
+2026-06-09 18:34:53,838 | INFO | INICIO etapa 1: ingesta
+2026-06-09 18:34:53,873 | INFO | FIN ingesta: 13 registros leidos desde /opt/airflow/notifyops/data/raw/social_events.csv
+2026-06-09 18:34:53,873 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 18:34:53,902 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 18:34:53,903 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 18:34:53,909 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 18:34:53,916 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 18:34:54,069 | INFO | FIN carga: base creada en /opt/airflow/notifyops/data/notifyops.db
+2026-06-09 18:34:54,072 | INFO | INICIO escritura de artefactos
+2026-06-09 18:34:54,259 | INFO | FIN escritura de artefactos
+2026-06-09 18:34:54,678 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.261377, 'processing_rows_per_second': 45.91, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 18:34:54,679 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 18:35:00,083 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 18:35:00,098 | INFO | Dataset raw creado en /opt/airflow/notifyops/data/raw/social_events.csv con 13 filas
+2026-06-09 18:35:00,098 | INFO | INICIO etapa 1: ingesta
+2026-06-09 18:35:00,105 | INFO | FIN ingesta: 13 registros leidos desde /opt/airflow/notifyops/data/raw/social_events.csv
+2026-06-09 18:35:00,106 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 18:35:00,113 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 18:35:00,113 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 18:35:00,116 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 18:35:00,119 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 18:35:00,264 | INFO | FIN carga: base creada en /opt/airflow/notifyops/data/notifyops.db
+2026-06-09 18:35:00,266 | INFO | INICIO escritura de artefactos
+2026-06-09 18:35:00,332 | INFO | FIN escritura de artefactos
+2026-06-09 18:35:00,502 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.182393, 'processing_rows_per_second': 65.79, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 18:35:00,502 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 18:39:04,649 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 18:39:04,667 | INFO | Dataset raw creado en /opt/airflow/notifyops/data/raw/social_events.csv con 13 filas
+2026-06-09 18:39:04,667 | INFO | INICIO etapa 1: ingesta
+2026-06-09 18:39:04,688 | INFO | FIN ingesta: 13 registros leidos desde /opt/airflow/notifyops/data/raw/social_events.csv
+2026-06-09 18:39:04,688 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 18:39:04,716 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 18:39:04,716 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 18:39:04,722 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 18:39:04,726 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 18:39:04,875 | INFO | FIN carga: base creada en /opt/airflow/notifyops/data/notifyops.db
+2026-06-09 18:39:04,877 | INFO | INICIO escritura de artefactos
+2026-06-09 18:39:04,947 | INFO | FIN escritura de artefactos
+2026-06-09 18:39:05,138 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.228044, 'processing_rows_per_second': 52.62, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 18:39:05,139 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 14:49:00,658 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 14:49:00,660 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 14:49:00,660 | INFO | INICIO etapa 1: ingesta
+2026-06-09 14:49:00,669 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 14:49:00,669 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 14:49:00,673 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 14:49:00,673 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 14:49:00,676 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 14:49:00,678 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 14:49:00,750 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 14:49:00,751 | INFO | INICIO escritura de artefactos
+2026-06-09 14:49:00,770 | INFO | FIN escritura de artefactos
+2026-06-09 14:49:00,901 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.093414, 'processing_rows_per_second': 128.46, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 14:49:00,901 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 14:49:00,904 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 14:49:00,906 | INFO | FIN validacion: 1 validos, 2 rechazados
+2026-06-09 14:49:07,153 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 14:49:07,154 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 14:49:07,154 | INFO | INICIO etapa 1: ingesta
+2026-06-09 14:49:07,159 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 14:49:07,159 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 14:49:07,163 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 14:49:07,164 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 14:49:07,166 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 14:49:07,169 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 14:49:07,236 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 14:49:07,237 | INFO | INICIO escritura de artefactos
+2026-06-09 14:49:07,252 | INFO | FIN escritura de artefactos
+2026-06-09 14:49:07,385 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.084181, 'processing_rows_per_second': 142.55, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 14:49:07,386 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 15:08:26,772 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 15:08:26,775 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 15:08:26,775 | INFO | INICIO etapa 1: ingesta
+2026-06-09 15:08:26,778 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 15:08:26,778 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 15:08:26,782 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 15:08:26,782 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 15:08:26,784 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 15:08:26,787 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 15:08:26,817 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 15:08:26,818 | INFO | INICIO escritura de artefactos
+2026-06-09 15:08:26,834 | INFO | FIN escritura de artefactos
+2026-06-09 15:08:26,944 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.045587, 'processing_rows_per_second': 263.23, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 15:08:26,944 | INFO | ===== FIN MVP NotifyOps =====
+2026-06-09 15:08:26,946 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 15:08:26,947 | INFO | FIN validacion: 1 validos, 2 rechazados
+2026-06-09 15:08:34,492 | INFO | ===== INICIO MVP NotifyOps =====
+2026-06-09 15:08:34,494 | INFO | Dataset raw creado en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv con 13 filas
+2026-06-09 15:08:34,494 | INFO | INICIO etapa 1: ingesta
+2026-06-09 15:08:34,498 | INFO | FIN ingesta: 13 registros leidos desde C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\raw\social_events.csv
+2026-06-09 15:08:34,498 | INFO | INICIO etapa 2: limpieza y transformacion
+2026-06-09 15:08:34,503 | INFO | FIN limpieza: 13 registros iniciales, 12 despues de deduplicar
+2026-06-09 15:08:34,503 | INFO | INICIO etapa 3: validacion estructural y semantica
+2026-06-09 15:08:34,506 | INFO | FIN validacion: 8 validos, 4 rechazados
+2026-06-09 15:08:34,508 | INFO | INICIO etapa 4: carga a base de datos
+2026-06-09 15:08:34,536 | INFO | FIN carga: base creada en C:\Users\Vivobook Pro 15\Downloads\Geiaproyecot\.worktrees\notifyops-parcial3-final\data\notifyops.db
+2026-06-09 15:08:34,537 | INFO | INICIO escritura de artefactos
+2026-06-09 15:08:34,552 | INFO | FIN escritura de artefactos
+2026-06-09 15:08:34,674 | INFO | KPIs finales: {'events_processed': 12, 'valid_events': 8, 'rejected_events': 4, 'notifications_generated': 8, 'delivery_success_rate_pct': 100.0, 'error_rate_pct': 33.33, 'avg_latency_seconds': 5.5, 'completeness_rate_pct': 66.67, 'pipeline_execution_seconds': 0.044952, 'processing_rows_per_second': 266.95, 'latency_measurement_type': 'simulada_para_demo'}
+2026-06-09 15:08:34,674 | INFO | ===== FIN MVP NotifyOps =====

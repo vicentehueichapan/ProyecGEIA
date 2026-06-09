@@ -1,10 +1,14 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+.playwright-cli/
+output/
 .venv/
 venv/
 data/reports/test_notifyops.db
-docs/evidencias/
+docs/evidencias/*
+!docs/evidencias/parcial3/
+!docs/evidencias/parcial3/**
 airflow.db
 airflow.cfg
 standalone_admin_password.txt

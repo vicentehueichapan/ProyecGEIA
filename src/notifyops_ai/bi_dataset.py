@@ -275,13 +275,15 @@ def _build_summary_sheet(
     worksheet["D6"].font = WHITE_FONT
     worksheet["E6"].font = WHITE_FONT
     for row_index, row in enumerate(decisions_summary.itertuples(index=False), start=7):
-        worksheet.cell(row=row_index, column=4, value=row.final_decision)
+        worksheet.cell(row=row_index, column=4, value=str(row.final_decision).replace("_", " "))
         worksheet.cell(row=row_index, column=5, value=int(row.count))
 
     chart = BarChart()
+    chart.type = "bar"
     chart.title = "Decisiones finales"
-    chart.y_axis.title = "Cantidad"
-    chart.x_axis.title = "Decision"
+    chart.x_axis.title = "Cantidad"
+    chart.y_axis.title = "Decision"
+    chart.legend = None
     chart.add_data(Reference(worksheet, min_col=5, min_row=6, max_row=6 + len(decisions_summary)), titles_from_data=True)
     chart.set_categories(Reference(worksheet, min_col=4, min_row=7, max_row=6 + len(decisions_summary)))
     chart.height = 7

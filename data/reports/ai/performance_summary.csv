@@ -1,0 +1,2 @@
+training_seconds,inference_seconds,inference_rows,inference_rows_per_second,dataset_rows,train_rows,test_rows
+0.060773,4.8e-05,96,2000000.0,320,224,96

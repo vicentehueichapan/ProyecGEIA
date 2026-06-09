@@ -263,7 +263,10 @@ def roc_curve_values(y_true: Iterable[int], probabilities: Iterable[float]) -> T
     fpr = np.asarray(fpr_values)
     tpr = np.asarray(tpr_values)
     order = np.argsort(fpr)
-    auc = float(np.trapezoid(tpr[order], fpr[order]))
+    integrate = getattr(np, "trapezoid", None)
+    if integrate is None:
+        integrate = np.trapz
+    auc = float(integrate(tpr[order], fpr[order]))
     return fpr[order], tpr[order], auc
 
 
@@ -614,12 +617,14 @@ def save_dashboard_html(
       .grid-3 { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
-      header { align-items: flex-start; padding: 16px; }
+      header { align-items: flex-start; flex-direction: column; padding: 16px; }
+      header h1 { font-size: 20px; }
+      .status { width: 100%; white-space: normal; }
       main { padding: 15px; }
       .toolbar, .grid-2 { grid-template-columns: 1fr; }
       .kpis { grid-template-columns: repeat(2, minmax(110px, 1fr)); }
-      .tabs { overflow-x: auto; }
-      .tab { white-space: nowrap; }
+      .tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .tab { min-width: 0; padding: 9px 4px; font-size: 11px; white-space: normal; }
     }
   </style>
 </head>

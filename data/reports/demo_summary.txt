@@ -6,4 +6,6 @@ Notificaciones generadas: 8
 Tasa de entrega: 100.0%
 Tasa de error: 33.33%
 Completitud: 66.67%
-Latencia promedio: 5.5 segundos
+Latencia promedio simulada: 5.5 segundos
+Tiempo real del pipeline: 0.044952 segundos
+Rendimiento medido: 266.95 filas/segundo

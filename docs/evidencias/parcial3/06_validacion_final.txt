@@ -1,0 +1,74 @@
+NotifyOps - Validacion final Parcial 3
+Fecha: 2026-06-09
+
+PRUEBAS AUTOMATIZADAS
+Comando:
+python -W error::ResourceWarning -m unittest discover -v
+
+Resultado:
+- 23 pruebas ejecutadas.
+- 23 pruebas aprobadas.
+- 0 errores.
+- 0 fallos.
+- 0 ResourceWarning.
+
+PIPELINE ETL
+Comando:
+python -m src.notifyops.pipeline
+
+Resultado final registrado:
+- eventos procesados: 12
+- eventos validos: 8
+- eventos rechazados: 4
+- notificaciones: 8
+- tasa de exito simulada: 100.0%
+- tiempo ETL local: 0.044952 segundos
+- rendimiento local: 266.95 filas/segundo
+
+MODELO IA
+Comando:
+python -m src.notifyops_ai.modeling
+
+Resultado:
+- modelo seleccionado: regresion logistica
+- accuracy: 0.8854
+- precision: 0.9206
+- recall: 0.9062
+- F1: 0.9134
+- ROC-AUC: 0.9731
+- Gini: 0.9463
+- matriz: TN=27, FP=5, FN=6, TP=58
+
+ARTEFACTO BI
+- archivo: data/bi/notifyops_powerbi_dataset.xlsx
+- hojas: 16
+- errores de formula: 0
+- formulas pendientes de recalculo: 0
+- IDs de usuario seudonimizados
+- contenido textual excluido
+
+NOTEBOOK
+- celdas de codigo: 10
+- celdas ejecutadas: 10
+- errores de ejecucion: 0
+
+AIRFLOW Y DOCKER
+- docker compose config: OK
+- Docker Server: 29.0.1
+- DagRun controlado: final_validation_clean_20260609
+- estado del DAG: success
+- tareas exitosas: 8 de 8
+- DAG dejado en pausa al finalizar
+- contenedores NotifyOps activos al cierre: 0
+
+COMPILACION
+Comando:
+python -m compileall -q src tests dags
+
+Resultado:
+compileall: OK
+
+LIMITACION DECLARADA
+La validacion de rendimiento corresponde a entorno local y Docker. El Excel es
+compatible con Power BI, pero el repositorio no afirma la existencia de un
+archivo .pbix ni de una prueba en infraestructura cloud.

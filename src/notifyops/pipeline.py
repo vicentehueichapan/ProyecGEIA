@@ -201,12 +201,16 @@ def load_to_sqlite(valid: pd.DataFrame, rejected: pd.DataFrame, notifications: p
     if db_path.exists():
         db_path.unlink()
 
-    with sqlite3.connect(db_path) as connection:
+    connection = sqlite3.connect(db_path)
+    try:
         _serialize_for_sql(valid).to_sql("validated_events", connection, index=False, if_exists="replace")
         _serialize_for_sql(rejected).to_sql("rejected_events", connection, index=False, if_exists="replace")
         notifications.to_sql("notifications", connection, index=False, if_exists="replace")
         connection.execute("CREATE INDEX IF NOT EXISTS idx_notifications_event ON notifications(event_id)")
         connection.execute("CREATE INDEX IF NOT EXISTS idx_notifications_target ON notifications(target_user_id)")
+        connection.commit()
+    finally:
+        connection.close()
     logging.info("FIN carga: base creada en %s", db_path)
 
 

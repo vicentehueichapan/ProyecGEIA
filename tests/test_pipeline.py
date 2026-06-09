@@ -107,9 +107,12 @@ class NotifyOpsPipelineTests(unittest.TestCase):
         notifications = generate_notifications(valid)
         load_to_sqlite(valid, rejected, notifications, test_db)
 
-        with sqlite3.connect(test_db) as connection:
+        connection = sqlite3.connect(test_db)
+        try:
             event_count = connection.execute("SELECT COUNT(*) FROM validated_events").fetchone()[0]
             notification_count = connection.execute("SELECT COUNT(*) FROM notifications").fetchone()[0]
+        finally:
+            connection.close()
 
         self.assertEqual(event_count, 1)
         self.assertEqual(notification_count, 1)

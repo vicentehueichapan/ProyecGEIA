@@ -1,2 +1,2 @@
-events_processed,valid_events,rejected_events,notifications_generated,delivery_success_rate_pct,error_rate_pct,avg_latency_seconds,completeness_rate_pct
-12,8,4,8,100.0,33.33,5.5,66.67
+events_processed,valid_events,rejected_events,notifications_generated,delivery_success_rate_pct,error_rate_pct,avg_latency_seconds,completeness_rate_pct,pipeline_execution_seconds,processing_rows_per_second,latency_measurement_type
+12,8,4,8,100.0,33.33,5.5,66.67,0.044952,266.95,simulada_para_demo

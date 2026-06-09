@@ -1,321 +1,321 @@
 event_id,event_type,source_user_id,target_user_id,created_at,is_duplicate,rule_error_reason,ai_risk_probability,ai_prediction,final_decision,decision_explanation
-evt-ai-0001,share,u158,,2026-05-15 07:54:57,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0002,like,u170,u275,2026-05-14 23:00:46,0,,0.0105,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0003,like,u108,u249,2026-05-15 07:21:02,0,,0.0236,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0004,reaction,u131,,2026-05-15 14:45:03,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0005,,u167,u236,2026-05-14 19:00:23,0,tipo de evento fuera del alcance,0.9973,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0006,follow,u120,u284,2026-05-14 22:34:18,0,,0.0029,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0007,comment,u180,u225,fecha-invalida,0,fecha invalida,0.9958,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0008,follow,u142,u263,2026-05-14 16:10:57,0,,0.0054,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0009,comment,u110,u276,2026-05-15 10:29:49,0,,0.015,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0008,comment,u127,u288,2026-05-14 17:22:46,1,evento duplicado,0.9898,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0011,comment,u139,u259,2026-05-15 02:34:03,0,,0.0512,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0012,like,u109,u208,2026-05-15 15:16:06,0,,0.0105,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0013,comment,u113,u214,2026-05-14 19:25:10,0,,0.0113,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0014,reaction,u110,u244,2026-05-15 08:33:50,0,tipo de evento fuera del alcance,0.9931,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0015,like,u124,u240,2026-05-15 14:05:12,0,,0.0117,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0016,reaction,u101,u268,2026-05-15 04:57:29,0,tipo de evento fuera del alcance,0.9954,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0017,comment,u107,u270,2026-05-14 13:50:22,0,,0.0379,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0018,unknown,u152,,2026-05-14 23:34:12,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0019,like,u170,u224,2026-05-15 00:13:18,0,,0.0472,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0020,comment,,u246,2026-05-14 22:37:49,0,source_user_id vacio,0.9839,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio
-evt-ai-0021,follow,u128,u209,2026-05-15 15:17:31,0,,0.0027,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0022,unknown,u169,u287,2026-05-15 16:06:25,0,tipo de evento fuera del alcance,0.9955,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0007,unknown,u128,u257,2026-05-14 17:57:35,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
-evt-ai-0024,,u139,u213,2026-05-15 13:43:21,0,tipo de evento fuera del alcance,0.9885,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0025,share,u130,u259,2026-05-14 11:08:56,0,tipo de evento fuera del alcance,0.9958,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0026,like,u106,u274,2026-05-14 09:29:34,0,,0.0425,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0027,share,u117,,2026-05-15 16:23:39,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0028,follow,u187,u210,2026-05-15 12:48:37,0,,0.0036,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0029,follow,u172,u274,2026-05-14 12:22:06,0,,0.0082,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0030,follow,u128,u286,fecha-invalida,0,fecha invalida,0.9881,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0031,like,u157,u265,2026-05-14 12:40:40,0,,0.0316,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0032,comment,u157,u270,2026-05-14 08:35:40,0,,0.022,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0033,follow,u183,u278,2026-05-14 11:47:27,0,,0.009,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0034,comment,u158,u247,2026-05-15 13:23:15,0,,0.0093,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0035,like,u105,u217,2026-05-15 11:29:19,0,,0.0158,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0016,like,,,2026-05-15 03:42:17,1,source_user_id vacio; target_user_id vacio; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio; target_user_id vacio; evento duplicado
-evt-ai-0037,follow,u172,u235,2026-05-15 01:53:01,0,,0.0112,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0038,like,u103,u220,fecha-invalida,0,fecha invalida,0.997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0039,comment,u180,u209,fecha-invalida,0,fecha invalida,0.9977,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0040,reaction,u121,u288,2026-05-15 11:32:06,0,tipo de evento fuera del alcance,0.9906,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0041,comment,u148,u287,2026-05-14 10:02:15,0,,0.018,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0042,comment,u112,u254,2026-05-14 14:05:49,0,,0.0187,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0043,unknown,u161,u260,2026-05-15 14:32:41,0,tipo de evento fuera del alcance,0.9872,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0044,share,u149,u247,2026-05-15 00:46:36,0,tipo de evento fuera del alcance,0.9969,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0045,like,u177,u285,fecha-invalida,0,fecha invalida,0.997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0046,like,u186,u286,2026-05-15 15:02:44,0,,0.0105,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0047,follow,u185,u204,2026-05-14 11:10:05,0,,0.009,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0048,comment,u165,u268,2026-05-15 10:38:29,0,,0.0081,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0049,like,u143,u259,2026-05-15 08:36:27,0,,0.0214,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0050,like,u180,u271,2026-05-14 20:08:23,0,,0.0142,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0051,comment,u111,u265,2026-05-15 02:25:59,0,,0.0512,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0052,follow,u176,u285,2026-05-14 23:56:20,0,,0.0027,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0053,like,u152,u208,2026-05-14 23:08:38,0,,0.0105,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0054,unknown,u166,u270,2026-05-15 17:14:04,0,tipo de evento fuera del alcance,0.9975,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0055,,u102,u259,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
-evt-ai-0012,share,u112,,fecha-invalida,1,tipo de evento fuera del alcance; target_user_id vacio; fecha invalida; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio; fecha invalida; evento duplicado
-evt-ai-0057,share,u154,u286,2026-05-14 15:57:06,0,tipo de evento fuera del alcance,0.9937,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0058,follow,u173,u275,2026-05-15 01:59:40,0,,0.0112,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0059,reaction,u167,u240,2026-05-14 13:10:25,0,tipo de evento fuera del alcance,0.9949,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0060,follow,u145,,2026-05-14 21:43:07,0,target_user_id vacio,0.9444,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0061,like,u115,u269,2026-05-14 14:07:03,0,,0.0259,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0062,like,u122,u285,2026-05-14 22:45:21,0,,0.0116,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0063,comment,u184,,2026-05-14 11:06:49,0,target_user_id vacio,0.9938,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0064,comment,u127,u270,2026-05-15 15:38:17,0,,0.0218,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0065,like,u152,u226,2026-05-14 21:56:48,0,,0.0128,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0066,follow,u152,u258,2026-05-15 01:39:19,0,,0.0112,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0067,comment,u156,u272,2026-05-14 16:57:31,0,,0.0433,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0068,share,u171,u234,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
-evt-ai-0069,like,u130,,2026-05-14 18:27:47,0,target_user_id vacio,0.9892,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0070,comment,u163,u213,2026-05-15 04:01:40,0,,0.023,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0071,comment,u169,u261,fecha-invalida,0,fecha invalida,0.9977,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0072,comment,u142,u214,2026-05-14 13:31:48,0,,0.0581,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0073,like,u145,,2026-05-14 23:59:26,0,target_user_id vacio,0.9821,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0074,like,u142,,2026-05-14 14:01:51,0,target_user_id vacio,0.9928,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0075,comment,u189,u252,2026-05-15 00:26:34,0,,0.0939,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0076,follow,u171,u268,2026-05-15 15:02:47,0,,0.0027,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0077,share,u176,u262,2026-05-15 12:24:01,0,tipo de evento fuera del alcance,0.9896,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0078,comment,u176,u247,2026-05-14 11:29:57,0,,0.03,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0079,like,u123,u202,2026-05-15 02:53:02,0,,0.0388,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0080,follow,u100,u247,2026-05-15 05:07:32,0,,0.0074,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0081,follow,u125,u286,2026-05-15 10:58:26,0,,0.0045,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0082,follow,u139,u237,2026-05-15 16:19:37,0,,0.0024,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0083,like,u126,u203,2026-05-14 18:50:31,0,,0.0173,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0007,share,u188,u258,2026-05-14 09:50:06,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
-evt-ai-0085,like,u133,u233,2026-05-14 11:38:33,0,,0.0349,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0086,share,u134,,2026-05-15 04:43:47,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0087,like,u168,u236,2026-05-15 01:28:23,0,,0.0428,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0088,comment,u131,u263,2026-05-15 06:38:38,0,,0.0224,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0089,follow,u107,u238,2026-05-15 10:54:51,0,,0.0045,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0090,,u177,u263,2026-05-14 11:26:02,0,tipo de evento fuera del alcance,0.9958,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0091,like,,u231,2026-05-14 14:43:57,0,source_user_id vacio,0.9967,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio
-evt-ai-0092,comment,u179,u286,2026-05-15 09:03:55,0,,0.0089,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0093,reaction,u127,u247,2026-05-14 17:59:23,0,tipo de evento fuera del alcance,0.9923,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0094,like,u129,u231,2026-05-15 13:08:37,0,,0.0129,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0095,comment,u185,u289,2026-05-15 06:29:11,0,,0.0224,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0090,like,u138,u258,2026-05-15 15:59:32,1,evento duplicado,0.9866,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0097,like,u126,,2026-05-15 10:20:18,0,target_user_id vacio,0.9893,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0098,like,u128,,2026-05-14 11:43:12,0,target_user_id vacio,0.9947,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0042,comment,,,2026-05-14 11:42:11,1,source_user_id vacio; target_user_id vacio; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio; target_user_id vacio; evento duplicado
-evt-ai-0100,comment,u145,u202,2026-05-14 15:38:02,0,,0.0169,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0050,comment,u129,u277,2026-05-14 23:21:32,1,evento duplicado,0.9935,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0092,follow,u117,u213,2026-05-14 14:16:38,1,evento duplicado,0.9789,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0103,like,u113,u209,2026-05-15 06:54:56,0,,0.0261,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0104,reaction,u176,u247,2026-05-15 02:33:52,0,tipo de evento fuera del alcance,0.9995,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0105,follow,u140,u281,2026-05-15 16:49:17,0,,0.0024,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0106,like,u146,,fecha-invalida,0,target_user_id vacio; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; fecha invalida
-evt-ai-0107,like,u101,u259,2026-05-15 08:10:21,0,,0.0214,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0108,like,u169,u212,2026-05-14 16:49:58,0,,0.0212,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0109,,u100,u252,2026-05-14 14:04:42,0,tipo de evento fuera del alcance,0.9992,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0064,like,u124,u240,2026-05-14 09:43:49,1,evento duplicado,0.9968,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0111,like,u153,u276,2026-05-15 13:07:46,0,,0.0129,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0112,follow,u168,u251,2026-05-15 15:25:14,0,,0.0027,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0113,comment,u101,u238,2026-05-14 23:37:35,0,,0.009,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0114,like,u113,u261,2026-05-14 14:39:05,0,,0.0259,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0115,reaction,u158,u234,2026-05-14 22:48:46,0,tipo de evento fuera del alcance,0.9872,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0097,reaction,u109,u262,2026-05-14 15:00:41,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
-evt-ai-0117,comment,u188,u272,2026-05-15 03:02:47,0,,0.0708,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0118,follow,u152,u251,2026-05-15 15:10:45,0,,0.0027,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0119,like,u127,u261,2026-05-14 23:45:45,0,,0.0105,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0120,like,u167,u243,2026-05-14 14:44:10,0,,0.0259,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0121,comment,u108,,2026-05-15 05:45:02,0,target_user_id vacio,0.991,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0049,share,u127,u278,2026-05-14 12:35:35,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
-evt-ai-0123,comment,u120,u249,2026-05-14 11:13:57,0,,0.03,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0124,like,u109,u276,2026-05-15 11:50:24,0,,0.0158,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0125,share,u136,u203,2026-05-14 14:53:37,0,tipo de evento fuera del alcance,0.9943,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0126,share,u155,u216,2026-05-14 22:59:43,0,tipo de evento fuera del alcance,0.9963,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0127,comment,u148,u247,2026-05-14 16:16:48,0,,0.0433,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0128,comment,u125,u244,2026-05-15 01:39:29,0,,0.0369,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0020,comment,u175,u285,2026-05-14 20:40:16,1,evento duplicado,0.9925,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0130,unknown,u110,u200,2026-05-14 18:43:03,0,tipo de evento fuera del alcance,0.9914,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0131,,u112,u273,2026-05-15 02:38:18,0,tipo de evento fuera del alcance,0.9962,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0132,comment,u104,u205,2026-05-14 15:01:16,0,,0.0478,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0133,follow,u183,u267,fecha-invalida,0,fecha invalida,0.9881,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0134,like,u139,u213,2026-05-14 21:47:52,0,,0.0128,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0135,follow,u165,u259,2026-05-15 03:59:23,0,,0.0091,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0136,share,u152,u203,2026-05-15 13:44:58,0,tipo de evento fuera del alcance,0.9967,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0137,comment,u132,u285,2026-05-14 20:12:40,0,,0.0292,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0138,reaction,u129,u237,2026-05-15 11:34:28,0,tipo de evento fuera del alcance,0.9906,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0139,follow,u108,,2026-05-15 05:51:02,0,target_user_id vacio,0.9749,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0140,share,u184,u277,2026-05-15 06:15:41,0,tipo de evento fuera del alcance,0.9943,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0141,follow,u182,u281,2026-05-15 03:24:45,0,,0.0091,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0045,follow,u154,u205,2026-05-15 01:58:28,1,evento duplicado,0.9874,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0143,reaction,u136,u286,2026-05-15 07:29:18,0,tipo de evento fuera del alcance,0.9991,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0144,follow,u144,u273,2026-05-14 19:08:13,0,,0.004,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0145,follow,u189,u268,2026-05-15 04:12:26,0,,0.0082,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0146,like,u158,u241,2026-05-15 03:31:55,0,,0.0352,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0147,like,u103,u230,2026-05-15 04:09:49,0,,0.0318,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0148,,u110,u225,2026-05-15 05:05:19,0,tipo de evento fuera del alcance,0.9985,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0149,like,u106,u252,2026-05-15 10:21:28,0,,0.0175,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0150,like,u114,u238,2026-05-14 08:02:29,0,,0.0469,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0151,comment,u189,u209,2026-05-14 13:55:40,0,,0.0379,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0152,follow,u138,u268,2026-05-14 19:46:40,0,,0.004,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0153,follow,u164,u272,2026-05-15 14:31:27,0,,0.003,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0154,follow,u108,,2026-05-14 10:15:02,0,target_user_id vacio,0.9813,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0155,like,u130,u258,2026-05-14 16:56:49,0,,0.0212,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0156,share,u174,u203,2026-05-15 01:57:34,0,tipo de evento fuera del alcance,0.999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0157,comment,u167,u227,2026-05-15 09:19:27,0,,0.0139,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0158,like,u107,u203,2026-05-15 11:26:12,0,,0.0158,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0159,comment,u116,u278,2026-05-15 16:31:11,0,,0.0044,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0081,follow,u100,u250,2026-05-14 09:38:55,1,evento duplicado,0.9873,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0161,follow,u133,u243,2026-05-14 19:37:03,0,,0.004,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0081,like,u150,u211,2026-05-14 20:04:38,1,evento duplicado,0.9901,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0163,like,u100,u253,2026-05-15 13:49:01,0,,0.0129,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0164,unknown,u142,u205,2026-05-15 03:31:32,0,tipo de evento fuera del alcance,0.9994,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0165,like,u109,u238,2026-05-14 19:27:37,0,,0.0157,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0166,comment,u132,u230,2026-05-15 07:18:50,0,,0.017,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0167,like,u108,u241,2026-05-15 04:39:08,0,,0.0318,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0168,,u139,u203,2026-05-14 18:47:52,0,tipo de evento fuera del alcance,0.9975,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0169,,u129,u244,2026-05-14 23:40:20,0,tipo de evento fuera del alcance,0.9858,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0170,comment,u111,u219,2026-05-15 06:13:25,0,,0.0346,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0171,follow,u136,u234,2026-05-15 14:53:32,0,,0.003,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0172,comment,u126,u259,2026-05-15 02:28:47,0,,0.0281,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0173,follow,u187,u235,2026-05-15 01:32:22,0,,0.0112,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0174,follow,u174,u209,2026-05-15 06:17:53,0,,0.0067,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0175,like,u155,u203,fecha-invalida,0,fecha invalida,0.997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0176,comment,,u218,2026-05-15 16:56:45,0,source_user_id vacio,0.9894,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio
-evt-ai-0177,follow,u133,u205,2026-05-14 17:00:41,0,,0.0049,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0178,,u171,u277,2026-05-15 03:48:32,0,tipo de evento fuera del alcance,0.9958,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0179,comment,u122,u250,2026-05-15 16:44:17,0,,0.0197,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0180,share,u119,,2026-05-14 18:07:35,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0105,follow,u152,u214,2026-05-14 23:23:27,1,evento duplicado,0.9486,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0182,comment,u183,u219,fecha-invalida,0,fecha invalida,0.9965,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0183,comment,u120,u272,2026-05-15 16:28:50,0,,0.0081,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0184,comment,u132,u203,fecha-invalida,0,fecha invalida,0.9958,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0008,comment,u146,u281,2026-05-14 08:09:28,1,evento duplicado,0.9959,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0186,like,u175,u264,2026-05-15 01:49:47,0,,0.0428,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0187,,u125,,2026-05-14 17:32:05,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0188,share,u111,u287,2026-05-14 20:56:07,0,tipo de evento fuera del alcance,0.9895,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0189,reaction,u148,u219,2026-05-15 16:23:36,0,tipo de evento fuera del alcance,0.9844,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0190,comment,u110,u208,2026-05-14 10:34:52,0,,0.0774,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0191,like,u177,u218,2026-05-15 13:02:15,0,,0.0129,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0192,like,u187,u231,2026-05-14 13:07:12,0,,0.0286,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0193,follow,u171,u218,2026-05-14 12:15:11,0,,0.0082,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0194,like,u131,u236,2026-05-14 22:35:40,0,,0.0116,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0195,comment,u116,u258,2026-05-15 06:25:42,0,,0.0346,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0196,like,u173,u209,2026-05-14 17:13:49,0,,0.0192,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0197,comment,u189,u282,2026-05-15 04:22:20,0,,0.0274,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0198,comment,u104,,2026-05-15 08:55:13,0,target_user_id vacio,0.9811,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0199,comment,u170,u241,2026-05-15 09:56:04,0,,0.0395,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0200,comment,u160,u253,2026-05-15 01:44:51,0,,0.0369,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0201,like,u119,u234,2026-05-14 14:37:10,0,,0.0259,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0202,unknown,u172,u213,2026-05-14 17:42:39,0,tipo de evento fuera del alcance,0.9989,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0203,like,u167,u232,2026-05-14 20:44:52,0,,0.0142,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0204,follow,u111,u213,2026-05-14 10:19:51,0,,0.01,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0205,share,u124,u221,2026-05-14 13:52:42,0,tipo de evento fuera del alcance,0.9985,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0206,comment,u116,u224,2026-05-14 12:21:46,0,,0.0228,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0207,unknown,u132,u244,2026-05-15 11:44:46,0,tipo de evento fuera del alcance,0.9906,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0208,share,,u232,2026-05-14 23:02:42,0,tipo de evento fuera del alcance; source_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; source_user_id vacio
-evt-ai-0209,follow,u151,u257,2026-05-15 11:53:13,0,,0.004,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0210,reaction,u110,u280,2026-05-14 21:23:19,0,tipo de evento fuera del alcance,0.9967,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0211,follow,u155,u226,fecha-invalida,0,fecha invalida,0.9881,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0212,share,u136,u200,2026-05-15 09:38:48,0,tipo de evento fuera del alcance,0.9923,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0213,follow,u112,u289,2026-05-15 11:08:56,0,,0.004,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0214,comment,u162,u222,2026-05-15 09:51:34,0,,0.0395,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0215,follow,u132,u289,2026-05-15 09:35:14,0,,0.0049,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0216,follow,u108,u214,2026-05-14 20:23:05,0,,0.0036,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0217,follow,u166,u262,2026-05-14 10:23:03,0,,0.01,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0218,share,u122,u287,2026-05-14 11:15:34,0,tipo de evento fuera del alcance,0.9958,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0219,share,u119,u281,2026-05-14 08:47:13,0,tipo de evento fuera del alcance,0.9969,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0220,comment,u184,u283,fecha-invalida,0,fecha invalida,0.9958,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0046,share,u157,u214,2026-05-15 12:36:31,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
-evt-ai-0222,comment,u178,u208,2026-05-14 11:31:53,0,,0.0704,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0223,reaction,u165,u216,2026-05-15 01:34:54,0,tipo de evento fuera del alcance,0.9966,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0224,like,u127,u245,2026-05-15 16:02:00,0,,0.0095,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0225,follow,u182,u226,2026-05-15 06:35:56,0,,0.0067,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0226,unknown,u114,u288,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
-evt-ai-0227,reaction,u108,u225,2026-05-14 16:19:00,0,tipo de evento fuera del alcance,0.993,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0228,comment,u169,u221,fecha-invalida,0,fecha invalida,0.9986,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0114,follow,u164,u254,2026-05-15 12:02:27,1,evento duplicado,0.9619,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0230,unknown,u135,u278,2026-05-14 09:41:45,0,tipo de evento fuera del alcance,0.9966,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0076,like,u149,u247,2026-05-15 15:57:01,1,evento duplicado,0.9866,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0232,follow,u109,u257,2026-05-14 10:02:17,0,,0.01,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0233,reaction,u157,u275,2026-05-15 06:36:01,0,tipo de evento fuera del alcance,0.9943,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0014,comment,u182,,2026-05-15 16:59:38,1,target_user_id vacio; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; evento duplicado
-evt-ai-0235,like,u102,u211,2026-05-14 21:38:39,0,,0.0128,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0236,comment,u179,u284,2026-05-14 22:01:25,0,,0.0239,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0237,like,u171,u267,2026-05-14 16:12:42,0,,0.0212,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0238,share,u118,u227,2026-05-15 06:57:48,0,tipo de evento fuera del alcance,0.9992,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0239,follow,u125,u255,2026-05-15 04:34:48,0,,0.0082,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0240,like,u160,,2026-05-14 22:53:40,0,target_user_id vacio,0.9838,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0241,follow,u169,u221,2026-05-15 02:01:00,0,,0.0101,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0242,unknown,u144,u283,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
-evt-ai-0243,comment,u146,u282,2026-05-15 00:27:00,0,,0.0343,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0051,like,u152,u200,2026-05-15 02:59:57,1,evento duplicado,0.9964,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0245,like,u109,u284,2026-05-14 18:16:07,0,,0.0173,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0246,like,u137,u222,2026-05-15 14:11:35,0,,0.0117,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0247,comment,u131,u222,2026-05-14 16:45:44,0,,0.0433,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0248,reaction,u136,u283,2026-05-15 01:37:05,0,tipo de evento fuera del alcance,0.9995,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0249,,u182,u281,2026-05-14 13:48:47,0,tipo de evento fuera del alcance,0.9949,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0250,follow,u145,u237,2026-05-14 21:36:38,0,,0.0033,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0251,reaction,u188,,2026-05-15 09:18:40,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0006,follow,u180,,2026-05-15 12:17:35,1,target_user_id vacio; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; evento duplicado
-evt-ai-0253,like,u146,u254,fecha-invalida,0,fecha invalida,0.997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0254,like,u180,u249,2026-05-14 13:57:12,0,,0.0286,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0255,follow,u117,u253,2026-05-15 09:43:15,0,,0.0049,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0256,like,u132,,2026-05-14 19:44:25,0,target_user_id vacio,0.9881,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0257,follow,u156,u269,2026-05-15 04:41:41,0,,0.0082,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0258,like,u154,u277,2026-05-14 15:27:10,0,,0.0235,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0224,like,,u283,2026-05-15 09:26:02,1,source_user_id vacio; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio; evento duplicado
-evt-ai-0260,,u117,,2026-05-15 15:16:26,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0261,comment,u155,u257,fecha-invalida,0,fecha invalida,0.9965,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0262,comment,u176,u265,2026-05-15 16:19:59,0,,0.0081,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0263,comment,u115,u253,2026-05-14 14:39:36,0,,0.012,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0264,follow,u176,u242,2026-05-15 14:53:20,0,,0.003,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0265,follow,u177,u230,2026-05-15 01:02:56,0,,0.0112,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0266,comment,u130,u228,2026-05-14 19:46:02,0,,0.0072,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0267,like,u179,,2026-05-14 13:05:22,0,target_user_id vacio,0.9935,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0268,comment,u162,,2026-05-15 01:23:45,0,target_user_id vacio,0.995,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0269,follow,,u209,2026-05-15 09:29:32,0,source_user_id vacio,0.9826,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio
-evt-ai-0270,comment,u172,,2026-05-15 12:28:33,0,target_user_id vacio,0.9847,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0271,like,u137,,2026-05-15 10:05:38,0,target_user_id vacio,0.9893,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0272,comment,u169,u270,fecha-invalida,0,fecha invalida,0.9965,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0273,follow,u148,u213,fecha-invalida,0,fecha invalida,0.9881,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0199,comment,u175,u200,2026-05-15 15:30:49,1,evento duplicado,0.9844,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0275,like,u170,u245,2026-05-15 16:53:59,0,,0.0095,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0276,comment,u187,u265,2026-05-14 18:58:23,0,,0.008,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0277,like,u147,u263,2026-05-14 18:02:48,0,,0.0173,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0278,follow,u133,u223,2026-05-15 05:46:10,0,,0.0074,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0279,follow,u132,u223,fecha-invalida,0,fecha invalida,0.9881,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0280,like,u185,u221,2026-05-14 15:32:37,0,,0.0235,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0281,follow,u154,u261,2026-05-15 17:05:36,0,,0.0022,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0282,follow,u131,u201,fecha-invalida,0,fecha invalida,0.9881,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0283,like,u121,u274,2026-05-14 09:05:37,0,,0.0425,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0284,comment,u129,u208,2026-05-14 08:50:24,0,,0.0933,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0285,follow,u183,u228,2026-05-14 13:39:39,0,,0.0074,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0286,share,u139,u268,2026-05-14 18:16:55,0,tipo de evento fuera del alcance,0.9914,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0287,follow,u112,u203,2026-05-14 19:36:03,0,,0.004,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0288,comment,u108,u276,2026-05-14 09:36:33,0,,0.0561,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0289,reaction,u179,u282,2026-05-14 09:39:24,0,tipo de evento fuera del alcance,0.9995,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0290,comment,u113,u254,2026-05-14 08:15:10,0,,0.0404,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0291,share,u170,u214,2026-05-14 12:44:12,0,tipo de evento fuera del alcance,0.9954,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0292,unknown,u184,,2026-05-14 08:24:29,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0293,comment,u106,,2026-05-14 16:37:29,0,target_user_id vacio,0.9877,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0294,comment,u116,u210,2026-05-15 08:03:03,0,,0.0183,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0295,reaction,u189,,2026-05-15 00:04:45,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
-evt-ai-0296,comment,u129,u231,2026-05-14 23:04:54,0,,0.0216,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0297,like,u153,u203,2026-05-15 10:38:12,0,,0.0175,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0141,reaction,u185,u243,2026-05-14 20:17:45,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
-evt-ai-0299,like,u159,u234,2026-05-14 16:08:57,0,,0.0212,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0300,share,u131,u201,2026-05-14 20:37:44,0,tipo de evento fuera del alcance,0.9895,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0301,like,u163,u238,2026-05-14 22:47:26,0,,0.0116,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0302,share,u150,u202,2026-05-15 00:55:21,0,tipo de evento fuera del alcance,0.9969,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0303,share,u147,u278,2026-05-15 02:32:22,0,tipo de evento fuera del alcance,0.9989,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0304,like,u180,u230,fecha-invalida,0,fecha invalida,0.997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
-evt-ai-0305,like,u168,u224,2026-05-14 17:44:37,0,,0.0192,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0306,like,u106,,2026-05-14 18:26:15,0,target_user_id vacio,0.9892,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0307,comment,u168,u221,2026-05-14 17:45:33,0,,0.0165,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0308,,u153,u274,2026-05-14 11:22:23,0,tipo de evento fuera del alcance,0.9988,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0309,comment,u168,,2026-05-14 17:45:58,0,target_user_id vacio,0.9789,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
-evt-ai-0310,,u123,u229,2026-05-14 18:25:09,0,tipo de evento fuera del alcance,0.9975,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0311,like,u174,u266,2026-05-14 22:16:47,0,,0.0116,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0309,like,u162,u206,2026-05-15 12:45:05,1,evento duplicado,0.9901,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
-evt-ai-0313,share,u106,u208,2026-05-14 09:52:34,0,tipo de evento fuera del alcance,0.9966,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0088,share,u179,u244,2026-05-14 23:55:17,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
-evt-ai-0315,reaction,u110,u259,2026-05-14 16:49:39,0,tipo de evento fuera del alcance,0.993,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0316,comment,u141,u262,2026-05-14 15:03:57,0,,0.0169,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0269,follow,u154,u287,fecha-invalida,1,fecha invalida; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida; evento duplicado
-evt-ai-0318,,u168,u224,2026-05-14 09:29:45,0,tipo de evento fuera del alcance,0.9966,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
-evt-ai-0319,like,u127,u253,2026-05-14 21:01:53,0,,0.0128,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
-evt-ai-0320,share,u149,u262,2026-05-15 09:06:08,0,tipo de evento fuera del alcance,0.9923,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0001,share,u158,u239,2026-05-15 02:10:51,0,tipo de evento fuera del alcance,0.9886,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0002,like,u139,u208,2026-05-14 10:07:38,0,,0.7414,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0003,comment,u144,u203,2026-05-15 06:46:05,0,,0.0068,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0001,comment,u114,u274,2026-05-15 10:33:41,1,evento duplicado,0.9945,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0005,follow,u170,u242,2026-05-15 10:01:27,0,,0.5541,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0005,follow,u150,u249,2026-05-14 17:22:46,1,evento duplicado,0.9775,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0007,comment,,,2026-05-15 10:07:47,0,source_user_id vacio; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio; target_user_id vacio
+evt-ai-0008,like,u181,u245,fecha-invalida,0,fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0009,reaction,u186,u244,2026-05-15 08:03:13,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0010,follow,u127,u249,fecha-invalida,0,fecha invalida,0.9921,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0011,like,u116,u244,2026-05-14 17:49:30,0,,0.0272,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0012,unknown,u102,u237,2026-05-14 10:45:27,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0013,comment,u125,u201,2026-05-15 13:52:19,0,,0.8355,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0014,like,u155,u282,2026-05-15 04:43:43,0,,0.8355,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0015,like,u146,u289,2026-05-14 13:29:12,0,,0.9178,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0016,comment,u101,u269,2026-05-14 20:27:18,0,,0.6137,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0017,like,u133,u253,fecha-invalida,0,fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0018,follow,u111,u287,2026-05-15 00:52:39,0,,0.0083,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0019,unknown,u107,u235,2026-05-15 06:05:43,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0020,comment,u100,u286,2026-05-15 15:06:02,0,,0.1242,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0021,follow,u168,u254,2026-05-15 17:09:09,0,,0.9994,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0022,share,u167,u286,2026-05-14 23:11:18,0,tipo de evento fuera del alcance,0.999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0023,like,u110,u263,2026-05-14 13:49:16,0,,0.0013,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0024,like,u144,u216,2026-05-14 11:33:29,0,,0.9946,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0025,unknown,u104,u262,2026-05-15 14:05:18,0,tipo de evento fuera del alcance,0.9474,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0026,reaction,u175,u241,2026-05-14 16:52:55,0,tipo de evento fuera del alcance,0.9997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0027,follow,u121,u226,2026-05-15 09:32:34,0,,0.9273,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0028,comment,u156,u215,fecha-invalida,0,fecha invalida,0.9444,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0029,unknown,u112,u215,2026-05-15 10:05:14,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0030,follow,u142,,2026-05-15 00:16:23,0,target_user_id vacio,0.9997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0031,comment,u159,u282,2026-05-14 10:52:31,0,,0.0461,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0032,comment,u184,u266,2026-05-14 22:07:36,0,,0.004,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0033,reaction,u110,u279,2026-05-15 01:11:06,0,tipo de evento fuera del alcance,0.9944,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0034,share,u182,u249,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
+evt-ai-0035,like,u122,,fecha-invalida,0,target_user_id vacio; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; fecha invalida
+evt-ai-0036,like,u172,,2026-05-14 09:54:27,0,target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0031,comment,u148,u267,2026-05-14 10:20:24,1,evento duplicado,0.9984,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0038,like,u155,u219,2026-05-15 07:39:09,0,,0.974,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0039,like,u122,u285,2026-05-14 12:18:40,0,,0.0994,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0040,like,u110,u285,2026-05-14 18:09:24,0,,0.0067,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0041,like,u126,u237,2026-05-14 19:25:24,0,,0.3541,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0042,comment,u149,u247,2026-05-15 01:18:34,0,,0.1656,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0020,comment,u175,u203,2026-05-15 11:34:20,1,evento duplicado,0.8749,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0007,reaction,u137,u233,2026-05-15 06:29:55,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
+evt-ai-0045,comment,u118,u242,2026-05-14 18:57:11,0,,0.854,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0046,share,u107,u203,2026-05-14 13:01:20,0,tipo de evento fuera del alcance,0.999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0047,like,u124,u221,2026-05-15 15:02:47,0,,0.8711,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0048,comment,u176,u247,2026-05-14 08:43:52,0,,0.6783,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0049,unknown,u135,u256,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
+evt-ai-0050,follow,u163,u264,2026-05-15 04:40:42,0,,0.9973,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0051,follow,u172,u239,2026-05-14 17:55:33,0,,0.8374,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0052,share,u103,u286,2026-05-14 23:29:56,0,tipo de evento fuera del alcance,0.9985,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0048,like,u104,u233,2026-05-14 15:49:04,1,evento duplicado,0.9998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0054,follow,u121,u277,2026-05-15 01:28:23,0,,0.1831,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0055,reaction,u131,u281,2026-05-14 21:13:52,0,tipo de evento fuera del alcance,0.9963,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0056,comment,u169,u236,fecha-invalida,0,fecha invalida,0.9236,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0057,like,u127,u240,2026-05-15 02:40:56,0,,0.9987,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0058,reaction,u129,u227,2026-05-15 03:41:29,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0059,share,u152,u270,2026-05-15 17:09:24,0,tipo de evento fuera del alcance,0.9991,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0057,unknown,u170,u246,2026-05-15 12:23:58,1,tipo de evento fuera del alcance; evento duplicado,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
+evt-ai-0008,comment,,,2026-05-15 00:56:20,1,source_user_id vacio; target_user_id vacio; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio; target_user_id vacio; evento duplicado
+evt-ai-0062,comment,u102,u229,2026-05-15 10:01:09,0,,0.0424,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0063,unknown,,u204,fecha-invalida,0,tipo de evento fuera del alcance; source_user_id vacio; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; source_user_id vacio; fecha invalida
+evt-ai-0064,like,u155,u207,2026-05-15 03:40:23,0,,0.0925,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0065,unknown,u150,u240,2026-05-15 11:26:33,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0066,like,u107,u266,2026-05-14 08:38:04,0,,0.0299,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0067,like,u160,u262,2026-05-14 11:02:12,0,,0.0034,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0068,follow,u179,,2026-05-14 17:06:22,0,target_user_id vacio,0.998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0069,reaction,u175,u222,2026-05-15 15:25:14,0,tipo de evento fuera del alcance,0.9867,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0070,share,u101,u232,2026-05-15 16:47:03,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0071,like,u182,u230,2026-05-15 08:26:59,0,,0.2139,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0072,reaction,u162,u277,2026-05-15 04:53:19,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0073,follow,u128,u251,2026-05-14 21:38:16,0,,0.7893,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0074,follow,u104,u230,2026-05-14 09:54:05,0,,0.0062,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0075,like,u142,u211,2026-05-15 00:02:58,0,,0.0321,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0076,reaction,u109,u288,2026-05-15 01:21:59,0,tipo de evento fuera del alcance,0.9978,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0077,like,u114,u240,2026-05-15 12:23:51,0,,0.002,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0078,unknown,u136,u210,2026-05-15 03:08:36,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0079,comment,u178,u248,2026-05-14 21:06:33,0,,0.2593,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0029,comment,u148,u232,2026-05-14 11:57:54,1,evento duplicado,0.976,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0081,unknown,u100,u228,2026-05-15 11:37:29,0,tipo de evento fuera del alcance,0.9756,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0082,comment,u182,u250,2026-05-15 09:07:55,0,,0.797,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0083,,u100,u225,2026-05-14 18:05:48,0,tipo de evento fuera del alcance,0.9951,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0084,follow,u159,u206,2026-05-15 15:40:07,0,,0.0702,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0085,,u140,u247,2026-05-14 19:00:52,0,tipo de evento fuera del alcance,0.996,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0086,follow,u137,u236,fecha-invalida,0,fecha invalida,0.9994,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0087,like,u114,u270,2026-05-15 08:43:06,0,,0.8868,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0084,follow,u118,u249,2026-05-15 01:58:28,1,evento duplicado,0.9994,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0089,reaction,u136,u286,2026-05-15 15:48:54,0,tipo de evento fuera del alcance,0.9503,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0090,share,u183,u284,2026-05-15 09:29:20,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0091,comment,u125,u219,2026-05-15 12:41:08,0,,0.4342,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0092,comment,u140,u289,2026-05-14 13:07:55,0,,0.2864,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0093,reaction,u120,u259,2026-05-14 13:52:42,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0094,like,u161,u265,2026-05-15 14:12:12,0,,0.0265,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0095,comment,u173,,2026-05-14 17:21:08,0,target_user_id vacio,0.9729,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0096,like,u106,u220,2026-05-14 22:32:37,0,,0.0008,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0097,follow,u140,u273,2026-05-14 21:43:10,0,,0.0021,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0098,like,u119,u258,2026-05-14 11:57:49,0,,0.8574,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0099,comment,u182,u235,2026-05-15 16:31:11,0,,0.5917,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0100,share,u133,u263,2026-05-15 04:03:07,0,tipo de evento fuera del alcance,0.7146,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0101,comment,u114,u228,2026-05-15 06:33:18,0,,0.789,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0102,comment,u175,u284,2026-05-14 15:10:21,0,,0.1702,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0103,like,u158,u277,2026-05-15 07:18:50,0,,0.0034,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0104,like,u108,u204,fecha-invalida,0,fecha invalida,0.9347,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0105,comment,u142,u285,2026-05-15 10:52:22,0,,0.2506,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0106,like,u158,u228,2026-05-15 10:44:07,0,,0.1765,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0107,comment,u183,u269,2026-05-14 18:11:22,0,,0.2075,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0023,follow,u114,u287,2026-05-15 05:53:08,1,evento duplicado,0.9944,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0109,comment,u185,u209,2026-05-14 14:46:09,0,,0.9574,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0110,like,u141,u251,2026-05-14 19:01:25,0,,0.7741,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0111,,u106,u286,2026-05-15 14:20:09,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0112,comment,u138,,2026-05-14 22:27:13,0,target_user_id vacio,0.9159,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0113,like,u162,u256,2026-05-14 20:33:28,0,,0.1452,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0114,like,u146,u285,2026-05-14 20:08:52,0,,0.011,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0115,follow,u103,u233,2026-05-15 15:57:24,0,,0.9651,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0116,like,u100,,2026-05-15 10:22:33,0,target_user_id vacio,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0117,comment,u117,u217,2026-05-14 18:00:24,0,,0.2748,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0115,follow,u149,u286,fecha-invalida,1,fecha invalida; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida; evento duplicado
+evt-ai-0119,comment,u170,u217,2026-05-14 09:21:17,0,,0.9587,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0120,like,u121,u231,2026-05-14 10:06:39,0,,0.0096,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0121,reaction,u156,u285,2026-05-14 15:31:51,0,tipo de evento fuera del alcance,0.9835,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0122,follow,u114,u239,2026-05-15 15:13:29,0,,0.9124,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0123,,u139,u208,2026-05-14 22:03:31,0,tipo de evento fuera del alcance,0.9995,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0124,comment,u164,u205,2026-05-15 05:36:22,0,,0.9053,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0125,,u163,u233,2026-05-15 00:51:31,0,tipo de evento fuera del alcance,0.9997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0126,reaction,u165,u224,2026-05-14 13:08:50,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0127,comment,u172,u213,2026-05-14 18:16:39,0,,0.0402,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0128,comment,u139,u273,2026-05-14 20:01:37,0,,0.0207,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0129,comment,u163,u227,2026-05-14 15:51:59,0,,0.1731,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0130,reaction,u145,u271,2026-05-15 07:45:51,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0131,share,u120,u206,2026-05-15 13:05:49,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0132,comment,u119,u215,2026-05-14 09:55:53,0,,0.0292,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0133,unknown,u169,u212,2026-05-15 04:16:36,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0134,comment,u169,u266,2026-05-14 12:40:40,0,,0.9762,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0135,follow,u135,u214,2026-05-14 14:17:40,0,,0.0552,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0136,comment,u121,u283,2026-05-15 08:19:37,0,,0.0177,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0137,reaction,u148,u272,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
+evt-ai-0138,follow,u139,u270,2026-05-15 01:55:20,0,,0.1042,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0139,like,u168,u210,2026-05-15 15:17:01,0,,0.2748,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0140,like,u188,u221,2026-05-14 16:25:56,0,,0.03,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0141,like,u147,u230,2026-05-15 16:01:15,0,,0.6346,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0142,comment,u155,u278,2026-05-15 10:15:35,0,,0.0147,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0083,share,u185,u202,2026-05-14 19:59:39,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
+evt-ai-0144,like,u167,u247,fecha-invalida,0,fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0145,follow,u109,u257,2026-05-15 16:22:41,0,,0.1382,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0146,like,u152,u223,fecha-invalida,0,fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0147,like,u102,u211,2026-05-15 07:29:08,0,,0.1807,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0131,comment,u131,u206,2026-05-15 09:30:02,1,evento duplicado,0.9848,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0149,comment,u167,u219,2026-05-15 14:19:35,0,,0.368,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0150,follow,u155,u260,2026-05-15 12:10:52,0,,0.2335,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0073,follow,u174,u203,2026-05-14 21:39:45,1,evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0152,comment,u146,,fecha-invalida,0,target_user_id vacio; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; fecha invalida
+evt-ai-0153,follow,u169,u263,2026-05-15 02:59:57,0,,0.0053,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0154,like,u122,u281,2026-05-15 09:01:35,0,,0.9739,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0155,,u189,u209,2026-05-15 12:39:56,0,tipo de evento fuera del alcance,0.9998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0156,reaction,u152,u271,2026-05-15 02:14:33,0,tipo de evento fuera del alcance,0.9971,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0144,like,u147,u276,fecha-invalida,1,fecha invalida; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida; evento duplicado
+evt-ai-0158,like,u102,u276,fecha-invalida,0,fecha invalida,0.8912,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0159,follow,u181,u261,2026-05-14 14:45:34,0,,0.0226,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0160,like,u166,u204,2026-05-14 09:31:41,0,,0.0085,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0161,comment,u109,u255,2026-05-15 04:17:10,0,,0.4572,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0162,like,u183,u227,fecha-invalida,0,fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0163,follow,u184,u255,2026-05-15 02:09:29,0,,0.8671,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0164,,u128,u211,2026-05-15 10:10:36,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0165,follow,u121,u242,2026-05-14 16:35:47,0,,0.9305,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0166,comment,u102,u276,2026-05-15 12:05:27,0,,0.243,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0167,follow,u111,,2026-05-14 18:57:24,0,target_user_id vacio,0.9978,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0168,like,u158,u237,fecha-invalida,0,fecha invalida,0.9723,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0169,comment,u176,u237,2026-05-15 10:05:38,0,,0.0016,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0170,,u166,u203,2026-05-14 12:53:29,0,tipo de evento fuera del alcance,0.9997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0171,like,u165,u285,2026-05-15 08:12:04,0,,0.9238,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0172,comment,u177,,2026-05-15 07:48:43,0,target_user_id vacio,0.9956,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0173,like,u161,u245,2026-05-14 16:46:57,0,,0.5828,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0174,reaction,u138,u230,2026-05-14 12:07:52,0,tipo de evento fuera del alcance,0.9981,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0175,like,u110,,2026-05-14 19:11:15,0,target_user_id vacio,0.9998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0176,like,u124,,2026-05-14 14:25:53,0,target_user_id vacio,0.9897,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0177,,u131,u283,2026-05-15 09:28:41,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0178,unknown,u127,u244,2026-05-15 09:40:10,0,tipo de evento fuera del alcance,0.9259,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0179,like,u188,u237,2026-05-15 09:13:56,0,,0.892,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0180,comment,u129,u204,2026-05-14 08:15:10,0,,0.1312,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0181,,u170,,2026-05-14 16:40:27,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
+evt-ai-0182,follow,u105,u216,2026-05-14 10:15:03,0,,0.8644,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0183,follow,u130,,2026-05-15 05:49:36,0,target_user_id vacio,0.9966,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0184,comment,u185,,fecha-invalida,0,target_user_id vacio; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; fecha invalida
+evt-ai-0176,follow,u130,u240,2026-05-14 23:37:44,1,evento duplicado,0.7441,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0186,like,u133,u259,2026-05-14 14:33:55,0,,0.0504,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0187,,u126,,2026-05-15 07:28:35,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
+evt-ai-0188,comment,u167,,2026-05-14 13:11:29,0,target_user_id vacio,0.9998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0189,follow,u177,u243,2026-05-14 14:16:12,0,,0.0475,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0190,,,u263,2026-05-14 15:01:49,0,tipo de evento fuera del alcance; source_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; source_user_id vacio
+evt-ai-0191,comment,u142,,2026-05-15 09:24:22,0,target_user_id vacio,0.8536,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0192,comment,u131,u224,2026-05-14 12:26:16,0,,0.0087,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0065,comment,u151,u274,2026-05-14 13:40:38,1,evento duplicado,0.9734,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0194,like,u146,,fecha-invalida,0,target_user_id vacio; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; fecha invalida
+evt-ai-0195,follow,u121,,2026-05-15 10:31:03,0,target_user_id vacio,0.9993,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0196,follow,u182,u261,2026-05-14 09:21:23,0,,0.9277,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0068,reaction,u113,u219,2026-05-15 08:56:08,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
+evt-ai-0198,like,u176,u253,2026-05-15 04:23:41,0,,0.0207,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0199,share,u153,u262,2026-05-15 10:51:32,0,tipo de evento fuera del alcance,0.9998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0200,follow,u182,u243,2026-05-14 13:06:25,0,,0.4492,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0201,follow,u181,u209,2026-05-15 07:03:41,0,,0.0058,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0098,follow,u117,u259,2026-05-14 21:28:33,1,evento duplicado,0.9906,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0203,follow,u168,u252,2026-05-15 12:08:29,0,,0.3752,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0204,reaction,u147,u249,2026-05-14 09:11:40,0,tipo de evento fuera del alcance,0.9975,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0205,comment,u165,u223,2026-05-14 09:14:10,0,,0.0337,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0206,comment,u173,u275,2026-05-15 08:53:24,0,,0.4858,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0207,comment,u173,u217,2026-05-15 13:21:04,0,,0.6649,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0208,comment,u141,u278,2026-05-15 10:56:15,0,,0.0031,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0031,follow,u133,u226,2026-05-14 09:10:33,1,evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0210,follow,u186,u215,2026-05-14 20:34:33,0,,0.7565,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0211,,u139,,2026-05-15 02:06:37,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
+evt-ai-0212,like,u173,,2026-05-14 20:34:26,0,target_user_id vacio,0.9998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0213,follow,u101,u257,fecha-invalida,0,fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0214,like,u164,u217,2026-05-15 12:46:08,0,,0.0157,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0022,comment,u111,u265,2026-05-14 12:48:18,1,evento duplicado,0.9987,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0216,follow,u172,u220,2026-05-14 20:32:49,0,,0.6678,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0217,share,u177,u282,2026-05-15 15:59:11,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0218,like,u152,u244,2026-05-15 11:32:19,0,,0.8845,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0219,follow,u168,u225,2026-05-14 17:42:06,0,,0.9023,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0220,follow,u106,u240,2026-05-14 14:06:23,0,,0.9727,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0221,share,u144,u235,2026-05-15 10:07:57,0,tipo de evento fuera del alcance,0.9998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0222,follow,u173,u205,2026-05-15 10:41:09,0,,0.6288,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0223,comment,u114,u285,2026-05-15 13:11:28,0,,0.1327,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0224,follow,u102,u234,2026-05-14 18:01:25,0,,0.671,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0225,like,u122,u202,2026-05-14 15:32:47,0,,0.9096,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0226,like,u122,u266,2026-05-15 03:46:47,0,,0.9187,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0227,like,u141,u205,2026-05-15 07:33:23,0,,0.2341,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0228,like,u169,u244,2026-05-15 01:31:19,0,,0.9973,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0229,comment,u160,u239,2026-05-14 17:28:33,0,,0.7685,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0230,share,u114,,2026-05-14 15:21:03,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
+evt-ai-0231,like,u131,u268,2026-05-15 06:53:41,0,,0.4362,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0232,follow,u147,u256,2026-05-15 05:19:50,0,,0.801,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0233,follow,u129,u271,2026-05-14 13:31:30,0,,0.0562,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0234,comment,u109,u283,2026-05-15 06:38:17,0,,0.1682,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0235,like,u177,u240,fecha-invalida,0,fecha invalida,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0236,comment,u138,u268,2026-05-14 21:43:20,0,,0.7712,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0237,share,u128,u224,2026-05-14 22:23:21,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0238,follow,u126,u283,2026-05-14 19:00:55,0,,0.1689,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0239,like,,u211,2026-05-14 11:07:07,0,source_user_id vacio,0.9673,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: source_user_id vacio
+evt-ai-0240,like,u179,u288,2026-05-14 22:15:03,0,,0.1092,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0241,comment,u189,u260,2026-05-14 19:00:29,0,,0.0686,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0242,like,u113,u222,2026-05-14 09:08:56,0,,0.9404,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0038,follow,u146,,2026-05-15 16:53:15,1,target_user_id vacio; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; evento duplicado
+evt-ai-0244,like,u111,u273,2026-05-14 14:15:45,0,,0.9501,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0245,unknown,u113,,2026-05-15 14:53:53,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
+evt-ai-0246,comment,u148,u275,2026-05-15 06:40:06,0,,0.0835,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0247,follow,u163,,2026-05-15 04:27:12,0,target_user_id vacio,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0248,follow,u154,u271,2026-05-15 04:38:23,0,,0.9919,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0249,follow,u174,u242,2026-05-15 08:51:21,0,,0.3419,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0250,share,u140,u262,2026-05-15 15:36:17,0,tipo de evento fuera del alcance,0.9998,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0251,like,u176,u277,2026-05-15 14:22:54,0,,0.002,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0252,like,u100,u251,2026-05-14 20:39:26,0,,0.33,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0253,like,u118,u279,2026-05-14 15:40:54,0,,0.1391,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0254,comment,u153,u212,fecha-invalida,0,fecha invalida,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0255,follow,u173,,2026-05-15 14:13:36,0,target_user_id vacio,0.9997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0256,share,u148,u228,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
+evt-ai-0257,comment,u155,u223,2026-05-15 15:46:24,0,,0.0024,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0258,unknown,u125,u227,2026-05-15 05:52:53,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0051,comment,u171,u240,fecha-invalida,1,fecha invalida; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida; evento duplicado
+evt-ai-0260,share,u164,u251,2026-05-14 10:14:51,0,tipo de evento fuera del alcance,0.9872,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0261,reaction,u164,,2026-05-15 09:52:38,0,tipo de evento fuera del alcance; target_user_id vacio,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
+evt-ai-0262,,u188,u284,2026-05-15 04:01:36,0,tipo de evento fuera del alcance,0.9738,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0263,,u143,u261,fecha-invalida,0,tipo de evento fuera del alcance; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; fecha invalida
+evt-ai-0264,follow,u113,u277,2026-05-15 03:17:43,0,,0.0387,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0265,like,u108,,fecha-invalida,0,target_user_id vacio; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; fecha invalida
+evt-ai-0266,like,u156,,2026-05-15 11:51:32,0,target_user_id vacio,0.9642,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0267,share,u124,u203,2026-05-14 12:38:00,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0268,like,u146,u214,2026-05-14 12:24:03,0,,0.0027,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0269,follow,u110,u226,fecha-invalida,0,fecha invalida,0.9993,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0270,like,u172,u227,2026-05-15 16:36:57,0,,0.0724,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0271,unknown,u168,u229,2026-05-15 03:49:31,0,tipo de evento fuera del alcance,0.9871,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0272,follow,u142,,2026-05-15 04:40:20,0,target_user_id vacio,0.9657,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0273,follow,u164,u249,2026-05-15 00:13:57,0,,0.9561,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0009,,u107,u264,2026-05-14 14:24:53,1,tipo de evento fuera del alcance; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; evento duplicado
+evt-ai-0275,like,u166,u208,2026-05-14 18:22:26,0,,0.006,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0276,comment,u152,u220,2026-05-14 17:09:56,0,,0.8967,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0277,comment,u166,u273,fecha-invalida,0,fecha invalida,0.9888,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida
+evt-ai-0278,like,u102,u229,2026-05-15 12:47:28,0,,0.0038,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0279,comment,u153,u262,2026-05-15 08:11:31,0,,0.448,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0280,like,u138,u259,2026-05-14 23:09:51,0,,0.8824,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0281,unknown,u147,,2026-05-15 07:17:16,0,tipo de evento fuera del alcance; target_user_id vacio,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance; target_user_id vacio
+evt-ai-0282,like,u147,u275,2026-05-15 17:15:13,0,,0.168,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0283,comment,u112,u248,2026-05-14 11:39:27,0,,0.0573,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0025,like,u136,u231,2026-05-14 13:02:11,1,evento duplicado,0.997,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0285,comment,u150,u239,2026-05-15 07:18:36,0,,0.0249,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0023,comment,u168,u284,2026-05-15 10:23:41,1,evento duplicado,0.8123,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: evento duplicado
+evt-ai-0287,comment,u142,u271,2026-05-14 17:36:23,0,,0.0055,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0288,follow,u142,u236,2026-05-15 14:07:41,0,,0.072,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0289,follow,u150,u217,2026-05-15 06:32:47,0,,0.9786,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0290,share,u130,u235,2026-05-14 23:28:12,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0291,unknown,u125,u254,2026-05-15 16:22:31,0,tipo de evento fuera del alcance,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0292,like,u153,,fecha-invalida,0,target_user_id vacio; fecha invalida,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio; fecha invalida
+evt-ai-0293,follow,u114,u226,2026-05-14 15:36:35,0,,0.8218,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0294,comment,u137,u243,2026-05-14 11:48:53,0,,0.9955,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0295,comment,u146,u263,2026-05-15 14:09:00,0,,0.065,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0296,like,u120,,2026-05-15 04:52:48,0,target_user_id vacio,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0297,follow,u136,u235,2026-05-15 10:41:25,0,,0.9765,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0298,like,u142,u289,2026-05-15 09:44:37,0,,0.3417,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0299,like,u100,u222,2026-05-14 14:37:54,0,,0.5233,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0300,like,u175,u228,2026-05-15 14:29:16,0,,0.0612,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0301,like,u157,u218,2026-05-15 16:10:17,0,,0.0021,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0302,like,u164,u202,2026-05-15 15:25:41,0,,0.0024,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0303,comment,u118,u248,2026-05-14 21:03:52,0,,0.88,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0304,comment,u121,u230,2026-05-14 20:26:31,0,,0.0209,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0305,follow,u128,,2026-05-14 09:46:40,0,target_user_id vacio,0.9999,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: target_user_id vacio
+evt-ai-0013,follow,u131,u234,fecha-invalida,1,fecha invalida; evento duplicado,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: fecha invalida; evento duplicado
+evt-ai-0307,reaction,u107,u221,2026-05-15 15:55:28,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0308,share,u189,u279,2026-05-15 08:20:31,0,tipo de evento fuera del alcance,1.0,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0309,share,u176,u286,2026-05-15 09:13:50,0,tipo de evento fuera del alcance,0.9988,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0310,share,u171,u239,2026-05-15 12:32:59,0,tipo de evento fuera del alcance,0.8739,riesgoso,rechazado_por_reglas,No pasa reglas duras del pipeline: tipo de evento fuera del alcance
+evt-ai-0311,comment,u168,u240,2026-05-14 23:29:12,0,,0.268,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0312,like,u172,u205,2026-05-14 23:38:13,0,,0.0868,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0313,comment,u171,u244,2026-05-14 14:29:47,0,,0.2536,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0314,like,u186,u283,2026-05-15 07:16:17,0,,0.0271,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0315,comment,u101,u224,2026-05-14 14:53:15,0,,0.0006,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0316,follow,u175,u212,2026-05-14 21:54:34,0,,0.9377,riesgoso,revision_por_ia,"Pasa reglas duras, pero el modelo IA estima riesgo alto."
+evt-ai-0317,follow,u156,u250,2026-05-15 08:05:52,0,,0.0044,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0318,comment,u125,u226,2026-05-15 06:51:11,0,,0.0853,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0319,comment,u133,u265,2026-05-14 15:52:32,0,,0.3064,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.
+evt-ai-0320,comment,u160,u263,2026-05-14 23:39:55,0,,0.002,valido,aprobado_para_notificar,Pasa reglas duras y el modelo IA estima riesgo bajo.

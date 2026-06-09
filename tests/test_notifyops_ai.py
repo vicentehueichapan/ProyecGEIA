@@ -76,6 +76,26 @@ class NotifyOpsAITests(unittest.TestCase):
         self.assertEqual(result.confusion_matrix.shape, (2, 2))
         self.assertIn("feature", result.feature_weights.columns)
 
+    def test_roc_calculation_supports_numpy_1_26_without_trapezoid(self):
+        original_trapezoid = modeling.np.trapezoid
+        had_trapz = hasattr(modeling.np, "trapz")
+        original_trapz = getattr(modeling.np, "trapz", None)
+        modeling.np.trapz = original_trapezoid
+        delattr(modeling.np, "trapezoid")
+        try:
+            _, _, auc = modeling.roc_curve_values(
+                modeling.np.array([0, 0, 1, 1]),
+                modeling.np.array([0.1, 0.4, 0.35, 0.8]),
+            )
+        finally:
+            modeling.np.trapezoid = original_trapezoid
+            if had_trapz:
+                modeling.np.trapz = original_trapz
+            else:
+                delattr(modeling.np, "trapz")
+
+        self.assertAlmostEqual(auc, 0.75)
+
     def test_ai_pipeline_compares_models_and_records_runtime(self):
         result = modeling.run_ai_pipeline(rows=240, seed=42, save_plots=False, write_outputs=False)
 

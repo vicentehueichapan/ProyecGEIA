@@ -1,0 +1,4 @@
+model,accuracy,precision,recall,f1_score,roc_auc,gini,threshold,true_negatives_valid_detected,false_positives_valid_marked_risky,false_negatives_risky_marked_valid,true_positives_risky_detected,training_seconds,inference_seconds,selected
+baseline_clase_mayoritaria,0.6667,0.6667,1.0,0.8,0.5,0.0,0.5,0,32,0,64,4.9e-05,5e-06,0
+regresion_logistica,0.8854,0.9206,0.9062,0.9134,0.9731,0.9463,0.5,27,5,6,58,0.060773,4.8e-05,1
+random_forest,0.9062,1.0,0.8594,0.9244,0.9956,0.9912,0.5,32,0,9,55,0.200494,0.013027,0
