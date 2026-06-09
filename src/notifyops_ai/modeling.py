@@ -416,44 +416,463 @@ def save_correlation_chart(feature_frame: pd.DataFrame, output: Path) -> None:
     plt.close(fig)
 
 
-def save_dashboard_html(metrics: Dict[str, float]) -> None:
-    html = f"""<!doctype html>
+def save_dashboard_html(
+    metrics: Dict[str, float],
+    model_comparison: pd.DataFrame,
+    quality: pd.DataFrame,
+    final_decisions: pd.DataFrame,
+    performance: Dict[str, float],
+    selected_model: str,
+) -> None:
+    from src.notifyops_ai.bi_dataset import _roles, _security_audit
+
+    dashboard_data_dir = DASHBOARD / "data"
+    dashboard_data_dir.mkdir(parents=True, exist_ok=True)
+    decision_rows = final_decisions[
+        ["event_id", "event_type", "created_at", "ai_risk_probability", "ai_prediction", "final_decision"]
+    ].copy()
+    payload = {
+        "metrics": metrics,
+        "selected_model": selected_model,
+        "model_comparison": model_comparison.to_dict(orient="records"),
+        "quality": quality.to_dict(orient="records"),
+        "performance": performance,
+        "decisions": decision_rows.to_dict(orient="records"),
+        "security": _security_audit().to_dict(orient="records"),
+        "roles": _roles().to_dict(orient="records"),
+    }
+    serialized_payload = json.dumps(payload, ensure_ascii=True)
+    (dashboard_data_dir / "dashboard_data.json").write_text(
+        json.dumps(payload, indent=2, ensure_ascii=True),
+        encoding="utf-8",
+    )
+
+    html = """<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>NotifyOps AI Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NotifyOps | Panel Parcial 3</title>
   <style>
-    body {{ font-family: Arial, sans-serif; margin: 32px; background: #f8fafc; color: #111827; }}
-    h1 {{ margin-bottom: 4px; }}
-    .subtitle {{ color: #475569; margin-bottom: 24px; }}
-    .grid {{ display: grid; grid-template-columns: repeat(4, minmax(140px, 1fr)); gap: 14px; }}
-    .card {{ background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }}
-    .value {{ font-size: 28px; font-weight: 700; color: #0f766e; }}
-    .charts {{ display: grid; grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: 18px; margin-top: 24px; }}
-    img {{ width: 100%; background: white; border: 1px solid #e5e7eb; border-radius: 8px; }}
-    code {{ background: #e5e7eb; padding: 2px 5px; border-radius: 4px; }}
+    :root {
+      --ink: #162331;
+      --muted: #637181;
+      --line: #d9e0e7;
+      --panel: #ffffff;
+      --surface: #f4f6f8;
+      --navy: #17324d;
+      --teal: #087f73;
+      --amber: #bf6b00;
+      --red: #b43c3c;
+      --blue: #2d6aa3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Calibri, sans-serif;
+      color: var(--ink);
+      background: var(--surface);
+    }
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    header h1 { margin: 0; font-size: 23px; letter-spacing: 0; }
+    header p { margin: 5px 0 0; color: #c9d7e4; font-size: 13px; }
+    .status {
+      border: 1px solid #7190aa;
+      padding: 8px 11px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    main { max-width: 1440px; margin: 0 auto; padding: 22px 26px 42px; }
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(150px, 1fr) minmax(180px, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+    label { display: block; color: var(--muted); font-size: 12px; font-weight: 700; margin-bottom: 5px; }
+    select, button {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid #b9c5cf;
+      border-radius: 4px;
+      background: #fff;
+      color: var(--ink);
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+    button { width: auto; cursor: pointer; font-weight: 700; }
+    button:hover { border-color: var(--blue); }
+    .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+    .tab {
+      border: 0;
+      border-bottom: 3px solid transparent;
+      border-radius: 0;
+      background: transparent;
+      padding: 11px 15px;
+    }
+    .tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .view { display: none; }
+    .view.active { display: block; }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(125px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .kpi, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+    .kpi { padding: 14px; min-height: 98px; }
+    .kpi .label { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .kpi .value { font-size: 26px; font-weight: 700; margin-top: 8px; color: var(--navy); }
+    .kpi .detail { color: var(--muted); font-size: 11px; margin-top: 5px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 14px; }
+    .panel { padding: 15px; min-width: 0; }
+    .panel h2 { font-size: 15px; margin: 0 0 12px; }
+    canvas { width: 100%; height: 280px; display: block; }
+    .table-wrap { overflow: auto; max-height: 420px; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th {
+      position: sticky;
+      top: 0;
+      background: #e8eef3;
+      color: var(--navy);
+      text-align: left;
+      padding: 9px;
+      border-bottom: 1px solid #b9c5cf;
+      white-space: nowrap;
+    }
+    td { padding: 8px 9px; border-bottom: 1px solid #e5e9ed; vertical-align: top; }
+    .pill { display: inline-block; padding: 3px 6px; border-radius: 3px; font-weight: 700; font-size: 10px; }
+    .approved { color: #065f55; background: #d9f4ee; }
+    .review { color: #8a4d00; background: #fff0d3; }
+    .rejected { color: #912f2f; background: #f9dddd; }
+    .metric-note { margin: 0 0 14px; color: var(--muted); font-size: 12px; }
+    .empty { color: var(--muted); padding: 22px 4px; text-align: center; }
+    footer { color: var(--muted); font-size: 11px; margin-top: 18px; }
+    @media (max-width: 1050px) {
+      .kpis { grid-template-columns: repeat(3, minmax(125px, 1fr)); }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      header { align-items: flex-start; padding: 16px; }
+      main { padding: 15px; }
+      .toolbar, .grid-2 { grid-template-columns: 1fr; }
+      .kpis { grid-template-columns: repeat(2, minmax(110px, 1fr)); }
+      .tabs { overflow-x: auto; }
+      .tab { white-space: nowrap; }
+    }
   </style>
 </head>
 <body>
-  <h1>NotifyOps AI Dashboard</h1>
-  <div class="subtitle">Filtro inteligente para clasificar eventos sociales como validos o riesgosos.</div>
-  <div class="grid">
-    <div class="card"><div>Accuracy</div><div class="value">{metrics['accuracy']}</div></div>
-    <div class="card"><div>Precision</div><div class="value">{metrics['precision']}</div></div>
-    <div class="card"><div>Recall</div><div class="value">{metrics['recall']}</div></div>
-    <div class="card"><div>Gini</div><div class="value">{metrics['gini']}</div></div>
-  </div>
-  <div class="charts">
-    <img src="../data/reports/ai/charts/class_distribution.png" alt="Distribucion de clases">
-    <img src="../data/reports/ai/charts/confusion_matrix.png" alt="Matriz de confusion">
-    <img src="../data/reports/ai/charts/roc_curve.png" alt="Curva ROC">
-    <img src="../data/reports/ai/charts/feature_weights.png" alt="Importancia de variables">
-    <img src="../data/reports/ai/charts/final_decision_distribution.png" alt="Decision final reglas mas IA">
-  </div>
-  <p>Archivos principales: <code>data/ai/notifyops_ai_events.csv</code>, <code>data/reports/ai/model_metrics.csv</code>, <code>data/reports/ai/final_event_decisions.csv</code>, <code>data/reports/ai/new_event_predictions.csv</code>.</p>
+  <header>
+    <div>
+      <h1>NotifyOps | Panel de Evidencia Parcial 3</h1>
+      <p>Calidad, modelos, decisiones operacionales, rendimiento y seguridad</p>
+    </div>
+    <div class="status" id="modelStatus">Cargando modelo</div>
+  </header>
+  <main>
+    <section class="toolbar">
+      <div>
+        <label for="eventTypeFilter">Tipo de evento</label>
+        <select id="eventTypeFilter"><option value="">Todos</option></select>
+      </div>
+      <div>
+        <label for="decisionFilter">Decision final</label>
+        <select id="decisionFilter"><option value="">Todas</option></select>
+      </div>
+      <button id="resetFilters" type="button">Restablecer filtros</button>
+    </section>
+
+    <nav class="tabs" aria-label="Vistas del panel">
+      <button class="tab active" data-view="summaryView" type="button">Resumen ejecutivo</button>
+      <button class="tab" data-view="modelView" type="button">Modelo y calidad</button>
+      <button class="tab" data-view="securityView" type="button">Seguridad y operacion</button>
+    </nav>
+
+    <section id="summaryView" class="view active">
+      <div class="kpis" id="kpiGrid"></div>
+      <div class="grid-2">
+        <article class="panel">
+          <h2>Decisiones finales</h2>
+          <canvas id="decisionChart"></canvas>
+        </article>
+        <article class="panel">
+          <h2>Eventos por tipo</h2>
+          <canvas id="eventTypeChart"></canvas>
+        </article>
+      </div>
+      <article class="panel" style="margin-top:14px">
+        <h2>Detalle operacional sin datos personales</h2>
+        <div class="table-wrap"><table id="decisionTable"></table></div>
+      </article>
+    </section>
+
+    <section id="modelView" class="view">
+      <p class="metric-note">Los modelos usan la misma particion estratificada. La seleccion prioriza F1 y conserva interpretabilidad cuando la diferencia es menor o igual a 0,03.</p>
+      <div class="grid-2">
+        <article class="panel">
+          <h2>Comparacion de F1 y ROC-AUC</h2>
+          <canvas id="modelChart"></canvas>
+        </article>
+        <article class="panel">
+          <h2>Calidad de datos</h2>
+          <canvas id="qualityChart"></canvas>
+        </article>
+      </div>
+      <article class="panel" style="margin-top:14px">
+        <h2>Comparacion numerica</h2>
+        <div class="table-wrap"><table id="modelTable"></table></div>
+      </article>
+    </section>
+
+    <section id="securityView" class="view">
+      <div class="grid-3">
+        <article class="panel">
+          <h2>Rendimiento medido</h2>
+          <div id="performanceTable"></div>
+        </article>
+        <article class="panel">
+          <h2>Roles de acceso</h2>
+          <div class="table-wrap"><table id="rolesTable"></table></div>
+        </article>
+        <article class="panel">
+          <h2>Controles aplicados</h2>
+          <div class="table-wrap"><table id="securityTable"></table></div>
+        </article>
+      </div>
+    </section>
+    <footer>Dataset BI generado desde la misma ejecucion del pipeline. Identificadores personales excluidos de este panel.</footer>
+  </main>
+
+  <script id="dashboardData" type="application/json">__INLINE_DATA__</script>
+  <script>
+    const DATA_FILE = "data/dashboard_data.json";
+    const inlineData = JSON.parse(document.getElementById("dashboardData").textContent);
+    let dashboardData = inlineData;
+    let filteredDecisions = [];
+
+    const colors = ["#2d6aa3", "#087f73", "#bf6b00", "#b43c3c", "#6c7a89"];
+    const formatPercent = value => `${(Number(value) * 100).toFixed(2)}%`;
+    const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, character => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+    })[character]);
+
+    function groupCount(rows, field) {
+      return rows.reduce((accumulator, row) => {
+        const key = row[field] || "sin_valor";
+        accumulator[key] = (accumulator[key] || 0) + 1;
+        return accumulator;
+      }, {});
+    }
+
+    function setupFilters() {
+      const eventTypes = [...new Set(dashboardData.decisions.map(row => row.event_type || "sin_tipo"))].sort();
+      const decisions = [...new Set(dashboardData.decisions.map(row => row.final_decision))].sort();
+      const eventSelect = document.getElementById("eventTypeFilter");
+      const decisionSelect = document.getElementById("decisionFilter");
+      eventTypes.forEach(value => eventSelect.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`));
+      decisions.forEach(value => decisionSelect.insertAdjacentHTML("beforeend", `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`));
+      eventSelect.addEventListener("change", applyFilters);
+      decisionSelect.addEventListener("change", applyFilters);
+      document.getElementById("resetFilters").addEventListener("click", () => {
+        eventSelect.value = "";
+        decisionSelect.value = "";
+        applyFilters();
+      });
+    }
+
+    function applyFilters() {
+      const eventType = document.getElementById("eventTypeFilter").value;
+      const decision = document.getElementById("decisionFilter").value;
+      filteredDecisions = dashboardData.decisions.filter(row =>
+        (!eventType || (row.event_type || "sin_tipo") === eventType) &&
+        (!decision || row.final_decision === decision)
+      );
+      renderSummary();
+    }
+
+    function renderKpis() {
+      const metricCards = [
+        ["Accuracy", formatPercent(dashboardData.metrics.accuracy), "aciertos totales"],
+        ["Precision", formatPercent(dashboardData.metrics.precision), "riesgos predichos correctos"],
+        ["Recall", formatPercent(dashboardData.metrics.recall), "riesgos detectados"],
+        ["F1-score", formatPercent(dashboardData.metrics.f1_score), "equilibrio precision/recall"],
+        ["ROC-AUC", formatPercent(dashboardData.metrics.roc_auc), "capacidad de separacion"],
+        ["Gini", Number(dashboardData.metrics.gini).toFixed(4), "2 x AUC - 1"],
+      ];
+      document.getElementById("kpiGrid").innerHTML = metricCards.map(([label, value, detail]) =>
+        `<article class="kpi"><div class="label">${label}</div><div class="value">${value}</div><div class="detail">${detail}</div></article>`
+      ).join("");
+    }
+
+    function resizeCanvas(canvas) {
+      const ratio = window.devicePixelRatio || 1;
+      const width = Math.max(canvas.clientWidth, 280);
+      const height = Math.max(canvas.clientHeight, 240);
+      canvas.width = width * ratio;
+      canvas.height = height * ratio;
+      const context = canvas.getContext("2d");
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      return { context, width, height };
+    }
+
+    function drawBars(canvasId, entries, valueFormatter = value => value) {
+      const canvas = document.getElementById(canvasId);
+      const { context, width, height } = resizeCanvas(canvas);
+      context.clearRect(0, 0, width, height);
+      if (!entries.length) return;
+      const margin = { top: 20, right: 16, bottom: 72, left: 48 };
+      const chartWidth = width - margin.left - margin.right;
+      const chartHeight = height - margin.top - margin.bottom;
+      const maximum = Math.max(...entries.map(entry => Number(entry.value)), 1);
+      const slot = chartWidth / entries.length;
+      context.strokeStyle = "#c7d1da";
+      context.beginPath();
+      context.moveTo(margin.left, margin.top);
+      context.lineTo(margin.left, margin.top + chartHeight);
+      context.lineTo(margin.left + chartWidth, margin.top + chartHeight);
+      context.stroke();
+      entries.forEach((entry, index) => {
+        const barWidth = Math.min(slot * 0.62, 72);
+        const barHeight = chartHeight * Number(entry.value) / maximum;
+        const x = margin.left + slot * index + (slot - barWidth) / 2;
+        const y = margin.top + chartHeight - barHeight;
+        context.fillStyle = entry.color || colors[index % colors.length];
+        context.fillRect(x, y, barWidth, barHeight);
+        context.fillStyle = "#162331";
+        context.font = "12px Arial";
+        context.textAlign = "center";
+        context.fillText(valueFormatter(entry.value), x + barWidth / 2, Math.max(y - 6, 12));
+        context.save();
+        context.translate(x + barWidth / 2, margin.top + chartHeight + 12);
+        context.rotate(-0.45);
+        context.textAlign = "right";
+        context.fillText(entry.label, 0, 0);
+        context.restore();
+      });
+    }
+
+    function decisionPill(value) {
+      const className = value === "aprobado_para_notificar" ? "approved" :
+        value === "revision_por_ia" ? "review" : "rejected";
+      return `<span class="pill ${className}">${escapeHtml(value)}</span>`;
+    }
+
+    function renderDecisionTable() {
+      const table = document.getElementById("decisionTable");
+      if (!filteredDecisions.length) {
+        table.innerHTML = '<tbody><tr><td class="empty">No existen eventos para los filtros seleccionados.</td></tr></tbody>';
+        return;
+      }
+      table.innerHTML = `<thead><tr>
+        <th>Evento</th><th>Tipo</th><th>Fecha</th><th>Riesgo IA</th><th>Prediccion</th><th>Decision</th>
+      </tr></thead><tbody>${filteredDecisions.slice(0, 200).map(row => `<tr>
+        <td>${escapeHtml(row.event_id)}</td>
+        <td>${escapeHtml(row.event_type || "sin_tipo")}</td>
+        <td>${escapeHtml(row.created_at)}</td>
+        <td>${formatPercent(row.ai_risk_probability)}</td>
+        <td>${escapeHtml(row.ai_prediction)}</td>
+        <td>${decisionPill(row.final_decision)}</td>
+      </tr>`).join("")}</tbody>`;
+    }
+
+    function renderSummary() {
+      drawBars("decisionChart", Object.entries(groupCount(filteredDecisions, "final_decision")).map(([label, value], index) => ({ label, value, color: colors[index] })));
+      drawBars("eventTypeChart", Object.entries(groupCount(filteredDecisions, "event_type")).map(([label, value], index) => ({ label, value, color: colors[index] })));
+      renderDecisionTable();
+    }
+
+    function renderModelView() {
+      const modelEntries = dashboardData.model_comparison.flatMap((row, index) => [
+        { label: `${row.model} F1`, value: row.f1_score, color: colors[index] },
+        { label: `${row.model} AUC`, value: row.roc_auc, color: "#087f73" },
+      ]);
+      drawBars("modelChart", modelEntries, value => Number(value).toFixed(3));
+      const qualityIndicators = ["missing_source_user", "missing_target_user", "invalid_dates", "duplicate_events", "invalid_event_types"];
+      const qualityEntries = dashboardData.quality
+        .filter(row => qualityIndicators.includes(row.indicator))
+        .map((row, index) => ({ label: row.indicator, value: Number(row.value), color: colors[index] }));
+      drawBars("qualityChart", qualityEntries);
+      document.getElementById("modelTable").innerHTML = `<thead><tr>
+        <th>Modelo</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>ROC-AUC</th><th>Gini</th><th>Seleccionado</th>
+      </tr></thead><tbody>${dashboardData.model_comparison.map(row => `<tr>
+        <td>${escapeHtml(row.model)}</td><td>${formatPercent(row.accuracy)}</td>
+        <td>${formatPercent(row.precision)}</td><td>${formatPercent(row.recall)}</td>
+        <td>${formatPercent(row.f1_score)}</td><td>${formatPercent(row.roc_auc)}</td>
+        <td>${Number(row.gini).toFixed(4)}</td><td>${row.selected ? "Si" : "No"}</td>
+      </tr>`).join("")}</tbody>`;
+    }
+
+    function simpleTable(elementId, rows, columns) {
+      const element = document.getElementById(elementId);
+      element.innerHTML = `<thead><tr>${columns.map(column => `<th>${escapeHtml(column.label)}</th>`).join("")}</tr></thead>
+        <tbody>${rows.map(row => `<tr>${columns.map(column => `<td>${escapeHtml(row[column.key])}</td>`).join("")}</tr>`).join("")}</tbody>`;
+    }
+
+    function renderSecurityView() {
+      document.getElementById("performanceTable").innerHTML = `<table><tbody>
+        <tr><th>Entrenamiento</th><td>${Number(dashboardData.performance.training_seconds).toFixed(6)} s</td></tr>
+        <tr><th>Inferencia</th><td>${Number(dashboardData.performance.inference_seconds).toFixed(6)} s</td></tr>
+        <tr><th>Filas de prueba</th><td>${dashboardData.performance.inference_rows}</td></tr>
+        <tr><th>Filas por segundo</th><td>${Number(dashboardData.performance.inference_rows_per_second).toLocaleString("es-CL")}</td></tr>
+      </tbody></table>`;
+      simpleTable("rolesTable", dashboardData.roles, [
+        { key: "role", label: "Rol" }, { key: "allowed_access", label: "Acceso" }, { key: "restriction", label: "Restriccion" },
+      ]);
+      simpleTable("securityTable", dashboardData.security, [
+        { key: "asset", label: "Activo" }, { key: "sensitivity", label: "Sensibilidad" }, { key: "implemented_control", label: "Control aplicado" },
+      ]);
+    }
+
+    function setupTabs() {
+      document.querySelectorAll(".tab").forEach(button => button.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+        document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
+        button.classList.add("active");
+        document.getElementById(button.dataset.view).classList.add("active");
+        if (button.dataset.view === "modelView") renderModelView();
+      }));
+    }
+
+    function initialize() {
+      document.getElementById("modelStatus").textContent = `Modelo seleccionado: ${dashboardData.selected_model}`;
+      filteredDecisions = [...dashboardData.decisions];
+      renderKpis();
+      setupFilters();
+      setupTabs();
+      renderSummary();
+      renderModelView();
+      renderSecurityView();
+    }
+
+    fetch(DATA_FILE)
+      .then(response => response.ok ? response.json() : Promise.reject(new Error("Archivo no disponible")))
+      .then(data => { dashboardData = data; initialize(); })
+      .catch(() => initialize());
+
+    window.addEventListener("resize", () => {
+      renderSummary();
+      if (document.getElementById("modelView").classList.contains("active")) renderModelView();
+    });
+  </script>
 </body>
 </html>
-"""
+""".replace("__INLINE_DATA__", serialized_payload)
     (DASHBOARD / "notifyops_ai_dashboard.html").write_text(html, encoding="utf-8")
 
 
@@ -773,6 +1192,9 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
             "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         }
         (MODELS / "notifyops_ai_model.json").write_text(json.dumps(model_payload, indent=2), encoding="utf-8")
+        from src.notifyops_ai.bi_dataset import build_powerbi_workbook
+
+        build_powerbi_workbook()
 
     if save_plots and write_outputs:
         save_bar_chart(
@@ -799,7 +1221,14 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
         save_roc_chart(y_test, probabilities, CHARTS / "roc_curve.png")
         save_feature_weights_chart(feature_weights, CHARTS / "feature_weights.png")
         save_correlation_chart(engineered, CHARTS / "correlation_matrix.png")
-        save_dashboard_html(metrics)
+        save_dashboard_html(
+            metrics,
+            model_comparison,
+            quality,
+            final_decisions,
+            performance,
+            selected_model,
+        )
 
     return TrainResult(
         metrics=metrics,

@@ -3,6 +3,7 @@ numpy
 matplotlib
 Pillow
 scikit-learn
+openpyxl
 python-docx
 reportlab
 pypdf

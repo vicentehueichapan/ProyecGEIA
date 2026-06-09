@@ -4,8 +4,10 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 import pandas as pd
+from openpyxl import load_workbook
 
 from src.notifyops_ai import modeling
+from src.notifyops_ai import bi_dataset
 
 
 class NotifyOpsAITests(unittest.TestCase):
@@ -144,6 +146,9 @@ class NotifyOpsAITests(unittest.TestCase):
 
     def test_powerbi_fixed_workbook_contains_required_sheets(self):
         workbook_path = Path("data/bi/notifyops_powerbi_dataset.xlsx")
+        if workbook_path.exists():
+            workbook_path.unlink()
+        modeling.run_ai_pipeline(rows=240, seed=42, save_plots=False, write_outputs=True)
 
         self.assertTrue(workbook_path.exists())
         with zipfile.ZipFile(workbook_path) as workbook_zip:
@@ -156,12 +161,51 @@ class NotifyOpsAITests(unittest.TestCase):
         for sheet_name in [
             "resumen_bi",
             "metricas_modelo",
+            "comparacion_modelos",
             "matriz_confusion",
+            "curva_roc",
+            "estadisticas_calidad",
             "decisiones_finales",
+            "rendimiento_ia",
             "auditoria_seguridad",
             "guia_powerbi",
         ]:
             self.assertIn(sheet_name, sheet_names)
+
+    def test_powerbi_workbook_matches_current_metrics_and_pseudonymizes_users(self):
+        modeling.run_ai_pipeline(rows=240, seed=42, save_plots=False, write_outputs=True)
+        workbook_path = bi_dataset.build_powerbi_workbook()
+        csv_metrics = pd.read_csv("data/reports/ai/model_metrics.csv").iloc[0].to_dict()
+        workbook = load_workbook(workbook_path, data_only=True, read_only=True)
+
+        metric_sheet = workbook["metricas_modelo"]
+        headers = [cell.value for cell in next(metric_sheet.iter_rows(min_row=1, max_row=1))]
+        values = [cell.value for cell in next(metric_sheet.iter_rows(min_row=2, max_row=2))]
+        workbook_metrics = dict(zip(headers, values))
+        self.assertAlmostEqual(workbook_metrics["accuracy"], csv_metrics["accuracy"], places=4)
+        self.assertAlmostEqual(workbook_metrics["gini"], csv_metrics["gini"], places=4)
+
+        decisions_sheet = workbook["decisiones_finales"]
+        decision_headers = [cell.value for cell in next(decisions_sheet.iter_rows(min_row=1, max_row=1))]
+        self.assertIn("source_user_key", decision_headers)
+        self.assertIn("target_user_key", decision_headers)
+        self.assertNotIn("source_user_id", decision_headers)
+        self.assertNotIn("target_user_id", decision_headers)
+        workbook.close()
+
+    def test_dashboard_is_interactive_and_uses_generated_data(self):
+        modeling.run_ai_pipeline(rows=240, seed=42, save_plots=True, write_outputs=True)
+        html_path = Path("dashboard/notifyops_ai_dashboard.html")
+        data_path = Path("dashboard/data/dashboard_data.json")
+
+        self.assertTrue(data_path.exists())
+        html = html_path.read_text(encoding="utf-8")
+        self.assertIn('id="eventTypeFilter"', html)
+        self.assertIn('id="decisionFilter"', html)
+        self.assertIn('id="resetFilters"', html)
+        self.assertIn("dashboard_data.json", html)
+        self.assertIn("<canvas", html)
+        self.assertIn("<script", html)
 
 
 if __name__ == "__main__":
