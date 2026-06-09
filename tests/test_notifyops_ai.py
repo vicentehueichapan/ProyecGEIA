@@ -74,6 +74,15 @@ class NotifyOpsAITests(unittest.TestCase):
         self.assertEqual(result.confusion_matrix.shape, (2, 2))
         self.assertIn("feature", result.feature_weights.columns)
 
+    def test_ai_pipeline_compares_models_and_records_runtime(self):
+        result = modeling.run_ai_pipeline(rows=240, seed=42, save_plots=False, write_outputs=False)
+
+        self.assertGreaterEqual(len(result.model_comparison), 3)
+        self.assertIn("selected", result.model_comparison.columns)
+        self.assertEqual(int(result.model_comparison["selected"].sum()), 1)
+        self.assertGreater(result.performance["training_seconds"], 0)
+        self.assertGreater(result.performance["inference_rows_per_second"], 0)
+
     def test_quality_analysis_contains_statistics_and_imputation_strategy(self):
         events = modeling.generate_synthetic_events(rows=200, seed=42)
 
@@ -123,6 +132,15 @@ class NotifyOpsAITests(unittest.TestCase):
         self.assertEqual(decisions.iloc[0]["final_decision"], "rechazado_por_reglas")
         self.assertIn("target_user_id vacio", decisions.iloc[0]["rule_error_reason"])
         self.assertIn("fecha invalida", decisions.iloc[0]["rule_error_reason"])
+
+    def test_final_decisions_include_all_three_operational_states(self):
+        modeling.run_ai_pipeline(rows=500, seed=42, save_plots=False, write_outputs=True)
+        decisions = pd.read_csv("data/reports/ai/final_event_decisions.csv")
+
+        self.assertEqual(
+            set(decisions["final_decision"]),
+            {"rechazado_por_reglas", "revision_por_ia", "aprobado_para_notificar"},
+        )
 
     def test_powerbi_fixed_workbook_contains_required_sheets(self):
         workbook_path = Path("data/bi/notifyops_powerbi_dataset.xlsx")

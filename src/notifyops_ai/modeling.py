@@ -2,12 +2,15 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from pathlib import Path
+from time import perf_counter
 from typing import Dict, Iterable, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -47,6 +50,9 @@ class TrainResult:
     confusion_matrix: np.ndarray
     feature_weights: pd.DataFrame
     test_predictions: pd.DataFrame
+    model_comparison: pd.DataFrame
+    performance: Dict[str, float]
+    selected_model: str
 
 
 def ensure_directories() -> None:
@@ -287,6 +293,23 @@ def classification_metrics(y_true: pd.Series, probabilities: np.ndarray, thresho
     return metrics, np.asarray([[tn, fp], [fn, tp]], dtype=int)
 
 
+def model_evaluation_row(
+    model_name: str,
+    y_true: pd.Series,
+    probabilities: np.ndarray,
+    training_seconds: float,
+    inference_seconds: float,
+) -> Tuple[dict[str, float | str], np.ndarray]:
+    metrics, matrix = classification_metrics(y_true, probabilities)
+    row: dict[str, float | str] = {
+        "model": model_name,
+        **metrics,
+        "training_seconds": round(max(training_seconds, 1e-9), 6),
+        "inference_seconds": round(max(inference_seconds, 1e-9), 6),
+    }
+    return row, matrix
+
+
 def quality_summary(events: pd.DataFrame) -> pd.DataFrame:
     engineered = engineer_features(events)
     summary = [
@@ -523,7 +546,14 @@ def build_final_decisions(
     x_values = engineered[FEATURE_COLUMNS].to_numpy(dtype=float)
     x_scaled = (x_values - mean) / std
     probabilities = predict_probabilities(x_scaled, weights)
+    return build_final_decisions_from_probabilities(events, probabilities, threshold)
 
+
+def build_final_decisions_from_probabilities(
+    events: pd.DataFrame,
+    probabilities: np.ndarray,
+    threshold: float = 0.50,
+) -> pd.DataFrame:
     decisions = events.copy()
     decisions["rule_error_reason"] = decisions.apply(rule_error_reason, axis=1)
     decisions["ai_risk_probability"] = np.round(probabilities, 4)
@@ -567,26 +597,139 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
     target = engineered["label_risky_event"].astype(int)
     x_train, x_test, y_train, y_test = stratified_train_test_split(features, target, seed=seed)
     x_train_scaled, x_test_scaled, mean, std = standardize_train_test(x_train, x_test)
+
+    comparison_rows: list[dict[str, float | str]] = []
+    matrices: dict[str, np.ndarray] = {}
+    candidate_probabilities: dict[str, np.ndarray] = {}
+
+    baseline_started = perf_counter()
+    baseline_probability = float(y_train.mean())
+    baseline_training_seconds = perf_counter() - baseline_started
+    baseline_inference_started = perf_counter()
+    baseline_probabilities = np.full(len(y_test), baseline_probability, dtype=float)
+    baseline_inference_seconds = perf_counter() - baseline_inference_started
+    baseline_row, baseline_matrix = model_evaluation_row(
+        "baseline_clase_mayoritaria",
+        y_test,
+        baseline_probabilities,
+        baseline_training_seconds,
+        baseline_inference_seconds,
+    )
+    comparison_rows.append(baseline_row)
+    matrices["baseline_clase_mayoritaria"] = baseline_matrix
+    candidate_probabilities["baseline_clase_mayoritaria"] = baseline_probabilities
+
+    logistic_training_started = perf_counter()
     weights = train_logistic_regression(x_train_scaled, y_train.to_numpy(dtype=int))
-    probabilities = predict_probabilities(x_test_scaled, weights)
-    metrics, matrix = classification_metrics(y_test, probabilities)
+    logistic_training_seconds = perf_counter() - logistic_training_started
+    logistic_inference_started = perf_counter()
+    logistic_probabilities = predict_probabilities(x_test_scaled, weights)
+    logistic_inference_seconds = perf_counter() - logistic_inference_started
+    logistic_row, logistic_matrix = model_evaluation_row(
+        "regresion_logistica",
+        y_test,
+        logistic_probabilities,
+        logistic_training_seconds,
+        logistic_inference_seconds,
+    )
+    comparison_rows.append(logistic_row)
+    matrices["regresion_logistica"] = logistic_matrix
+    candidate_probabilities["regresion_logistica"] = logistic_probabilities
+
+    forest = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=8,
+        min_samples_leaf=3,
+        random_state=seed,
+        n_jobs=1,
+    )
+    forest_training_started = perf_counter()
+    forest.fit(x_train.to_numpy(dtype=float), y_train.to_numpy(dtype=int))
+    forest_training_seconds = perf_counter() - forest_training_started
+    forest_inference_started = perf_counter()
+    forest_probabilities = forest.predict_proba(x_test.to_numpy(dtype=float))[:, 1]
+    forest_inference_seconds = perf_counter() - forest_inference_started
+    forest_row, forest_matrix = model_evaluation_row(
+        "random_forest",
+        y_test,
+        forest_probabilities,
+        forest_training_seconds,
+        forest_inference_seconds,
+    )
+    comparison_rows.append(forest_row)
+    matrices["random_forest"] = forest_matrix
+    candidate_probabilities["random_forest"] = forest_probabilities
+
+    model_comparison = pd.DataFrame(comparison_rows)
+    ranked = model_comparison.sort_values(["f1_score", "roc_auc", "recall"], ascending=False).reset_index(drop=True)
+    best_model = str(ranked.iloc[0]["model"])
+    logistic_f1 = float(
+        model_comparison.loc[model_comparison["model"] == "regresion_logistica", "f1_score"].iloc[0]
+    )
+    best_f1 = float(ranked.iloc[0]["f1_score"])
+    selected_model = "regresion_logistica" if logistic_f1 >= best_f1 - 0.03 else best_model
+    model_comparison["selected"] = model_comparison["model"].eq(selected_model).astype(int)
+
+    selected_row = model_comparison.loc[model_comparison["model"] == selected_model].iloc[0]
+    float_metric_names = ["accuracy", "precision", "recall", "f1_score", "roc_auc", "gini", "threshold"]
+    count_metric_names = [
+        "true_negatives_valid_detected",
+        "false_positives_valid_marked_risky",
+        "false_negatives_risky_marked_valid",
+        "true_positives_risky_detected",
+    ]
+    metrics = {key: float(selected_row[key]) for key in float_metric_names}
+    metrics.update({key: int(selected_row[key]) for key in count_metric_names})
+    matrix = matrices[selected_model]
+    probabilities = candidate_probabilities[selected_model]
+    performance = {
+        "training_seconds": float(selected_row["training_seconds"]),
+        "inference_seconds": float(selected_row["inference_seconds"]),
+        "inference_rows": int(len(y_test)),
+        "inference_rows_per_second": round(
+            len(y_test) / max(float(selected_row["inference_seconds"]), 1e-9),
+            2,
+        ),
+        "dataset_rows": int(len(events)),
+        "train_rows": int(len(y_train)),
+        "test_rows": int(len(y_test)),
+    }
+
     predictions = x_test.copy()
     predictions["real_label_risky_event"] = y_test
     predictions["risk_probability"] = np.round(probabilities, 4)
     predictions["predicted_label_risky_event"] = (probabilities >= metrics["threshold"]).astype(int)
     predictions["prediction_text"] = np.where(predictions["predicted_label_risky_event"] == 1, "riesgoso", "valido")
+    if selected_model == "random_forest":
+        selected_weights = forest.feature_importances_
+    elif selected_model == "regresion_logistica":
+        selected_weights = weights[1:]
+    else:
+        selected_weights = np.zeros(len(FEATURE_COLUMNS), dtype=float)
     feature_weights = pd.DataFrame(
         {
             "feature": FEATURE_COLUMNS,
-            "weight": np.round(weights[1:], 6),
-            "abs_weight": np.round(np.abs(weights[1:]), 6),
+            "weight": np.round(selected_weights, 6),
+            "abs_weight": np.round(np.abs(selected_weights), 6),
         }
     ).sort_values("abs_weight", ascending=False)
 
     quality = quality_summary(events)
     correlation = engineered[FEATURE_COLUMNS + ["label_risky_event"]].corr(numeric_only=True)
-    new_event_predictions = predict_new_events(weights, mean, std, threshold=metrics["threshold"])
-    final_decisions = build_final_decisions(events, weights, mean, std, threshold=metrics["threshold"])
+    all_features = engineered[FEATURE_COLUMNS]
+    if selected_model == "random_forest":
+        all_probabilities = forest.predict_proba(all_features.to_numpy(dtype=float))[:, 1]
+    elif selected_model == "regresion_logistica":
+        all_scaled = (all_features.to_numpy(dtype=float) - mean) / std
+        all_probabilities = predict_probabilities(all_scaled, weights)
+    else:
+        all_probabilities = np.full(len(all_features), baseline_probability, dtype=float)
+    new_event_predictions = predict_new_events(weights, mean, std, threshold=float(metrics["threshold"]))
+    final_decisions = build_final_decisions_from_probabilities(
+        events,
+        all_probabilities,
+        threshold=float(metrics["threshold"]),
+    )
 
     if write_outputs:
         events.to_csv(AI_DATA / "notifyops_ai_events.csv", index=False)
@@ -595,16 +738,30 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
         predictions.to_csv(AI_REPORTS / "test_predictions.csv", index=False)
         pd.DataFrame([metrics]).to_csv(AI_REPORTS / "model_metrics.csv", index=False)
         (AI_REPORTS / "model_metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
+        model_comparison.to_csv(AI_REPORTS / "model_comparison.csv", index=False)
+        pd.DataFrame([performance]).to_csv(AI_REPORTS / "performance_summary.csv", index=False)
+        fpr, tpr, _ = roc_curve_values(y_test, probabilities)
+        pd.DataFrame({"false_positive_rate": fpr, "true_positive_rate": tpr}).to_csv(
+            AI_REPORTS / "roc_curve_points.csv",
+            index=False,
+        )
         pd.DataFrame(matrix, index=["real_valido", "real_riesgoso"], columns=["pred_valido", "pred_riesgoso"]).to_csv(
             AI_REPORTS / "confusion_matrix.csv",
             index_label="real_class",
         )
+        for model_name, candidate_matrix in matrices.items():
+            pd.DataFrame(
+                candidate_matrix,
+                index=["real_valido", "real_riesgoso"],
+                columns=["pred_valido", "pred_riesgoso"],
+            ).to_csv(AI_REPORTS / f"confusion_matrix_{model_name}.csv", index_label="real_class")
         feature_weights.to_csv(AI_REPORTS / "feature_weights.csv", index=False)
         correlation.to_csv(AI_REPORTS / "correlation_matrix.csv")
         new_event_predictions.to_csv(AI_REPORTS / "new_event_predictions.csv", index=False)
         final_decisions.to_csv(AI_REPORTS / "final_event_decisions.csv", index=False)
         model_payload = {
-            "model": "logistic_regression_numpy",
+            "model": selected_model,
+            "selection_policy": "mayor F1; preferir regresion logistica si queda a 0.03 o menos del mejor F1",
             "target": "label_risky_event",
             "target_definition": {"0": "evento valido", "1": "evento riesgoso"},
             "feature_columns": FEATURE_COLUMNS,
@@ -612,6 +769,8 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
             "mean": mean.round(8).tolist(),
             "std": std.round(8).tolist(),
             "metrics": metrics,
+            "performance": performance,
+            "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         }
         (MODELS / "notifyops_ai_model.json").write_text(json.dumps(model_payload, indent=2), encoding="utf-8")
 
@@ -642,7 +801,15 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
         save_correlation_chart(engineered, CHARTS / "correlation_matrix.png")
         save_dashboard_html(metrics)
 
-    return TrainResult(metrics=metrics, confusion_matrix=matrix, feature_weights=feature_weights, test_predictions=predictions)
+    return TrainResult(
+        metrics=metrics,
+        confusion_matrix=matrix,
+        feature_weights=feature_weights,
+        test_predictions=predictions,
+        model_comparison=model_comparison,
+        performance=performance,
+        selected_model=selected_model,
+    )
 
 
 def main() -> None:
