@@ -1,6 +1,9 @@
 services:
   airflow:
-    image: apache/airflow:2.9.3
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow
+    image: notifyops-airflow:2.9.3
     container_name: notifyops-airflow
     environment:
       AIRFLOW__CORE__EXECUTOR: SequentialExecutor
@@ -12,6 +15,12 @@ services:
       - ./:/opt/airflow/notifyops
     ports:
       - "8080:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:8080/health || exit 1"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
     command: >
       bash -c "set -e;
       airflow db migrate;
