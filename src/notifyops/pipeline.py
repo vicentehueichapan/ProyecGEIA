@@ -6,6 +6,7 @@ import logging
 import sqlite3
 from dataclasses import dataclass
 from pathlib import Path
+from time import perf_counter
 from typing import Dict, Iterable, Tuple
 
 import pandas as pd
@@ -209,7 +210,7 @@ def load_to_sqlite(valid: pd.DataFrame, rejected: pd.DataFrame, notifications: p
     logging.info("FIN carga: base creada en %s", db_path)
 
 
-def calculate_kpis(valid: pd.DataFrame, rejected: pd.DataFrame, notifications: pd.DataFrame) -> Dict[str, float]:
+def calculate_kpis(valid: pd.DataFrame, rejected: pd.DataFrame, notifications: pd.DataFrame) -> Dict[str, object]:
     processed = len(valid) + len(rejected)
     sent = int((notifications.get("delivery_status", pd.Series(dtype=str)) == "sent").sum())
     return {
@@ -238,7 +239,7 @@ def write_report_artifacts(
     valid: pd.DataFrame,
     rejected: pd.DataFrame,
     notifications: pd.DataFrame,
-    kpis: Dict[str, float],
+    kpis: Dict[str, object],
 ) -> None:
     logging.info("INICIO escritura de artefactos")
     _serialize_for_sql(processed).to_csv(PROCESSED / "events_processed.csv", index=False)
@@ -261,7 +262,9 @@ def write_report_artifacts(
         f"Tasa de entrega: {kpis['delivery_success_rate_pct']}%",
         f"Tasa de error: {kpis['error_rate_pct']}%",
         f"Completitud: {kpis['completeness_rate_pct']}%",
-        f"Latencia promedio: {kpis['avg_latency_seconds']} segundos",
+        f"Latencia promedio simulada: {kpis['avg_latency_seconds']} segundos",
+        f"Tiempo real del pipeline: {kpis['pipeline_execution_seconds']} segundos",
+        f"Rendimiento medido: {kpis['processing_rows_per_second']} filas/segundo",
     ]
     (REPORTS / "demo_summary.txt").write_text("\n".join(summary), encoding="utf-8")
     logging.info("FIN escritura de artefactos")
@@ -300,7 +303,7 @@ def draw_evidence_card(filename: str, title: str, subtitle: str, lines: Iterable
     image.save(EVIDENCE / filename)
 
 
-def create_evidence_images(kpis: Dict[str, float]) -> None:
+def create_evidence_images(kpis: Dict[str, object]) -> None:
     try:
         draw_evidence_card(
             "01_ejecucion_pipeline.png",
@@ -336,9 +339,10 @@ def create_evidence_images(kpis: Dict[str, float]) -> None:
         logging.warning("Pillow no esta disponible; se omite la generacion de evidencias PNG.")
 
 
-def run_pipeline() -> Dict[str, float]:
+def run_pipeline() -> Dict[str, object]:
     ensure_directories()
     configure_logging()
+    execution_started = perf_counter()
     logging.info("===== INICIO MVP NotifyOps =====")
     raw_path = create_sample_dataset()
     raw = ingest_events(raw_path)
@@ -347,6 +351,10 @@ def run_pipeline() -> Dict[str, float]:
     notifications = generate_notifications(valid)
     load_to_sqlite(valid, rejected, notifications)
     kpis = calculate_kpis(valid, rejected, notifications)
+    execution_seconds = max(perf_counter() - execution_started, 1e-9)
+    kpis["pipeline_execution_seconds"] = round(execution_seconds, 6)
+    kpis["processing_rows_per_second"] = round(float(kpis["events_processed"]) / execution_seconds, 2)
+    kpis["latency_measurement_type"] = "simulada_para_demo"
     write_report_artifacts(processed, valid, rejected, notifications, kpis)
     create_evidence_images(kpis)
     logging.info("KPIs finales: %s", kpis)

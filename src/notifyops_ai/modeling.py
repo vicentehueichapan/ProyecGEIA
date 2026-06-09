@@ -403,6 +403,52 @@ def save_feature_weights_chart(feature_weights: pd.DataFrame, output: Path) -> N
     plt.close(fig)
 
 
+def save_model_comparison_chart(model_comparison: pd.DataFrame, output: Path) -> None:
+    metrics = ["accuracy", "precision", "recall", "f1_score", "roc_auc"]
+    positions = np.arange(len(model_comparison))
+    width = 0.15
+    fig, ax = plt.subplots(figsize=(11, 6))
+    for index, metric in enumerate(metrics):
+        ax.bar(
+            positions + (index - 2) * width,
+            model_comparison[metric],
+            width=width,
+            label=metric,
+        )
+    ax.set_xticks(positions, labels=model_comparison["model"], rotation=12)
+    ax.set_ylim(0, 1.08)
+    ax.set_ylabel("Resultado")
+    ax.set_title("Comparacion de modelos con la misma particion")
+    ax.legend(ncol=3)
+    fig.tight_layout()
+    fig.savefig(output, dpi=160)
+    plt.close(fig)
+
+
+def save_runtime_comparison_chart(model_comparison: pd.DataFrame, output: Path) -> None:
+    fig, axes = plt.subplots(1, 2, figsize=(11, 5))
+    axes[0].bar(
+        model_comparison["model"],
+        model_comparison["training_seconds"] * 1000,
+        color="#2d6aa3",
+    )
+    axes[0].set_title("Tiempo de entrenamiento")
+    axes[0].set_ylabel("Milisegundos medidos")
+    axes[0].tick_params(axis="x", rotation=15)
+    axes[1].bar(
+        model_comparison["model"],
+        model_comparison["inference_seconds"] * 1000,
+        color="#087f73",
+    )
+    axes[1].set_title("Tiempo de inferencia")
+    axes[1].set_ylabel("Milisegundos medidos")
+    axes[1].tick_params(axis="x", rotation=15)
+    fig.suptitle("Rendimiento local por modelo")
+    fig.tight_layout()
+    fig.savefig(output, dpi=160)
+    plt.close(fig)
+
+
 def save_correlation_chart(feature_frame: pd.DataFrame, output: Path) -> None:
     corr = feature_frame[FEATURE_COLUMNS + ["label_risky_event"]].corr(numeric_only=True)
     fig, ax = plt.subplots(figsize=(9, 8))
@@ -1220,6 +1266,8 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
         save_confusion_matrix_chart(matrix, CHARTS / "confusion_matrix.png")
         save_roc_chart(y_test, probabilities, CHARTS / "roc_curve.png")
         save_feature_weights_chart(feature_weights, CHARTS / "feature_weights.png")
+        save_model_comparison_chart(model_comparison, CHARTS / "model_comparison.png")
+        save_runtime_comparison_chart(model_comparison, CHARTS / "runtime_comparison.png")
         save_correlation_chart(engineered, CHARTS / "correlation_matrix.png")
         save_dashboard_html(
             metrics,

@@ -206,6 +206,8 @@ class NotifyOpsAITests(unittest.TestCase):
         self.assertIn("dashboard_data.json", html)
         self.assertIn("<canvas", html)
         self.assertIn("<script", html)
+        self.assertTrue(Path("data/reports/ai/charts/model_comparison.png").exists())
+        self.assertTrue(Path("data/reports/ai/charts/runtime_comparison.png").exists())
 
 
 if __name__ == "__main__":

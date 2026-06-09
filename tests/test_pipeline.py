@@ -232,6 +232,13 @@ class NotifyOpsPipelineTests(unittest.TestCase):
         self.assertEqual(views["comment"]["event_id"].tolist(), ["evt-002"])
         self.assertEqual(views["follow"]["event_id"].tolist(), ["evt-003"])
 
+    def test_run_pipeline_records_measured_execution_performance(self):
+        metrics = pipeline.run_pipeline()
+
+        self.assertGreater(metrics["pipeline_execution_seconds"], 0)
+        self.assertGreater(metrics["processing_rows_per_second"], 0)
+        self.assertEqual(metrics["latency_measurement_type"], "simulada_para_demo")
+
 
 if __name__ == "__main__":
     unittest.main()
