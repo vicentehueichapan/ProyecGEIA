@@ -17,6 +17,19 @@ class NotifyOpsAITests(unittest.TestCase):
         self.assertGreater(events["label_risky_event"].sum(), 0)
         self.assertGreater((events["label_risky_event"] == 0).sum(), 0)
 
+    def test_dataset_contains_predictive_feedback_risk_independent_of_hard_rules(self):
+        events = modeling.generate_synthetic_events(rows=500, seed=42)
+        clean_events = events[events.apply(modeling.rule_error_reason, axis=1).eq("")]
+
+        self.assertGreater(clean_events["label_risky_event"].sum(), 0)
+        self.assertTrue(
+            {
+                "interaction_velocity_5m",
+                "account_age_days",
+                "historical_report_rate",
+            }.issubset(events.columns)
+        )
+
     def test_feature_engineering_creates_model_columns(self):
         events = pd.DataFrame(
             [
@@ -60,6 +73,24 @@ class NotifyOpsAITests(unittest.TestCase):
             self.assertGreaterEqual(result.metrics[metric], 0)
         self.assertEqual(result.confusion_matrix.shape, (2, 2))
         self.assertIn("feature", result.feature_weights.columns)
+
+    def test_quality_analysis_contains_statistics_and_imputation_strategy(self):
+        events = modeling.generate_synthetic_events(rows=200, seed=42)
+
+        quality = modeling.quality_summary(events)
+        indicators = set(quality["indicator"])
+
+        for indicator in [
+            "content_length_mean",
+            "content_length_median",
+            "content_length_mode",
+            "content_length_p25",
+            "content_length_p75",
+            "interaction_velocity_5m_mean",
+            "historical_report_rate_p75",
+            "imputation_strategy",
+        ]:
+            self.assertIn(indicator, indicators)
 
     def test_final_decision_keeps_hard_rules_before_ai(self):
         events = modeling.generate_synthetic_events(rows=120, seed=21)

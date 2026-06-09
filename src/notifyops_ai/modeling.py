@@ -26,6 +26,9 @@ FEATURE_COLUMNS = [
     "content_length",
     "hour",
     "day_of_week",
+    "interaction_velocity_5m",
+    "account_age_days",
+    "historical_report_rate",
     "is_duplicate",
     "has_source_user",
     "has_target_user",
@@ -88,6 +91,9 @@ def generate_synthetic_events(rows: int = 320, seed: int = 42) -> pd.DataFrame:
         elif event_type not in ALLOWED_EVENT_TYPES and rng.random() < 0.45:
             content = str(rng.choice(["evento externo", "contenido no soportado", ""]))
 
+        interaction_velocity_5m = int(rng.integers(1, 46))
+        account_age_days = int(rng.integers(1, 1501))
+        historical_report_rate = round(float(rng.beta(1.5, 12.0)), 4)
         missing_source = rng.random() < 0.025
         missing_target = rng.random() < 0.12
         invalid_date = rng.random() < 0.10
@@ -108,7 +114,14 @@ def generate_synthetic_events(rows: int = 320, seed: int = 42) -> pd.DataFrame:
         created_at_value = "fecha-invalida" if invalid_date else created_at.strftime("%Y-%m-%d %H:%M:%S")
         is_allowed = event_type in ALLOWED_EVENT_TYPES
         rule_based_risk = bool((not is_allowed) or missing_source or missing_target or invalid_date or duplicate)
-        historical_feedback_risk = bool((not rule_based_risk) and rng.random() < 0.06)
+        historical_feedback_risk = bool(
+            (not rule_based_risk)
+            and (
+                interaction_velocity_5m >= 34
+                or historical_report_rate >= 0.22
+                or (account_age_days <= 21 and historical_report_rate >= 0.10)
+            )
+        )
         is_risky = bool(rule_based_risk or historical_feedback_risk)
 
         records.append(
@@ -119,6 +132,9 @@ def generate_synthetic_events(rows: int = 320, seed: int = 42) -> pd.DataFrame:
                 "target_user_id": target_user_id,
                 "created_at": created_at_value,
                 "content": content,
+                "interaction_velocity_5m": interaction_velocity_5m,
+                "account_age_days": account_age_days,
+                "historical_report_rate": historical_report_rate,
                 "is_duplicate": int(duplicate),
                 "historical_feedback_risk": int(historical_feedback_risk),
                 "label_risky_event": int(is_risky),
@@ -135,6 +151,17 @@ def engineer_features(events: pd.DataFrame) -> pd.DataFrame:
     frame["content_length"] = frame["content"].astype(str).str.len()
     frame["hour"] = parsed_dates.dt.hour.fillna(-1).astype(int)
     frame["day_of_week"] = parsed_dates.dt.dayofweek.fillna(-1).astype(int)
+    numeric_defaults = {
+        "interaction_velocity_5m": 0.0,
+        "account_age_days": 0.0,
+        "historical_report_rate": 0.0,
+    }
+    for column, default in numeric_defaults.items():
+        if column not in frame.columns:
+            frame[column] = default
+        numeric = pd.to_numeric(frame[column], errors="coerce")
+        median = float(numeric.median()) if numeric.notna().any() else default
+        frame[column] = numeric.fillna(median)
     frame["has_source_user"] = frame["source_user_id"].astype(str).str.strip().ne("").astype(int)
     frame["has_target_user"] = frame["target_user_id"].astype(str).str.strip().ne("").astype(int)
     frame["has_valid_date"] = parsed_dates.notna().astype(int)
@@ -272,6 +299,32 @@ def quality_summary(events: pd.DataFrame) -> pd.DataFrame:
         {"indicator": "valid_events", "value": int((engineered["label_risky_event"] == 0).sum())},
         {"indicator": "risky_events", "value": int((engineered["label_risky_event"] == 1).sum())},
     ]
+    for column in [
+        "content_length",
+        "interaction_velocity_5m",
+        "account_age_days",
+        "historical_report_rate",
+    ]:
+        values = pd.to_numeric(engineered[column], errors="coerce")
+        mode = values.mode()
+        summary.extend(
+            [
+                {"indicator": f"{column}_mean", "value": round(float(values.mean()), 4)},
+                {"indicator": f"{column}_median", "value": round(float(values.median()), 4)},
+                {
+                    "indicator": f"{column}_mode",
+                    "value": round(float(mode.iloc[0]), 4) if not mode.empty else 0.0,
+                },
+                {"indicator": f"{column}_p25", "value": round(float(values.quantile(0.25)), 4)},
+                {"indicator": f"{column}_p75", "value": round(float(values.quantile(0.75)), 4)},
+            ]
+        )
+    summary.append(
+        {
+            "indicator": "imputation_strategy",
+            "value": "mediana para senales numericas; indicadores explicitos para nulos estructurales",
+        }
+    )
     return pd.DataFrame(summary)
 
 
