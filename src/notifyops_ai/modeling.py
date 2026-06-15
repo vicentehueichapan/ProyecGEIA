@@ -15,6 +15,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
+RAW = DATA / "raw"
 AI_DATA = DATA / "ai"
 REPORTS = DATA / "reports"
 AI_REPORTS = REPORTS / "ai"
@@ -22,6 +23,8 @@ BI_DATA = DATA / "bi"
 CHARTS = AI_REPORTS / "charts"
 DASHBOARD = ROOT / "dashboard"
 MODELS = ROOT / "models"
+OFFICIAL_DATASET = RAW / "social_events_200.xlsx"
+OFFICIAL_SHEET = "eventos"
 
 ALLOWED_EVENT_TYPES = ("like", "comment", "follow")
 ALL_EVENT_TYPES = ("like", "comment", "follow", "share", "reaction", "unknown", "")
@@ -150,6 +153,32 @@ def generate_synthetic_events(rows: int = 320, seed: int = 42) -> pd.DataFrame:
     return pd.DataFrame(records)
 
 
+def load_official_events(path: Path = OFFICIAL_DATASET) -> pd.DataFrame:
+    if not path.exists():
+        raise FileNotFoundError(f"No existe el dataset oficial del MVP: {path}")
+    events = pd.read_excel(path, sheet_name=OFFICIAL_SHEET, dtype=str).fillna("")
+    required = {
+        "event_id",
+        "event_type",
+        "source_user_id",
+        "target_user_id",
+        "created_at",
+        "content",
+        "interaction_velocity_5m",
+        "account_age_days",
+        "historical_report_rate",
+        "is_duplicate",
+        "historical_feedback_risk",
+        "label_risky_event",
+    }
+    missing = sorted(required.difference(events.columns))
+    if missing:
+        raise ValueError(f"Columnas ausentes en el dataset oficial: {', '.join(missing)}")
+    if len(events) < 200:
+        raise ValueError(f"El dataset oficial debe contener al menos 200 filas; contiene {len(events)}.")
+    return events
+
+
 def engineer_features(events: pd.DataFrame) -> pd.DataFrame:
     frame = events.copy().fillna("")
     frame["event_type"] = frame["event_type"].astype(str).str.strip().str.lower()
@@ -168,6 +197,10 @@ def engineer_features(events: pd.DataFrame) -> pd.DataFrame:
         numeric = pd.to_numeric(frame[column], errors="coerce")
         median = float(numeric.median()) if numeric.notna().any() else default
         frame[column] = numeric.fillna(median)
+    for column in ("is_duplicate", "historical_feedback_risk", "label_risky_event"):
+        if column not in frame.columns:
+            frame[column] = 0
+        frame[column] = pd.to_numeric(frame[column], errors="coerce").fillna(0).astype(int)
     frame["has_source_user"] = frame["source_user_id"].astype(str).str.strip().ne("").astype(int)
     frame["has_target_user"] = frame["target_user_id"].astype(str).str.strip().ne("").astype(int)
     frame["has_valid_date"] = parsed_dates.notna().astype(int)
@@ -1059,9 +1092,19 @@ def build_final_decisions_from_probabilities(
     ]
 
 
-def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, write_outputs: bool = True) -> TrainResult:
+def run_ai_pipeline(
+    rows: int | None = None,
+    seed: int = 42,
+    save_plots: bool = True,
+    write_outputs: bool = True,
+) -> TrainResult:
     ensure_directories()
-    events = generate_synthetic_events(rows=rows, seed=seed)
+    if rows is None:
+        events = load_official_events()
+        dataset_source = OFFICIAL_DATASET.name
+    else:
+        events = generate_synthetic_events(rows=rows, seed=seed)
+        dataset_source = "synthetic_generator"
     engineered = engineer_features(events)
     features = engineered[FEATURE_COLUMNS]
     target = engineered["label_risky_event"].astype(int)
@@ -1161,6 +1204,7 @@ def run_ai_pipeline(rows: int = 320, seed: int = 42, save_plots: bool = True, wr
             2,
         ),
         "dataset_rows": int(len(events)),
+        "dataset_source": dataset_source,
         "train_rows": int(len(y_train)),
         "test_rows": int(len(y_test)),
     }

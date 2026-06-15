@@ -22,7 +22,13 @@ with DAG(
 
     verify_input_dataset = BashOperator(
         task_id="verify_input_dataset",
-        bash_command=f"test -f {PROJECT_DIR}/data/raw/social_events.csv",
+        bash_command=(
+            f"test -f {PROJECT_DIR}/data/raw/social_events_200.xlsx && "
+            f"cd {PROJECT_DIR} && "
+            "python -c \"import pandas as pd; "
+            "df=pd.read_excel('data/raw/social_events_200.xlsx', sheet_name='eventos'); "
+            "assert len(df) >= 200, f'Se esperaban al menos 200 filas y se encontraron {len(df)}'\""
+        ),
     )
 
     run_notifyops_pipeline = BashOperator(

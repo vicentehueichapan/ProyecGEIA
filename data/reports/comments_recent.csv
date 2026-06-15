@@ -1,4 +1,61 @@
-event_id,event_type,source_user_id,target_user_id,created_at,content,notification_text
-evt-011,comment,u110,u208,2026-05-14 09:01:03.000,Buen dato,u110 comento tu publicacion
-evt-005,comment,u104,u203,2026-05-14 09:00:25.000,Me interesa,u104 comento tu publicacion
-evt-002,comment,u101,u200,2026-05-14 09:00:08.000,Gran publicacion,u101 comento tu publicacion
+event_id,event_type,source_user_id,target_user_id,created_at,content,interaction_velocity_5m,account_age_days,historical_report_rate,is_duplicate,historical_feedback_risk,label_risky_event,notification_text
+evt-130,comment,u110,u280,2026-06-01 15:06:50.000,Excelente aporte,26,327,0.09,0,0,0,u110 comento tu publicacion
+evt-129,comment,u103,u269,2026-06-01 15:03:33.000,Me interesa,13,290,0.23,0,1,1,u103 comento tu publicacion
+evt-128,comment,u186,u258,2026-06-01 15:00:16.000,Gracias por compartir,45,253,0.06,0,1,1,u186 comento tu publicacion
+evt-127,comment,u179,u247,2026-06-01 14:56:59.000,Buen dato,32,216,0.2,0,0,0,u179 comento tu publicacion
+evt-126,comment,u172,u236,2026-06-01 14:53:42.000,Gran publicacion,19,179,0.03,0,0,0,u172 comento tu publicacion
+evt-125,comment,u165,u225,2026-06-01 14:50:25.000,Muy util,6,142,0.17,0,0,0,u165 comento tu publicacion
+evt-124,comment,u158,u214,2026-06-01 14:47:08.000,Excelente aporte,38,105,0,0,1,0,u158 comento tu publicacion
+evt-123,comment,u151,u203,2026-06-01 14:43:51.000,Me interesa,25,68,0.14,0,0,0,u151 comento tu publicacion
+evt-122,comment,u144,u282,2026-06-01 14:40:34.000,Gracias por compartir,12,31,0.28,0,1,1,u144 comento tu publicacion
+evt-121,comment,u137,u271,2026-06-01 14:37:17.000,Buen dato,44,1490,0.11,0,1,1,u137 comento tu publicacion
+evt-120,comment,u130,u260,2026-06-01 14:34:00.000,Gran publicacion,31,1453,0.25,0,1,1,u130 comento tu publicacion
+evt-119,comment,u123,u249,2026-06-01 14:30:43.000,Muy util,18,1416,0.08,0,0,0,u123 comento tu publicacion
+evt-118,comment,u116,u238,2026-06-01 14:27:26.000,Excelente aporte,5,1379,0.22,0,1,1,u116 comento tu publicacion
+evt-117,comment,u109,u227,2026-06-01 14:24:09.000,Me interesa,37,1342,0.05,0,1,1,u109 comento tu publicacion
+evt-116,comment,u102,u216,2026-06-01 14:20:52.000,Gracias por compartir,24,1305,0.19,0,0,0,u102 comento tu publicacion
+evt-115,comment,u185,u205,2026-06-01 14:17:35.000,Buen dato,11,1268,0.02,0,0,0,u185 comento tu publicacion
+evt-114,comment,u178,u284,2026-06-01 14:14:18.000,Gran publicacion,43,1231,0.16,0,1,1,u178 comento tu publicacion
+evt-113,comment,u171,u273,2026-06-01 14:11:01.000,Muy util,30,1194,0.3,0,1,1,u171 comento tu publicacion
+evt-112,comment,u164,u262,2026-06-01 14:07:44.000,Excelente aporte,17,1157,0.13,0,0,0,u164 comento tu publicacion
+evt-111,comment,u157,u251,2026-06-01 14:04:27.000,Me interesa,4,1120,0.27,0,1,0,u157 comento tu publicacion
+evt-110,comment,u150,u240,2026-06-01 14:01:10.000,Gracias por compartir,36,1083,0.1,0,1,1,u150 comento tu publicacion
+evt-109,comment,u143,u229,2026-06-01 13:57:53.000,Buen dato,23,1046,0.24,0,1,1,u143 comento tu publicacion
+evt-108,comment,u136,u218,2026-06-01 13:54:36.000,Gran publicacion,10,1009,0.07,0,0,0,u136 comento tu publicacion
+evt-107,comment,u129,u207,2026-06-01 13:51:19.000,Muy util,42,972,0.21,0,1,1,u129 comento tu publicacion
+evt-106,comment,u122,u286,2026-06-01 13:48:02.000,Excelente aporte,29,935,0.04,0,0,0,u122 comento tu publicacion
+evt-105,comment,u115,u275,2026-06-01 13:44:45.000,Me interesa,16,898,0.18,0,0,0,u115 comento tu publicacion
+evt-104,comment,u108,u264,2026-06-01 13:41:28.000,Gracias por compartir,3,861,0.01,0,0,0,u108 comento tu publicacion
+evt-103,comment,u101,u253,2026-06-01 13:38:11.000,Buen dato,35,824,0.15,0,1,1,u101 comento tu publicacion
+evt-102,comment,u184,u242,2026-06-01 13:34:54.000,Gran publicacion,22,787,0.29,0,1,1,u184 comento tu publicacion
+evt-101,comment,u177,u231,2026-06-01 13:31:37.000,Muy util,9,750,0.12,0,0,0,u177 comento tu publicacion
+evt-100,comment,u170,u220,2026-06-01 13:28:20.000,Excelente aporte,41,713,0.26,0,1,1,u170 comento tu publicacion
+evt-099,comment,u163,u209,2026-06-01 13:25:03.000,Me interesa,28,676,0.09,0,0,0,u163 comento tu publicacion
+evt-098,comment,u156,u288,2026-06-01 13:21:46.000,Gracias por compartir,15,639,0.23,0,1,1,u156 comento tu publicacion
+evt-097,comment,u149,u277,2026-06-01 13:18:29.000,Buen dato,2,602,0.06,0,0,0,u149 comento tu publicacion
+evt-096,comment,u142,u266,2026-06-01 13:15:12.000,Gran publicacion,34,565,0.2,0,0,0,u142 comento tu publicacion
+evt-095,comment,u135,u255,2026-06-01 13:11:55.000,Muy util,21,528,0.03,0,0,0,u135 comento tu publicacion
+evt-094,comment,u128,u244,2026-06-01 13:08:38.000,Excelente aporte,8,491,0.17,0,0,0,u128 comento tu publicacion
+evt-093,comment,u121,u233,2026-06-01 13:05:21.000,Me interesa,40,454,0,0,1,0,u121 comento tu publicacion
+evt-092,comment,u114,u222,2026-06-01 13:02:04.000,Gracias por compartir,27,417,0.14,0,0,0,u114 comento tu publicacion
+evt-091,comment,u107,u211,2026-06-01 12:58:47.000,Buen dato,14,380,0.28,0,1,1,u107 comento tu publicacion
+evt-090,comment,u100,u200,2026-06-01 12:55:30.000,Gran publicacion,1,343,0.11,0,0,0,u100 comento tu publicacion
+evt-089,comment,u183,u279,2026-06-01 12:52:13.000,Muy util,33,306,0.25,0,1,1,u183 comento tu publicacion
+evt-088,comment,u176,u268,2026-06-01 12:48:56.000,Excelente aporte,20,269,0.08,0,0,0,u176 comento tu publicacion
+evt-087,comment,u169,u257,2026-06-01 12:45:39.000,Me interesa,7,232,0.22,0,1,1,u169 comento tu publicacion
+evt-086,comment,u162,u246,2026-06-01 12:42:22.000,Gracias por compartir,39,195,0.05,0,1,1,u162 comento tu publicacion
+evt-085,comment,u155,u235,2026-06-01 12:39:05.000,Buen dato,26,158,0.19,0,0,0,u155 comento tu publicacion
+evt-084,comment,u148,u224,2026-06-01 12:35:48.000,Gran publicacion,13,121,0.02,0,0,0,u148 comento tu publicacion
+evt-083,comment,u141,u213,2026-06-01 12:32:31.000,Muy util,45,84,0.16,0,1,1,u141 comento tu publicacion
+evt-082,comment,u134,u202,2026-06-01 12:29:14.000,Excelente aporte,32,47,0.3,0,1,1,u134 comento tu publicacion
+evt-081,comment,u127,u281,2026-06-01 12:25:57.000,Me interesa,19,10,0.13,0,1,1,u127 comento tu publicacion
+evt-080,comment,u120,u270,2026-06-01 12:22:40.000,Gracias por compartir,6,1469,0.27,0,1,1,u120 comento tu publicacion
+evt-079,comment,u113,u259,2026-06-01 12:19:23.000,Buen dato,38,1432,0.1,0,1,1,u113 comento tu publicacion
+evt-078,comment,u106,u248,2026-06-01 12:16:06.000,Gran publicacion,25,1395,0.24,0,1,1,u106 comento tu publicacion
+evt-077,comment,u189,u237,2026-06-01 12:12:49.000,Muy util,12,1358,0.07,0,0,0,u189 comento tu publicacion
+evt-076,comment,u182,u226,2026-06-01 12:09:32.000,Excelente aporte,44,1321,0.21,0,1,1,u182 comento tu publicacion
+evt-075,comment,u175,u215,2026-06-01 12:06:15.000,Me interesa,31,1284,0.04,0,0,0,u175 comento tu publicacion
+evt-074,comment,u168,u204,2026-06-01 12:02:58.000,Gracias por compartir,18,1247,0.18,0,0,1,u168 comento tu publicacion
+evt-073,comment,u161,u283,2026-06-01 11:59:41.000,Buen dato,5,1210,0.01,0,0,0,u161 comento tu publicacion
+evt-072,comment,u154,u272,2026-06-01 11:56:24.000,Gran publicacion,37,1173,0.15,0,1,1,u154 comento tu publicacion
+evt-071,comment,u147,u261,2026-06-01 11:53:07.000,Muy util,24,1136,0.29,0,1,1,u147 comento tu publicacion

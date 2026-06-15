@@ -16,6 +16,14 @@ from src.notifyops.pipeline import (
 
 
 class NotifyOpsPipelineTests(unittest.TestCase):
+    def test_official_excel_contains_at_least_200_events(self):
+        self.assertTrue(pipeline.RAW_INPUT.exists())
+
+        events = pipeline.ingest_events(pipeline.RAW_INPUT)
+
+        self.assertGreaterEqual(len(events), 200)
+        self.assertTrue(set(DataQualityRules().required_columns).issubset(events.columns))
+
     def test_clean_transform_normalizes_and_deduplicates_events(self):
         raw = pd.DataFrame(
             [
@@ -148,6 +156,7 @@ class NotifyOpsPipelineTests(unittest.TestCase):
         self.assertEqual(notifications.iloc[0]["created_at"], "2026-05-14 09:01:03.000")
         self.assertEqual(notifications.iloc[0]["delivered_at"], "2026-05-14 09:01:05.000")
         self.assertEqual(notifications.iloc[0]["latency_seconds"], 2)
+        self.assertEqual(notifications.iloc[1]["latency_seconds"], 3)
 
     def test_datetime_formatting_handles_invalid_dates_for_rejected_rows(self):
         self.assertEqual(pipeline.format_datetime_milliseconds(pd.NaT), "")
@@ -238,6 +247,8 @@ class NotifyOpsPipelineTests(unittest.TestCase):
     def test_run_pipeline_records_measured_execution_performance(self):
         metrics = pipeline.run_pipeline()
 
+        self.assertGreaterEqual(metrics["input_rows"], 200)
+        self.assertEqual(metrics["input_file"], pipeline.RAW_INPUT.name)
         self.assertGreater(metrics["pipeline_execution_seconds"], 0)
         self.assertGreater(metrics["processing_rows_per_second"], 0)
         self.assertEqual(metrics["latency_measurement_type"], "simulada_para_demo")

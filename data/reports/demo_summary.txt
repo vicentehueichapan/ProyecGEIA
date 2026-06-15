@@ -1,11 +1,11 @@
 NotifyOps - Resumen empirico de ejecucion MVP
-Eventos procesados: 12
-Eventos validos: 8
-Eventos rechazados: 4
-Notificaciones generadas: 8
+Eventos procesados: 200
+Eventos validos: 180
+Eventos rechazados: 20
+Notificaciones generadas: 180
 Tasa de entrega: 100.0%
-Tasa de error: 33.33%
-Completitud: 66.67%
-Latencia promedio simulada: 5.5 segundos
-Tiempo real del pipeline: 0.044952 segundos
-Rendimiento medido: 266.95 filas/segundo
+Tasa de error: 10.0%
+Completitud: 90.0%
+Latencia promedio simulada: 3.5 segundos
+Tiempo real del pipeline: 0.697073 segundos
+Rendimiento medido: 286.91 filas/segundo

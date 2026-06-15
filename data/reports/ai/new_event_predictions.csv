@@ -1,5 +1,5 @@
 event_id,event_type,source_user_id,target_user_id,created_at,content,is_duplicate,expected_explanation,risk_probability,prediction
-new-001,like,u150,u250,2026-05-20 10:15:00,,0,"Evento permitido, con usuario destino y fecha valida.",0.0006,valido
-new-002,share,u151,u251,2026-05-20 10:16:00,evento externo,0,Tipo de evento fuera del alcance del caso.,0.6516,riesgoso
-new-003,comment,u152,,2026-05-20 10:17:00,Hola,0,Falta target_user_id; no se sabe a quien notificar.,0.6778,riesgoso
-new-004,follow,u153,u253,fecha-invalida,,0,Fecha invalida; no permite trazabilidad ni latencia.,0.7757,riesgoso
+new-001,like,u150,u250,2026-05-20 10:15:00,,0,"Evento permitido, con usuario destino y fecha valida.",0.0,valido
+new-002,share,u151,u251,2026-05-20 10:16:00,evento externo,0,Tipo de evento fuera del alcance del caso.,0.0022,valido
+new-003,comment,u152,,2026-05-20 10:17:00,Hola,0,Falta target_user_id; no se sabe a quien notificar.,0.0002,valido
+new-004,follow,u153,u253,fecha-invalida,,0,Fecha invalida; no permite trazabilidad ni latencia.,0.8231,riesgoso

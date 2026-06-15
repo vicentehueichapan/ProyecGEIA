@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import csv
 import json
 import logging
 import sqlite3
@@ -21,6 +20,9 @@ REPORTS = DATA / "reports"
 LOGS = ROOT / "logs"
 EVIDENCE = ROOT / "docs" / "evidencias"
 DB_PATH = DATA / "notifyops.db"
+RAW_INPUT = RAW / "social_events_200.xlsx"
+RAW_SHEET = "eventos"
+MINIMUM_INPUT_ROWS = 200
 DISPLAY_DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
 
 
@@ -52,35 +54,16 @@ def configure_logging() -> None:
     )
 
 
-def create_sample_dataset(path: Path = RAW / "social_events.csv") -> Path:
-    """Create deterministic input data with valid events and intentional anomalies."""
-    ensure_directories()
-    rows = [
-        ["evt-010", "follow", "u109", "u207", "2026-05-14 09:00:55", ""],
-        ["evt-001", "like", "u100", "u200", "2026-05-14 09:00:01", ""],
-        ["evt-006", "share", "u105", "u204", "2026-05-14 09:00:31", ""],
-        ["evt-005", "comment", "u104", "u203", "2026-05-14 09:00:25", "Me interesa"],
-        ["evt-003", "follow", "u102", "u201", "2026-05-14 09:00:15", ""],
-        ["evt-007", "follow", "u106", "", "2026-05-14 09:00:38", ""],
-        ["evt-002", "comment", "u101", "u200", "2026-05-14 09:00:08", "Gran publicacion"],
-        ["evt-012", "", "u111", "u209", "2026-05-14 09:01:12", ""],
-        ["evt-008", "comment", "u107", "u205", "fecha-invalida", "Hola"],
-        ["evt-004", "LIKE", "u103", "u202", "2026-05-14 09:00:20", ""],
-        ["evt-009", "like", "u108", "u206", "2026-05-14 09:00:43", ""],
-        ["evt-009", "like", "u108", "u206", "2026-05-14 09:00:43", ""],
-        ["evt-011", "comment", "u110", "u208", "2026-05-14 09:01:03", "Buen dato"],
-    ]
-    with path.open("w", newline="", encoding="utf-8") as handle:
-        writer = csv.writer(handle)
-        writer.writerow(DataQualityRules().required_columns)
-        writer.writerows(rows)
-    logging.info("Dataset raw creado en %s con %s filas", path, len(rows))
-    return path
-
-
 def ingest_events(path: Path) -> pd.DataFrame:
     logging.info("INICIO etapa 1: ingesta")
-    frame = pd.read_csv(path, dtype=str).fillna("")
+    if not path.exists():
+        raise FileNotFoundError(f"No existe el dataset oficial: {path}")
+    if path.suffix.lower() == ".xlsx":
+        frame = pd.read_excel(path, sheet_name=RAW_SHEET, dtype=str).fillna("")
+    elif path.suffix.lower() == ".csv":
+        frame = pd.read_csv(path, dtype=str).fillna("")
+    else:
+        raise ValueError(f"Formato de entrada no soportado: {path.suffix}")
     logging.info("FIN ingesta: %s registros leidos desde %s", len(frame), path)
     return frame
 
@@ -169,7 +152,7 @@ def generate_notifications(valid: pd.DataFrame) -> pd.DataFrame:
     ordered_valid = valid.sort_values("created_at", ascending=False).reset_index(drop=True)
     for index, row in ordered_valid.iterrows():
         created_at = pd.Timestamp(row["created_at"])
-        delivered_at = created_at + pd.Timedelta(seconds=2 + index)
+        delivered_at = created_at + pd.Timedelta(seconds=2 + (index % 4))
         latency_seconds = int((delivered_at - created_at).total_seconds())
         rows.append(
             {
@@ -343,18 +326,24 @@ def create_evidence_images(kpis: Dict[str, object]) -> None:
         logging.warning("Pillow no esta disponible; se omite la generacion de evidencias PNG.")
 
 
-def run_pipeline() -> Dict[str, object]:
+def run_pipeline(input_path: Path = RAW_INPUT) -> Dict[str, object]:
     ensure_directories()
     configure_logging()
     execution_started = perf_counter()
     logging.info("===== INICIO MVP NotifyOps =====")
-    raw_path = create_sample_dataset()
-    raw = ingest_events(raw_path)
+    raw = ingest_events(input_path)
+    if len(raw) < MINIMUM_INPUT_ROWS:
+        raise ValueError(
+            f"El MVP exige al menos {MINIMUM_INPUT_ROWS} registros de entrada; "
+            f"se encontraron {len(raw)} en {input_path.name}."
+        )
     processed = clean_transform_events(raw)
     valid, rejected = validate_events(processed)
     notifications = generate_notifications(valid)
     load_to_sqlite(valid, rejected, notifications)
     kpis = calculate_kpis(valid, rejected, notifications)
+    kpis["input_rows"] = int(len(raw))
+    kpis["input_file"] = input_path.name
     execution_seconds = max(perf_counter() - execution_started, 1e-9)
     kpis["pipeline_execution_seconds"] = round(execution_seconds, 6)
     kpis["processing_rows_per_second"] = round(float(kpis["events_processed"]) / execution_seconds, 2)

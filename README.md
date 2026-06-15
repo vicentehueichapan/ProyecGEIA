@@ -16,6 +16,7 @@ la Evaluacion Parcial 3 mediante:
 - fuente Excel compatible con Power BI;
 - dashboard BI local interactivo y reproducible;
 - notebook ejecutado y evidencias visuales verificables.
+- Excel oficial con 200 eventos usado realmente por ETL e IA.
 
 ```text
 Pipeline ETL Parcial 2 + calidad + IA + seguridad + rendimiento + BI
@@ -60,7 +61,7 @@ el modelo.
 
 | Componente | Parcial 2 | Parcial 3 |
 |---|---|---|
-| Ingesta y ETL | CSV, limpieza y transformacion | Se conserva y se mide su rendimiento real |
+| Ingesta y ETL | CSV pequeno, limpieza y transformacion | Excel fijo de 200 eventos, validacion de volumen y rendimiento real |
 | Calidad | Validaciones estructurales | Nulos, duplicados, percentiles, media, mediana, moda e imputacion |
 | Decision | Reglas duras | Reglas duras + probabilidad de riesgo IA |
 | Modelos | No aplicaba | Baseline, regresion logistica y Random Forest |
@@ -74,7 +75,11 @@ el modelo.
 ### Problemas resueltos en Parcial 3
 
 - La etiqueta historica dejo de ser aleatoria: ahora depende de velocidad de
-  interaccion, antiguedad de cuenta y tasa historica de reportes.
+  interaccion, antiguedad de cuenta y tasa historica de reportes, con
+  incertidumbre controlada propia de una revision humana historica.
+- La fuente de prueba dejo de recrearse en cada ejecucion: el archivo
+  `data/raw/social_events_200.xlsx` queda versionado y es consumido por ETL e IA.
+- El pipeline detiene la ejecucion si la fuente contiene menos de 200 filas.
 - La IA produce una accion diferenciada: `revision_por_ia`.
 - Los modelos se comparan bajo la misma particion estratificada 70/30.
 - El Excel BI se entrega preconstruido y versionado; una ejecucion completa
@@ -89,7 +94,7 @@ el modelo.
 
 ```mermaid
 flowchart LR
-    A["social_events.csv"] --> B["Ingesta"]
+    A["social_events.csv pequeno"] --> B["Ingesta"]
     B --> C["Limpieza y transformacion"]
     C --> D["Validacion por reglas"]
     D --> E["Eventos validos"]
@@ -102,23 +107,24 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A["Eventos sociales"] --> B["ETL Parcial 2"]
-    B --> C["Control de calidad"]
-    C --> D["Feature engineering"]
-    D --> E["Particion estratificada 70/30"]
-    E --> F["Baseline"]
-    E --> G["Regresion logistica"]
-    E --> H["Random Forest"]
-    F --> I["Comparacion de metricas"]
-    G --> I
-    H --> I
-    I --> J["Modelo seleccionado"]
-    C --> K["Reglas obligatorias"]
-    J --> L["Decision final"]
-    K --> L
-    L --> M["Metricas, logs y graficos"]
-    M --> N["Excel Power BI"]
-    M --> O["Dashboard interactivo"]
+    A["Excel oficial: 200 eventos"] --> B["Control minimo de volumen"]
+    B --> C["ETL Parcial 2"]
+    C --> D["Control de calidad"]
+    D --> E["Feature engineering"]
+    E --> F["Particion estratificada 70/30"]
+    F --> G["Baseline"]
+    F --> H["Regresion logistica"]
+    F --> I["Random Forest"]
+    G --> J["Comparacion de metricas"]
+    H --> J
+    I --> J
+    J --> K["Modelo seleccionado"]
+    D --> L["Reglas obligatorias"]
+    K --> M["Decision final"]
+    L --> M
+    M --> N["Metricas, logs y graficos"]
+    N --> O["Excel Power BI"]
+    N --> P["Dashboard interactivo"]
 ```
 
 ### Decision final
@@ -131,51 +137,54 @@ Pasa reglas y riesgo IA < 0.50    -> aprobado_para_notificar
 
 ## Resultados verificados
 
-La ejecucion determinista usa `rows=320` y `seed=42`.
+La ejecucion oficial usa exactamente 200 eventos versionados en
+`data/raw/social_events_200.xlsx`. La particion usa semilla `42` para que los
+resultados sean reproducibles.
 
 ### Comparacion de modelos
 
 | Modelo | Accuracy | Precision | Recall | F1 | ROC-AUC | Gini | Seleccion |
 |---|---:|---:|---:|---:|---:|---:|---|
-| Baseline clase mayoritaria | 0.6667 | 0.6667 | 1.0000 | 0.8000 | 0.5000 | 0.0000 | No |
-| Regresion logistica | 0.8854 | 0.9206 | 0.9062 | 0.9134 | 0.9731 | 0.9463 | Si |
-| Random Forest | 0.9062 | 1.0000 | 0.8594 | 0.9244 | 0.9956 | 0.9912 | No |
+| Baseline clase mayoritaria | 0.5167 | 0.5167 | 1.0000 | 0.6813 | 0.5000 | 0.0000 | No |
+| Regresion logistica | 0.8833 | 0.9286 | 0.8387 | 0.8814 | 0.9711 | 0.9422 | No |
+| Random Forest | 0.9500 | 0.9118 | 1.0000 | 0.9538 | 0.9967 | 0.9933 | Si |
 
-La regresion logistica queda seleccionada porque su F1 esta a menos de `0.03`
-del mejor resultado y permite explicar con mayor claridad el peso y direccion
-de las variables. Random Forest obtiene mejor F1 global, pero menor recall que
-la regresion; en este caso es importante detectar eventos riesgosos.
+Random Forest queda seleccionado porque obtiene el mayor F1 y recall completo
+en la muestra de prueba. La regresion logistica se conserva como alternativa
+interpretable y permite contrastar el costo entre explicabilidad y rendimiento.
 
 ### Matriz de confusion del modelo seleccionado
 
 | Clase real | Predicho valido | Predicho riesgoso |
 |---|---:|---:|
-| Valido | 27 | 5 |
-| Riesgoso | 6 | 58 |
+| Valido | 26 | 3 |
+| Riesgoso | 0 | 31 |
 
 ### Decisiones operacionales
 
 | Decision | Cantidad |
 |---|---:|
-| `rechazado_por_reglas` | 147 |
-| `revision_por_ia` | 65 |
-| `aprobado_para_notificar` | 108 |
+| `rechazado_por_reglas` | 20 |
+| `revision_por_ia` | 87 |
+| `aprobado_para_notificar` | 93 |
 
 ### Calidad del dataset IA
 
 | Indicador | Resultado |
 |---|---:|
-| Filas | 320 |
-| Usuario origen ausente | 5 |
-| Usuario destino ausente | 37 |
-| Fechas invalidas | 33 |
-| Duplicados | 28 |
-| Tipos no permitidos | 78 |
-| Eventos validos | 105 |
-| Eventos riesgosos | 215 |
+| Filas | 200 |
+| Usuario origen ausente | 1 |
+| Usuario destino ausente | 2 |
+| Fechas invalidas | 2 |
+| Duplicados | 0 |
+| Tipos no permitidos | 16 |
+| Eventos validos | 97 |
+| Eventos riesgosos | 103 |
 
 La estrategia de imputacion usa mediana para senales numericas y conserva
-indicadores explicitos para nulos estructurales.
+indicadores explicitos para nulos estructurales. La ausencia de IDs duplicados
+en la muestra oficial no elimina el control: la deduplicacion se verifica en
+las pruebas automatizadas.
 
 ### Alcance de las mediciones de rendimiento
 
@@ -222,17 +231,19 @@ Resultado esperado:
 OK
 ```
 
-Las pruebas cubren ETL, SQLite, KPIs, fechas, DAG, Compose, calidad, modelos,
-decisiones, Excel BI, seudonimizacion y dashboard.
+Las 25 pruebas cubren ETL, Excel oficial, minimo de 200 filas, SQLite, KPIs,
+fechas, DAG, Compose, calidad, modelos, decisiones, Excel BI,
+seudonimizacion y dashboard.
 
 ### 4. Ver datos antes de la ETL
 
 ```powershell
-Import-Csv .\data\raw\social_events.csv | Format-Table -AutoSize
+python -c "import pandas as pd; df=pd.read_excel(r'data/raw/social_events_200.xlsx', sheet_name='eventos'); print('Filas:', len(df)); print(df.head(20).to_string(index=False))"
 ```
 
-Los eventos estan mezclados e incluyen duplicados, fechas invalidas, usuarios
-ausentes y tipos fuera del caso.
+Resultado esperado: `Filas: 200`. Los eventos estan mezclados e incluyen
+fechas invalidas, usuarios ausentes, tipos fuera del caso y senales
+historicas para el modelo.
 
 ### 5. Ejecutar pipeline ETL
 
@@ -282,7 +293,8 @@ python -m src.notifyops_ai.modeling
 
 Este comando actualiza de forma determinista en una sola ejecucion:
 
-- dataset y variables IA;
+- lectura del mismo Excel oficial usado por la ETL;
+- dataset de variables IA;
 - analisis de calidad;
 - comparacion de tres modelos;
 - metricas y matrices de confusion;
@@ -363,7 +375,8 @@ data/bi/notifyops_powerbi_dataset.xlsx
 
 El archivo ya viene construido en el repositorio y puede abrirse o importarse
 sin ejecutar ningun comando previo. Al ejecutar el modelo se actualiza de forma
-determinista para mantenerlo coherente con los CSV finales. Contiene hojas
+determinista para mantenerlo coherente con el Excel oficial y los CSV finales.
+Contiene hojas
 tabulares para:
 
 - metricas y comparacion;
@@ -407,6 +420,11 @@ Construir e iniciar en segundo plano:
 docker compose -f docker-compose.airflow.yml up --build -d
 ```
 
+El primer arranque puede tardar entre 3 y 4 minutos mientras Airflow inicializa
+su base y permisos. Para esta demostracion local se usa el servidor `--debug`
+de Airflow, que evita una incompatibilidad observada de Gunicorn en Docker
+Desktop. No se utiliza para un despliegue productivo.
+
 Verificar estado:
 
 ```powershell
@@ -443,6 +461,14 @@ docker compose -f docker-compose.airflow.yml exec airflow airflow dags trigger n
 docker compose -f docker-compose.airflow.yml exec airflow airflow dags list-runs -d notifyops_etl_dag
 docker compose -f docker-compose.airflow.yml exec airflow airflow dags pause notifyops_etl_dag
 ```
+
+Evidencia verificada el 15 de junio de 2026: `validation_excel_200_20260615`
+termino en `success`, con 8 de 8 tareas exitosas.
+
+![DagRun Airflow exitoso](docs/evidencias/parcial3/04_airflow_dag_success.png)
+
+El detalle reproducible esta en
+`docs/evidencias/parcial3/05_airflow_validacion.txt`.
 
 Programacion:
 
@@ -526,6 +552,7 @@ Referencias oficiales:
 
 | Requisito de la rubrica | Evidencia verificable |
 |---|---|
+| Minimo de 200 datos de prueba | `data/raw/social_events_200.xlsx`, prueba automatizada y tarea `verify_input_dataset` |
 | Pipeline mejorado | `src/notifyops/pipeline.py`, `dags/notifyops_etl_dag.py` |
 | Calidad e imputacion | `data/reports/ai/quality_summary.csv`, notebook ejecutado |
 | Analisis univariado | `data/reports/ai/charts/event_type_distribution.png`, notebook |
@@ -556,7 +583,7 @@ ProyecGEIA/
 |   |-- ai/
 |   |-- bi/notifyops_powerbi_dataset.xlsx
 |   |-- processed/
-|   |-- raw/
+|   |-- raw/social_events_200.xlsx
 |   |-- reports/
 |   `-- validated/
 |-- docs/
@@ -580,7 +607,8 @@ ProyecGEIA/
 
 ### Limitaciones comprobadas
 
-- El dataset IA es sintetico porque no se entregaron historicos productivos.
+- El Excel de 200 eventos es una muestra academica fija porque no se entregaron
+  historicos productivos.
 - El volumen es academico y no representa trafico masivo en tiempo real.
 - El entorno evaluado es local/Docker, no una nube productiva.
 - La latencia de entrega es simulada; ETL, entrenamiento e inferencia si se
@@ -590,7 +618,7 @@ ProyecGEIA/
 
 ### Mejoras viables
 
-- Sustituir el dataset sintetico por historicos anonimizados.
+- Sustituir la muestra academica por historicos anonimizados.
 - Reentrenar quincenalmente y monitorear drift.
 - Validar umbral de riesgo con costo de falsos negativos.
 - Publicar el panel en Power BI Service o Metabase.
@@ -600,7 +628,7 @@ ProyecGEIA/
 
 ## Secuencia recomendada para la demo
 
-1. Mostrar `data/raw/social_events.csv`.
+1. Mostrar `data/raw/social_events_200.xlsx` y comprobar que contiene 200 filas.
 2. Ejecutar las pruebas.
 3. Ejecutar la ETL.
 4. Mostrar validos, rechazados y KPIs.

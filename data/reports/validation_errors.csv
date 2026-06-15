@@ -1,5 +1,21 @@
-event_id,event_type,source_user_id,target_user_id,created_at,content,notification_text,error_reason
-evt-006,share,u105,u204,2026-05-14 09:00:31.000,,evento no soportado,tipo de evento invalido
-evt-007,follow,u106,,2026-05-14 09:00:38.000,,u106 comenzo a seguirte,target_user_id vacio
-evt-012,,u111,u209,2026-05-14 09:01:12.000,,evento no soportado,tipo de evento invalido
-evt-008,comment,u107,u205,,Hola,u107 comento tu publicacion,fecha invalida
+event_id,event_type,source_user_id,target_user_id,created_at,content,interaction_velocity_5m,account_age_days,historical_report_rate,is_duplicate,historical_feedback_risk,label_risky_event,notification_text,error_reason
+evt-185,share,u135,u255,2026-06-01 18:07:25.000,evento externo no soportado,21,866,0.14,0,0,1,evento no soportado,tipo de evento invalido
+evt-188,share,u156,u288,2026-06-01 18:17:16.000,evento externo no soportado,15,977,0.03,0,0,1,evento no soportado,tipo de evento invalido
+evt-191,reaction,u177,u231,2026-06-01 18:27:07.000,evento externo no soportado,9,1088,0.23,0,0,1,evento no soportado,tipo de evento invalido
+evt-194,reaction,u108,u264,2026-06-01 18:36:58.000,evento externo no soportado,3,1199,0.12,0,0,1,evento no soportado,tipo de evento invalido
+evt-197,like,,u207,2026-06-01 18:46:49.000,,42,1310,0.01,0,0,1, reacciono a tu publicacion,source_user_id vacio
+evt-181,share,u107,u211,2026-06-01 17:54:17.000,evento externo no soportado,14,718,0.08,0,0,1,evento no soportado,tipo de evento invalido
+evt-200,comment,u150,,,Gracias por compartir,36,1421,0.21,0,0,1,u150 comento tu publicacion,target_user_id vacio; fecha invalida
+evt-184,share,u128,u244,2026-06-01 18:04:08.000,evento externo no soportado,8,829,0.28,0,0,1,evento no soportado,tipo de evento invalido
+evt-187,share,u149,u277,2026-06-01 18:13:59.000,evento externo no soportado,2,940,0.17,0,0,1,evento no soportado,tipo de evento invalido
+evt-190,reaction,u170,u220,2026-06-01 18:23:50.000,evento externo no soportado,41,1051,0.06,0,0,1,evento no soportado,tipo de evento invalido
+evt-193,reaction,u101,u253,2026-06-01 18:33:41.000,evento externo no soportado,35,1162,0.26,0,0,1,evento no soportado,tipo de evento invalido
+evt-196,,u122,u286,2026-06-01 18:43:32.000,,29,1273,0.15,0,0,1,evento no soportado,tipo de evento invalido
+evt-199,follow,u143,u229,,,23,1384,0.04,0,0,1,u143 comenzo a seguirte,fecha invalida
+evt-183,share,u121,u233,2026-06-01 18:00:51.000,evento externo no soportado,40,792,0.11,0,0,1,evento no soportado,tipo de evento invalido
+evt-186,share,u142,u266,2026-06-01 18:10:42.000,evento externo no soportado,34,903,0,0,0,1,evento no soportado,tipo de evento invalido
+evt-189,reaction,u163,u209,2026-06-01 18:20:33.000,evento externo no soportado,28,1014,0.2,0,0,1,evento no soportado,tipo de evento invalido
+evt-192,reaction,u184,u242,2026-06-01 18:30:24.000,evento externo no soportado,22,1125,0.09,0,0,1,evento no soportado,tipo de evento invalido
+evt-195,unknown,u115,u275,2026-06-01 18:40:15.000,evento externo no soportado,16,1236,0.29,0,0,1,evento no soportado,tipo de evento invalido
+evt-198,comment,u136,,2026-06-01 18:50:06.000,Gran publicacion,10,1347,0.18,0,0,1,u136 comento tu publicacion,target_user_id vacio
+evt-182,share,u114,u222,2026-06-01 17:57:34.000,evento externo no soportado,27,755,0.25,0,0,1,evento no soportado,tipo de evento invalido

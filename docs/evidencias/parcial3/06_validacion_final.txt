@@ -1,13 +1,25 @@
 NotifyOps - Validacion final Parcial 3
-Fecha: 2026-06-09
+Fecha: 2026-06-15
+
+DATOS OFICIALES
+Archivo:
+data/raw/social_events_200.xlsx
+
+Resultado:
+- hoja: eventos
+- filas: 200
+- columnas: 12
+- eventos validos para la etiqueta IA: 97
+- eventos riesgosos para la etiqueta IA: 103
+- fuente compartida por ETL e IA
 
 PRUEBAS AUTOMATIZADAS
 Comando:
 python -W error::ResourceWarning -m unittest discover -v
 
 Resultado:
-- 23 pruebas ejecutadas.
-- 23 pruebas aprobadas.
+- 25 pruebas ejecutadas.
+- 25 pruebas aprobadas.
 - 0 errores.
 - 0 fallos.
 - 0 ResourceWarning.
@@ -17,35 +29,35 @@ Comando:
 python -m src.notifyops.pipeline
 
 Resultado final registrado:
-- eventos procesados: 12
-- eventos validos: 8
-- eventos rechazados: 4
-- notificaciones: 8
+- eventos procesados: 200
+- eventos validos: 180
+- eventos rechazados: 20
+- notificaciones: 180
 - tasa de exito simulada: 100.0%
-- tiempo ETL local: 0.044952 segundos
-- rendimiento local: 266.95 filas/segundo
+- latencia promedio simulada: 3.5 segundos
+- tiempo ETL local: 0.697073 segundos
+- rendimiento local: 286.91 filas/segundo
 
 MODELO IA
 Comando:
 python -m src.notifyops_ai.modeling
 
 Resultado:
-- modelo seleccionado: regresion logistica
-- accuracy: 0.8854
-- precision: 0.9206
-- recall: 0.9062
-- F1: 0.9134
-- ROC-AUC: 0.9731
-- Gini: 0.9463
-- matriz: TN=27, FP=5, FN=6, TP=58
+- modelo seleccionado: Random Forest
+- accuracy: 0.9500
+- precision: 0.9118
+- recall: 1.0000
+- F1: 0.9538
+- ROC-AUC: 0.9967
+- Gini: 0.9933
+- matriz: TN=26, FP=3, FN=0, TP=31
 
 ARTEFACTO BI
 - archivo: data/bi/notifyops_powerbi_dataset.xlsx
 - hojas: 16
-- errores de formula: 0
-- formulas pendientes de recalculo: 0
 - IDs de usuario seudonimizados
 - contenido textual excluido
+- dashboard HTML alimentado por la misma corrida
 
 NOTEBOOK
 - celdas de codigo: 10
@@ -53,9 +65,11 @@ NOTEBOOK
 - errores de ejecucion: 0
 
 AIRFLOW Y DOCKER
-- docker compose config: OK
 - Docker Server: 29.0.1
-- DagRun controlado: final_validation_clean_20260609
+- docker compose config: OK
+- servicio Airflow: healthy
+- politica de reinicio NotifyOps: no
+- DagRun controlado: validation_excel_200_20260615
 - estado del DAG: success
 - tareas exitosas: 8 de 8
 - DAG dejado en pausa al finalizar
@@ -71,4 +85,5 @@ compileall: OK
 LIMITACION DECLARADA
 La validacion de rendimiento corresponde a entorno local y Docker. El Excel es
 compatible con Power BI, pero el repositorio no afirma la existencia de un
-archivo .pbix ni de una prueba en infraestructura cloud.
+archivo .pbix ni de una prueba en infraestructura cloud. El servidor --debug
+de Airflow se usa solo para la demostracion academica local.

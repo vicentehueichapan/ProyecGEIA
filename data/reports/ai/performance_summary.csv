@@ -1,2 +1,2 @@
-training_seconds,inference_seconds,inference_rows,inference_rows_per_second,dataset_rows,train_rows,test_rows
-0.060773,4.8e-05,96,2000000.0,320,224,96
+training_seconds,inference_seconds,inference_rows,inference_rows_per_second,dataset_rows,dataset_source,train_rows,test_rows
+0.42125,0.02908,60,2063.27,200,social_events_200.xlsx,140,60

@@ -11,6 +11,12 @@ from src.notifyops_ai import bi_dataset
 
 
 class NotifyOpsAITests(unittest.TestCase):
+    def test_default_ai_pipeline_uses_the_official_excel_dataset(self):
+        result = modeling.run_ai_pipeline(save_plots=False, write_outputs=False)
+
+        self.assertEqual(result.performance["dataset_rows"], 200)
+        self.assertEqual(result.performance["dataset_source"], modeling.OFFICIAL_DATASET.name)
+
     def test_synthetic_dataset_contains_valid_and_risky_events(self):
         events = modeling.generate_synthetic_events(rows=120, seed=7)
 

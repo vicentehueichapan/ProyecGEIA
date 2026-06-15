@@ -1,13 +1,201 @@
-event_id,event_type,source_user_id,target_user_id,created_at,content,notification_text
-evt-010,follow,u109,u207,2026-05-14 09:00:55.000,,u109 comenzo a seguirte
-evt-001,like,u100,u200,2026-05-14 09:00:01.000,,u100 reacciono a tu publicacion
-evt-006,share,u105,u204,2026-05-14 09:00:31.000,,evento no soportado
-evt-005,comment,u104,u203,2026-05-14 09:00:25.000,Me interesa,u104 comento tu publicacion
-evt-003,follow,u102,u201,2026-05-14 09:00:15.000,,u102 comenzo a seguirte
-evt-007,follow,u106,,2026-05-14 09:00:38.000,,u106 comenzo a seguirte
-evt-002,comment,u101,u200,2026-05-14 09:00:08.000,Gran publicacion,u101 comento tu publicacion
-evt-012,,u111,u209,2026-05-14 09:01:12.000,,evento no soportado
-evt-008,comment,u107,u205,,Hola,u107 comento tu publicacion
-evt-004,like,u103,u202,2026-05-14 09:00:20.000,,u103 reacciono a tu publicacion
-evt-009,like,u108,u206,2026-05-14 09:00:43.000,,u108 reacciono a tu publicacion
-evt-011,comment,u110,u208,2026-05-14 09:01:03.000,Buen dato,u110 comento tu publicacion
+event_id,event_type,source_user_id,target_user_id,created_at,content,interaction_velocity_5m,account_age_days,historical_report_rate,is_duplicate,historical_feedback_risk,label_risky_event,notification_text
+evt-001,like,u107,u211,2026-06-01 08:03:17.000,,14,42,0.17,0,0,0,u107 reacciono a tu publicacion
+evt-074,comment,u168,u204,2026-06-01 12:02:58.000,Gracias por compartir,18,1247,0.18,0,0,1,u168 comento tu publicacion
+evt-147,follow,u139,u287,2026-06-01 16:02:39.000,,22,956,0.19,0,0,0,u139 comenzo a seguirte
+evt-020,like,u150,u240,2026-06-01 09:05:40.000,,36,745,0.3,0,1,1,u150 reacciono a tu publicacion
+evt-093,comment,u121,u233,2026-06-01 13:05:21.000,Me interesa,40,454,0,0,1,0,u121 comento tu publicacion
+evt-166,follow,u182,u226,2026-06-01 17:05:02.000,,44,163,0.01,0,1,1,u182 comenzo a seguirte
+evt-039,like,u103,u269,2026-06-01 10:08:03.000,,13,1448,0.12,0,0,0,u103 reacciono a tu publicacion
+evt-112,comment,u164,u262,2026-06-01 14:07:44.000,Excelente aporte,17,1157,0.13,0,0,0,u164 comento tu publicacion
+evt-185,share,u135,u255,2026-06-01 18:07:25.000,evento externo no soportado,21,866,0.14,0,0,1,evento no soportado
+evt-058,like,u146,u208,2026-06-01 11:10:26.000,,35,655,0.25,0,1,1,u146 reacciono a tu publicacion
+evt-131,follow,u117,u201,2026-06-01 15:10:07.000,,39,364,0.26,0,1,1,u117 comenzo a seguirte
+evt-004,like,u128,u244,2026-06-01 08:13:08.000,,8,153,0.06,0,0,0,u128 reacciono a tu publicacion
+evt-077,comment,u189,u237,2026-06-01 12:12:49.000,Muy util,12,1358,0.07,0,0,0,u189 comento tu publicacion
+evt-150,follow,u160,u230,2026-06-01 16:12:30.000,,16,1067,0.08,0,0,0,u160 comenzo a seguirte
+evt-023,like,u171,u273,2026-06-01 09:15:31.000,,30,856,0.19,0,0,0,u171 reacciono a tu publicacion
+evt-096,comment,u142,u266,2026-06-01 13:15:12.000,Gran publicacion,34,565,0.2,0,0,0,u142 comento tu publicacion
+evt-169,follow,u113,u259,2026-06-01 17:14:53.000,,38,274,0.21,0,1,1,u113 comenzo a seguirte
+evt-042,like,u124,u212,2026-06-01 10:17:54.000,,7,63,0.01,0,0,0,u124 reacciono a tu publicacion
+evt-115,comment,u185,u205,2026-06-01 14:17:35.000,Buen dato,11,1268,0.02,0,0,0,u185 comento tu publicacion
+evt-188,share,u156,u288,2026-06-01 18:17:16.000,evento externo no soportado,15,977,0.03,0,0,1,evento no soportado
+evt-061,like,u167,u241,2026-06-01 11:20:17.000,,29,766,0.14,0,0,0,u167 reacciono a tu publicacion
+evt-134,follow,u138,u234,2026-06-01 15:19:58.000,,33,475,0.15,0,0,0,u138 comenzo a seguirte
+evt-007,like,u149,u277,2026-06-01 08:22:59.000,,2,264,0.26,0,1,1,u149 reacciono a tu publicacion
+evt-080,comment,u120,u270,2026-06-01 12:22:40.000,Gracias por compartir,6,1469,0.27,0,1,1,u120 comento tu publicacion
+evt-153,follow,u181,u263,2026-06-01 16:22:21.000,,10,1178,0.28,0,1,1,u181 comenzo a seguirte
+evt-026,like,u102,u216,2026-06-01 09:25:22.000,,24,967,0.08,0,0,0,u102 reacciono a tu publicacion
+evt-099,comment,u163,u209,2026-06-01 13:25:03.000,Me interesa,28,676,0.09,0,0,0,u163 comento tu publicacion
+evt-172,follow,u134,u202,2026-06-01 17:24:44.000,,32,385,0.1,0,0,0,u134 comenzo a seguirte
+evt-045,like,u145,u245,2026-06-01 10:27:45.000,,1,174,0.21,0,0,0,u145 reacciono a tu publicacion
+evt-118,comment,u116,u238,2026-06-01 14:27:26.000,Excelente aporte,5,1379,0.22,0,1,1,u116 comento tu publicacion
+evt-191,reaction,u177,u231,2026-06-01 18:27:07.000,evento externo no soportado,9,1088,0.23,0,0,1,evento no soportado
+evt-064,like,u188,u274,2026-06-01 11:30:08.000,,23,877,0.03,0,0,0,u188 reacciono a tu publicacion
+evt-137,follow,u159,u267,2026-06-01 15:29:49.000,,27,586,0.04,0,0,0,u159 comenzo a seguirte
+evt-010,like,u170,u220,2026-06-01 08:32:50.000,,41,375,0.15,0,1,1,u170 reacciono a tu publicacion
+evt-083,comment,u141,u213,2026-06-01 12:32:31.000,Muy util,45,84,0.16,0,1,1,u141 comento tu publicacion
+evt-156,follow,u112,u206,2026-06-01 16:32:12.000,,4,1289,0.17,0,0,0,u112 comenzo a seguirte
+evt-029,like,u123,u249,2026-06-01 09:35:13.000,,18,1078,0.28,0,1,1,u123 reacciono a tu publicacion
+evt-102,comment,u184,u242,2026-06-01 13:34:54.000,Gran publicacion,22,787,0.29,0,1,1,u184 comento tu publicacion
+evt-175,follow,u155,u235,2026-06-01 17:34:35.000,,26,496,0.3,0,1,1,u155 comenzo a seguirte
+evt-048,like,u166,u278,2026-06-01 10:37:36.000,,40,285,0.1,0,1,1,u166 reacciono a tu publicacion
+evt-121,comment,u137,u271,2026-06-01 14:37:17.000,Buen dato,44,1490,0.11,0,1,1,u137 comento tu publicacion
+evt-194,reaction,u108,u264,2026-06-01 18:36:58.000,evento externo no soportado,3,1199,0.12,0,0,1,evento no soportado
+evt-067,like,u119,u217,2026-06-01 11:39:59.000,,17,988,0.23,0,1,1,u119 reacciono a tu publicacion
+evt-140,follow,u180,u210,2026-06-01 15:39:40.000,,21,697,0.24,0,1,1,u180 comenzo a seguirte
+evt-013,like,u101,u253,2026-06-01 08:42:41.000,,35,486,0.04,0,1,1,u101 reacciono a tu publicacion
+evt-086,comment,u162,u246,2026-06-01 12:42:22.000,Gracias por compartir,39,195,0.05,0,1,1,u162 comento tu publicacion
+evt-159,follow,u133,u239,2026-06-01 16:42:03.000,,43,1400,0.06,0,1,1,u133 comenzo a seguirte
+evt-032,like,u144,u282,2026-06-01 09:45:04.000,,12,1189,0.17,0,0,0,u144 reacciono a tu publicacion
+evt-105,comment,u115,u275,2026-06-01 13:44:45.000,Me interesa,16,898,0.18,0,0,0,u115 comento tu publicacion
+evt-178,follow,u176,u268,2026-06-01 17:44:26.000,,20,607,0.19,0,0,0,u176 comenzo a seguirte
+evt-051,like,u187,u221,2026-06-01 10:47:27.000,,34,396,0.3,0,1,1,u187 reacciono a tu publicacion
+evt-124,comment,u158,u214,2026-06-01 14:47:08.000,Excelente aporte,38,105,0,0,1,0,u158 comento tu publicacion
+evt-197,like,,u207,2026-06-01 18:46:49.000,,42,1310,0.01,0,0,1, reacciono a tu publicacion
+evt-070,like,u140,u250,2026-06-01 11:49:50.000,,11,1099,0.12,0,0,0,u140 reacciono a tu publicacion
+evt-143,follow,u111,u243,2026-06-01 15:49:31.000,,15,808,0.13,0,0,0,u111 comenzo a seguirte
+evt-016,like,u122,u286,2026-06-01 08:52:32.000,,29,597,0.24,0,1,1,u122 reacciono a tu publicacion
+evt-089,comment,u183,u279,2026-06-01 12:52:13.000,Muy util,33,306,0.25,0,1,1,u183 comento tu publicacion
+evt-162,follow,u154,u272,2026-06-01 16:51:54.000,,37,15,0.26,0,1,1,u154 comenzo a seguirte
+evt-035,like,u165,u225,2026-06-01 09:54:55.000,,6,1300,0.06,0,0,0,u165 reacciono a tu publicacion
+evt-108,comment,u136,u218,2026-06-01 13:54:36.000,Gran publicacion,10,1009,0.07,0,0,0,u136 comento tu publicacion
+evt-181,share,u107,u211,2026-06-01 17:54:17.000,evento externo no soportado,14,718,0.08,0,0,1,evento no soportado
+evt-054,like,u118,u254,2026-06-01 10:57:18.000,,28,507,0.19,0,0,0,u118 reacciono a tu publicacion
+evt-127,comment,u179,u247,2026-06-01 14:56:59.000,Buen dato,32,216,0.2,0,0,0,u179 comento tu publicacion
+evt-200,comment,u150,,,Gracias por compartir,36,1421,0.21,0,0,1,u150 comento tu publicacion
+evt-073,comment,u161,u283,2026-06-01 11:59:41.000,Buen dato,5,1210,0.01,0,0,0,u161 comento tu publicacion
+evt-146,follow,u132,u276,2026-06-01 15:59:22.000,,9,919,0.02,0,0,0,u132 comenzo a seguirte
+evt-019,like,u143,u229,2026-06-01 09:02:23.000,,23,708,0.13,0,0,0,u143 reacciono a tu publicacion
+evt-092,comment,u114,u222,2026-06-01 13:02:04.000,Gracias por compartir,27,417,0.14,0,0,0,u114 comento tu publicacion
+evt-165,follow,u175,u215,2026-06-01 17:01:45.000,,31,126,0.15,0,0,0,u175 comenzo a seguirte
+evt-038,like,u186,u258,2026-06-01 10:04:46.000,,45,1411,0.26,0,1,1,u186 reacciono a tu publicacion
+evt-111,comment,u157,u251,2026-06-01 14:04:27.000,Me interesa,4,1120,0.27,0,1,0,u157 comento tu publicacion
+evt-184,share,u128,u244,2026-06-01 18:04:08.000,evento externo no soportado,8,829,0.28,0,0,1,evento no soportado
+evt-057,like,u139,u287,2026-06-01 11:07:09.000,,22,618,0.08,0,0,0,u139 reacciono a tu publicacion
+evt-130,comment,u110,u280,2026-06-01 15:06:50.000,Excelente aporte,26,327,0.09,0,0,0,u110 comento tu publicacion
+evt-003,like,u121,u233,2026-06-01 08:09:51.000,,40,116,0.2,0,1,1,u121 reacciono a tu publicacion
+evt-076,comment,u182,u226,2026-06-01 12:09:32.000,Excelente aporte,44,1321,0.21,0,1,1,u182 comento tu publicacion
+evt-149,follow,u153,u219,2026-06-01 16:09:13.000,,3,1030,0.22,0,1,1,u153 comenzo a seguirte
+evt-022,like,u164,u262,2026-06-01 09:12:14.000,,17,819,0.02,0,0,0,u164 reacciono a tu publicacion
+evt-095,comment,u135,u255,2026-06-01 13:11:55.000,Muy util,21,528,0.03,0,0,0,u135 comento tu publicacion
+evt-168,follow,u106,u248,2026-06-01 17:11:36.000,,25,237,0.04,0,0,0,u106 comenzo a seguirte
+evt-041,like,u117,u201,2026-06-01 10:14:37.000,,39,26,0.15,0,1,1,u117 reacciono a tu publicacion
+evt-114,comment,u178,u284,2026-06-01 14:14:18.000,Gran publicacion,43,1231,0.16,0,1,1,u178 comento tu publicacion
+evt-187,share,u149,u277,2026-06-01 18:13:59.000,evento externo no soportado,2,940,0.17,0,0,1,evento no soportado
+evt-060,like,u160,u230,2026-06-01 11:17:00.000,,16,729,0.28,0,1,1,u160 reacciono a tu publicacion
+evt-133,follow,u131,u223,2026-06-01 15:16:41.000,,20,438,0.29,0,1,1,u131 comenzo a seguirte
+evt-006,like,u142,u266,2026-06-01 08:19:42.000,,34,227,0.09,0,0,0,u142 reacciono a tu publicacion
+evt-079,comment,u113,u259,2026-06-01 12:19:23.000,Buen dato,38,1432,0.1,0,1,1,u113 comento tu publicacion
+evt-152,follow,u174,u252,2026-06-01 16:19:04.000,,42,1141,0.11,0,1,1,u174 comenzo a seguirte
+evt-025,like,u185,u205,2026-06-01 09:22:05.000,,11,930,0.22,0,1,1,u185 reacciono a tu publicacion
+evt-098,comment,u156,u288,2026-06-01 13:21:46.000,Gracias por compartir,15,639,0.23,0,1,1,u156 comento tu publicacion
+evt-171,follow,u127,u281,2026-06-01 17:21:27.000,,19,348,0.24,0,1,1,u127 comenzo a seguirte
+evt-044,like,u138,u234,2026-06-01 10:24:28.000,,33,137,0.04,0,0,0,u138 reacciono a tu publicacion
+evt-117,comment,u109,u227,2026-06-01 14:24:09.000,Me interesa,37,1342,0.05,0,1,1,u109 comento tu publicacion
+evt-190,reaction,u170,u220,2026-06-01 18:23:50.000,evento externo no soportado,41,1051,0.06,0,0,1,evento no soportado
+evt-063,like,u181,u263,2026-06-01 11:26:51.000,,10,840,0.17,0,0,0,u181 reacciono a tu publicacion
+evt-136,follow,u152,u256,2026-06-01 15:26:32.000,,14,549,0.18,0,0,0,u152 comenzo a seguirte
+evt-009,like,u163,u209,2026-06-01 08:29:33.000,,28,338,0.29,0,1,1,u163 reacciono a tu publicacion
+evt-082,comment,u134,u202,2026-06-01 12:29:14.000,Excelente aporte,32,47,0.3,0,1,1,u134 comento tu publicacion
+evt-155,follow,u105,u285,2026-06-01 16:28:55.000,,36,1252,0,0,1,0,u105 comenzo a seguirte
+evt-028,like,u116,u238,2026-06-01 09:31:56.000,,5,1041,0.11,0,0,0,u116 reacciono a tu publicacion
+evt-101,comment,u177,u231,2026-06-01 13:31:37.000,Muy util,9,750,0.12,0,0,0,u177 comento tu publicacion
+evt-174,follow,u148,u224,2026-06-01 17:31:18.000,,13,459,0.13,0,0,0,u148 comenzo a seguirte
+evt-047,like,u159,u267,2026-06-01 10:34:19.000,,27,248,0.24,0,1,1,u159 reacciono a tu publicacion
+evt-120,comment,u130,u260,2026-06-01 14:34:00.000,Gran publicacion,31,1453,0.25,0,1,1,u130 comento tu publicacion
+evt-193,reaction,u101,u253,2026-06-01 18:33:41.000,evento externo no soportado,35,1162,0.26,0,0,1,evento no soportado
+evt-066,like,u112,u206,2026-06-01 11:36:42.000,,4,951,0.06,0,0,0,u112 reacciono a tu publicacion
+evt-139,follow,u173,u289,2026-06-01 15:36:23.000,,8,660,0.07,0,0,0,u173 comenzo a seguirte
+evt-012,like,u184,u242,2026-06-01 08:39:24.000,,22,449,0.18,0,0,0,u184 reacciono a tu publicacion
+evt-085,comment,u155,u235,2026-06-01 12:39:05.000,Buen dato,26,158,0.19,0,0,0,u155 comento tu publicacion
+evt-158,follow,u126,u228,2026-06-01 16:38:46.000,,30,1363,0.2,0,0,0,u126 comenzo a seguirte
+evt-031,like,u137,u271,2026-06-01 09:41:47.000,,44,1152,0,0,1,0,u137 reacciono a tu publicacion
+evt-104,comment,u108,u264,2026-06-01 13:41:28.000,Gracias por compartir,3,861,0.01,0,0,0,u108 comento tu publicacion
+evt-177,follow,u169,u257,2026-06-01 17:41:09.000,,7,570,0.02,0,0,0,u169 comenzo a seguirte
+evt-050,like,u180,u210,2026-06-01 10:44:10.000,,21,359,0.13,0,0,0,u180 reacciono a tu publicacion
+evt-123,comment,u151,u203,2026-06-01 14:43:51.000,Me interesa,25,68,0.14,0,0,0,u151 comento tu publicacion
+evt-196,,u122,u286,2026-06-01 18:43:32.000,,29,1273,0.15,0,0,1,evento no soportado
+evt-069,like,u133,u239,2026-06-01 11:46:33.000,,43,1062,0.26,0,1,1,u133 reacciono a tu publicacion
+evt-142,follow,u104,u232,2026-06-01 15:46:14.000,,2,771,0.27,0,1,1,u104 comenzo a seguirte
+evt-015,like,u115,u275,2026-06-01 08:49:15.000,,16,560,0.07,0,0,0,u115 reacciono a tu publicacion
+evt-088,comment,u176,u268,2026-06-01 12:48:56.000,Excelente aporte,20,269,0.08,0,0,0,u176 comento tu publicacion
+evt-161,follow,u147,u261,2026-06-01 16:48:37.000,,24,1474,0.09,0,0,0,u147 comenzo a seguirte
+evt-034,like,u158,u214,2026-06-01 09:51:38.000,,38,1263,0.2,0,1,1,u158 reacciono a tu publicacion
+evt-107,comment,u129,u207,2026-06-01 13:51:19.000,Muy util,42,972,0.21,0,1,1,u129 comento tu publicacion
+evt-180,follow,u100,u200,2026-06-01 17:51:00.000,,1,681,0.22,0,1,1,u100 comenzo a seguirte
+evt-053,like,u111,u243,2026-06-01 10:54:01.000,,15,470,0.02,0,0,0,u111 reacciono a tu publicacion
+evt-126,comment,u172,u236,2026-06-01 14:53:42.000,Gran publicacion,19,179,0.03,0,0,0,u172 comento tu publicacion
+evt-199,follow,u143,u229,,,23,1384,0.04,0,0,1,u143 comenzo a seguirte
+evt-072,comment,u154,u272,2026-06-01 11:56:24.000,Gran publicacion,37,1173,0.15,0,1,1,u154 comento tu publicacion
+evt-145,follow,u125,u265,2026-06-01 15:56:05.000,,41,882,0.16,0,1,1,u125 comenzo a seguirte
+evt-018,like,u136,u218,2026-06-01 08:59:06.000,,10,671,0.27,0,1,1,u136 reacciono a tu publicacion
+evt-091,comment,u107,u211,2026-06-01 12:58:47.000,Buen dato,14,380,0.28,0,1,1,u107 comento tu publicacion
+evt-164,follow,u168,u204,2026-06-01 16:58:28.000,,18,89,0.29,0,1,1,u168 comenzo a seguirte
+evt-037,like,u179,u247,2026-06-01 10:01:29.000,,32,1374,0.09,0,0,1,u179 reacciono a tu publicacion
+evt-110,comment,u150,u240,2026-06-01 14:01:10.000,Gracias por compartir,36,1083,0.1,0,1,1,u150 comento tu publicacion
+evt-183,share,u121,u233,2026-06-01 18:00:51.000,evento externo no soportado,40,792,0.11,0,0,1,evento no soportado
+evt-056,like,u132,u276,2026-06-01 11:03:52.000,,9,581,0.22,0,1,1,u132 reacciono a tu publicacion
+evt-129,comment,u103,u269,2026-06-01 15:03:33.000,Me interesa,13,290,0.23,0,1,1,u103 comento tu publicacion
+evt-002,like,u114,u222,2026-06-01 08:06:34.000,,27,79,0.03,0,0,0,u114 reacciono a tu publicacion
+evt-075,comment,u175,u215,2026-06-01 12:06:15.000,Me interesa,31,1284,0.04,0,0,0,u175 comento tu publicacion
+evt-148,follow,u146,u208,2026-06-01 16:05:56.000,,35,993,0.05,0,1,0,u146 comenzo a seguirte
+evt-021,like,u157,u251,2026-06-01 09:08:57.000,,4,782,0.16,0,0,0,u157 reacciono a tu publicacion
+evt-094,comment,u128,u244,2026-06-01 13:08:38.000,Excelente aporte,8,491,0.17,0,0,0,u128 comento tu publicacion
+evt-167,follow,u189,u237,2026-06-01 17:08:19.000,,12,200,0.18,0,0,0,u189 comenzo a seguirte
+evt-040,like,u110,u280,2026-06-01 10:11:20.000,,26,1485,0.29,0,1,1,u110 reacciono a tu publicacion
+evt-113,comment,u171,u273,2026-06-01 14:11:01.000,Muy util,30,1194,0.3,0,1,1,u171 comento tu publicacion
+evt-186,share,u142,u266,2026-06-01 18:10:42.000,evento externo no soportado,34,903,0,0,0,1,evento no soportado
+evt-059,like,u153,u219,2026-06-01 11:13:43.000,,3,692,0.11,0,0,0,u153 reacciono a tu publicacion
+evt-132,follow,u124,u212,2026-06-01 15:13:24.000,,7,401,0.12,0,0,0,u124 comenzo a seguirte
+evt-005,like,u135,u255,2026-06-01 08:16:25.000,,21,190,0.23,0,1,1,u135 reacciono a tu publicacion
+evt-078,comment,u106,u248,2026-06-01 12:16:06.000,Gran publicacion,25,1395,0.24,0,1,1,u106 comento tu publicacion
+evt-151,follow,u167,u241,2026-06-01 16:15:47.000,,29,1104,0.25,0,1,1,u167 comenzo a seguirte
+evt-024,like,u178,u284,2026-06-01 09:18:48.000,,43,893,0.05,0,1,1,u178 reacciono a tu publicacion
+evt-097,comment,u149,u277,2026-06-01 13:18:29.000,Buen dato,2,602,0.06,0,0,0,u149 comento tu publicacion
+evt-170,follow,u120,u270,2026-06-01 17:18:10.000,,6,311,0.07,0,0,0,u120 comenzo a seguirte
+evt-043,like,u131,u223,2026-06-01 10:21:11.000,,20,100,0.18,0,0,0,u131 reacciono a tu publicacion
+evt-116,comment,u102,u216,2026-06-01 14:20:52.000,Gracias por compartir,24,1305,0.19,0,0,0,u102 comento tu publicacion
+evt-189,reaction,u163,u209,2026-06-01 18:20:33.000,evento externo no soportado,28,1014,0.2,0,0,1,evento no soportado
+evt-062,like,u174,u252,2026-06-01 11:23:34.000,,42,803,0,0,1,0,u174 reacciono a tu publicacion
+evt-135,follow,u145,u245,2026-06-01 15:23:15.000,,1,512,0.01,0,0,0,u145 comenzo a seguirte
+evt-008,like,u156,u288,2026-06-01 08:26:16.000,,15,301,0.12,0,0,0,u156 reacciono a tu publicacion
+evt-081,comment,u127,u281,2026-06-01 12:25:57.000,Me interesa,19,10,0.13,0,1,1,u127 comento tu publicacion
+evt-154,follow,u188,u274,2026-06-01 16:25:38.000,,23,1215,0.14,0,0,0,u188 comenzo a seguirte
+evt-027,like,u109,u227,2026-06-01 09:28:39.000,,37,1004,0.25,0,1,1,u109 reacciono a tu publicacion
+evt-100,comment,u170,u220,2026-06-01 13:28:20.000,Excelente aporte,41,713,0.26,0,1,1,u170 comento tu publicacion
+evt-173,follow,u141,u213,2026-06-01 17:28:01.000,,45,422,0.27,0,1,1,u141 comenzo a seguirte
+evt-046,like,u152,u256,2026-06-01 10:31:02.000,,14,211,0.07,0,0,0,u152 reacciono a tu publicacion
+evt-119,comment,u123,u249,2026-06-01 14:30:43.000,Muy util,18,1416,0.08,0,0,0,u123 comento tu publicacion
+evt-192,reaction,u184,u242,2026-06-01 18:30:24.000,evento externo no soportado,22,1125,0.09,0,0,1,evento no soportado
+evt-065,like,u105,u285,2026-06-01 11:33:25.000,,36,914,0.2,0,1,1,u105 reacciono a tu publicacion
+evt-138,follow,u166,u278,2026-06-01 15:33:06.000,,40,623,0.21,0,1,1,u166 comenzo a seguirte
+evt-011,like,u177,u231,2026-06-01 08:36:07.000,,9,412,0.01,0,0,0,u177 reacciono a tu publicacion
+evt-084,comment,u148,u224,2026-06-01 12:35:48.000,Gran publicacion,13,121,0.02,0,0,0,u148 comento tu publicacion
+evt-157,follow,u119,u217,2026-06-01 16:35:29.000,,17,1326,0.03,0,0,0,u119 comenzo a seguirte
+evt-030,like,u130,u260,2026-06-01 09:38:30.000,,31,1115,0.14,0,0,0,u130 reacciono a tu publicacion
+evt-103,comment,u101,u253,2026-06-01 13:38:11.000,Buen dato,35,824,0.15,0,1,1,u101 comento tu publicacion
+evt-176,follow,u162,u246,2026-06-01 17:37:52.000,,39,533,0.16,0,1,1,u162 comenzo a seguirte
+evt-049,like,u173,u289,2026-06-01 10:40:53.000,,8,322,0.27,0,1,1,u173 reacciono a tu publicacion
+evt-122,comment,u144,u282,2026-06-01 14:40:34.000,Gracias por compartir,12,31,0.28,0,1,1,u144 comento tu publicacion
+evt-195,unknown,u115,u275,2026-06-01 18:40:15.000,evento externo no soportado,16,1236,0.29,0,0,1,evento no soportado
+evt-068,like,u126,u228,2026-06-01 11:43:16.000,,30,1025,0.09,0,0,0,u126 reacciono a tu publicacion
+evt-141,follow,u187,u221,2026-06-01 15:42:57.000,,34,734,0.1,0,0,0,u187 comenzo a seguirte
+evt-014,like,u108,u264,2026-06-01 08:45:58.000,,3,523,0.21,0,0,0,u108 reacciono a tu publicacion
+evt-087,comment,u169,u257,2026-06-01 12:45:39.000,Me interesa,7,232,0.22,0,1,1,u169 comento tu publicacion
+evt-160,follow,u140,u250,2026-06-01 16:45:20.000,,11,1437,0.23,0,1,1,u140 comenzo a seguirte
+evt-033,like,u151,u203,2026-06-01 09:48:21.000,,25,1226,0.03,0,0,0,u151 reacciono a tu publicacion
+evt-106,comment,u122,u286,2026-06-01 13:48:02.000,Excelente aporte,29,935,0.04,0,0,0,u122 comento tu publicacion
+evt-179,follow,u183,u279,2026-06-01 17:47:43.000,,33,644,0.05,0,0,0,u183 comenzo a seguirte
+evt-052,like,u104,u232,2026-06-01 10:50:44.000,,2,433,0.16,0,0,0,u104 reacciono a tu publicacion
+evt-125,comment,u165,u225,2026-06-01 14:50:25.000,Muy util,6,142,0.17,0,0,0,u165 comento tu publicacion
+evt-198,comment,u136,,2026-06-01 18:50:06.000,Gran publicacion,10,1347,0.18,0,0,1,u136 comento tu publicacion
+evt-071,comment,u147,u261,2026-06-01 11:53:07.000,Muy util,24,1136,0.29,0,1,1,u147 comento tu publicacion
+evt-144,follow,u118,u254,2026-06-01 15:52:48.000,,28,845,0.3,0,1,1,u118 comenzo a seguirte
+evt-017,like,u129,u207,2026-06-01 08:55:49.000,,42,634,0.1,0,1,1,u129 reacciono a tu publicacion
+evt-090,comment,u100,u200,2026-06-01 12:55:30.000,Gran publicacion,1,343,0.11,0,0,0,u100 comento tu publicacion
+evt-163,follow,u161,u283,2026-06-01 16:55:11.000,,5,52,0.12,0,0,0,u161 comenzo a seguirte
+evt-036,like,u172,u236,2026-06-01 09:58:12.000,,19,1337,0.23,0,1,1,u172 reacciono a tu publicacion
+evt-109,comment,u143,u229,2026-06-01 13:57:53.000,Buen dato,23,1046,0.24,0,1,1,u143 comento tu publicacion
+evt-182,share,u114,u222,2026-06-01 17:57:34.000,evento externo no soportado,27,755,0.25,0,0,1,evento no soportado
+evt-055,like,u125,u265,2026-06-01 11:00:35.000,,41,544,0.05,0,1,1,u125 reacciono a tu publicacion
+evt-128,comment,u186,u258,2026-06-01 15:00:16.000,Gracias por compartir,45,253,0.06,0,1,1,u186 comento tu publicacion

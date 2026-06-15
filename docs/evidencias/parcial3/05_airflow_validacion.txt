@@ -1,18 +1,28 @@
 NotifyOps - Validacion Airflow/Docker
-Fecha de validacion: 2026-06-09
+Fecha de validacion: 2026-06-15
 
 ENTORNO
 Docker Server: 29.0.1
 Imagen: notifyops-airflow:2.9.3
-Estado antes de ejecutar: healthy
+Estado del servicio: healthy
 Puerto: 8080
+Politica de reinicio: no
+Servidor web del MVP: Airflow --debug para ejecucion local reproducible
+
+CONTROL DE ENTRADA
+Archivo: data/raw/social_events_200.xlsx
+Hoja: eventos
+Filas minimas exigidas: 200
+Tarea de control: verify_input_dataset
+Resultado: success
 
 EJECUCION DEL DAG
 dag_id: notifyops_etl_dag
-run_id: final_validation_clean_20260609
+run_id: validation_excel_200_20260615
 estado final: success
-inicio UTC: 2026-06-09T18:38:55.673564+00:00
-termino UTC: 2026-06-09T18:39:28.019365+00:00
+inicio UTC: 2026-06-15T05:00:53.690015+00:00
+termino UTC: 2026-06-15T05:01:57.930938+00:00
+duracion aproximada: 00:01:05
 
 ESTADO DE LAS TAREAS
 start: success
@@ -26,15 +36,26 @@ finish: success
 
 CONTROL DE ARRANQUE
 - El DAG se creo pausado.
-- Antes de la prueba no existian ejecuciones automaticas.
-- La ejecucion manual genero un solo DagRun.
-- Al terminar, el DAG se dejo nuevamente pausado.
+- No se genero una ejecucion automatica al iniciar Docker.
+- La validacion utilizo un unico DagRun manual identificable.
+- Al terminar, el DAG quedo nuevamente pausado.
+- El servicio no tiene politica de reinicio automatico.
+
+EVIDENCIA VISUAL
+docs/evidencias/parcial3/04_airflow_dag_success.png
 
 APAGADO LIMPIO
 Comando:
 docker compose -f docker-compose.airflow.yml down -v --remove-orphans
 
-Resultado:
+Validacion esperada:
 - contenedor notifyops-airflow detenido y eliminado;
-- red notifyops-parcial3-final_default eliminada;
-- docker compose ps -a sin filas de servicios del proyecto.
+- red del proyecto eliminada;
+- docker compose ps -a sin servicios del proyecto.
+
+NOTA TECNICA
+En este equipo, Gunicorn no alcanzo a declarar su proceso maestro disponible
+dentro de los limites de arranque, aun sin errores del DAG ni falta de memoria.
+Para la demostracion academica local se usa el servidor --debug de Airflow.
+La alternativa productiva recomendada sigue siendo un webserver administrado,
+base PostgreSQL y executor distribuido.

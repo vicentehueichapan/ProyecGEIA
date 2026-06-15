@@ -16,6 +16,7 @@ class NotifyOpsAirflowDagTests(unittest.TestCase):
         self.assertIn("start_date=datetime(2026, 6, 9)", source)
         self.assertIn("schedule=timedelta(weeks=2)", source)
         self.assertIn("verify_input_dataset", source)
+        self.assertIn("social_events_200.xlsx", source)
         self.assertIn("verify_etl_outputs", source)
         self.assertIn("run_ai_model", source)
         self.assertIn("verify_ai_outputs", source)
@@ -38,7 +39,7 @@ class NotifyOpsAirflowDagTests(unittest.TestCase):
         self.assertIn('AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"', source)
         self.assertIn("airflow users create", source)
         self.assertIn("airflow scheduler", source)
-        self.assertIn("airflow webserver", source)
+        self.assertIn("airflow webserver --debug", source)
         self.assertIn("pip install --no-cache-dir -r /requirements.txt", dockerfile_source)
 
 
