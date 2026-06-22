@@ -94,7 +94,7 @@ el modelo.
 
 ```mermaid
 flowchart LR
-    A["social_events.csv pequeno"] --> B["Ingesta"]
+    A["social_events.csv pequeño"] --> B["Ingesta"]
     B --> C["Limpieza y transformacion"]
     C --> D["Validacion por reglas"]
     D --> E["Eventos validos"]
