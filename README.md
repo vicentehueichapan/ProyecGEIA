@@ -1,18 +1,18 @@
-# NotifyOps - Evolucion del Pipeline DataOps con IA y BI
+# NotifyOps - Evolución del Pipeline DataOps con IA y BI
 
-Proyecto de **Gestion de Datos para IA** basado en el Caso de Estudio 2:
+Proyecto de **Gestión de Datos para IA** basado en el Caso de Estudio 2:
 Motor de Notificaciones para una Red Social.
 
 NotifyOps no es un proyecto nuevo. Esta entrega conserva el pipeline ETL
-funcional desarrollado en la Evaluacion Parcial 2 y demuestra su evolucion en
-la Evaluacion Parcial 3 mediante:
+funcional desarrollado en la Evaluación Parcial 2 y demuestra su evolución en
+la Evaluación Parcial 3 mediante:
 
-- analisis estadistico de calidad de datos;
-- entrenamiento y comparacion de tres modelos;
+- análisis estadístico de calidad de datos;
+- entrenamiento y comparación de tres modelos;
 - decisiones combinadas entre reglas obligatorias e IA;
 - mediciones reales de rendimiento local;
-- auditoria de seguridad, seudonimizacion y roles;
-- automatizacion completa con Apache Airflow;
+- auditoría de seguridad, seudonimización y roles;
+- automatización completa con Apache Airflow;
 - fuente Excel compatible con Power BI;
 - dashboard BI local interactivo y reproducible;
 - notebook ejecutado y evidencias visuales verificables.
@@ -23,17 +23,17 @@ Pipeline ETL Parcial 2 + calidad + IA + seguridad + rendimiento + BI
 = Pipeline mejorado Parcial 3
 ```
 
-## Indice
+## Índice
 
 1. [Contexto y objetivo](#contexto-y-objetivo)
-2. [Evolucion del proyecto](#evolucion-del-proyecto)
+2. [Evolución del proyecto](#evolución-del-proyecto)
 3. [Arquitectura](#arquitectura)
 4. [Resultados verificados](#resultados-verificados)
-5. [Ejecucion completa](#ejecucion-completa)
+5. [Ejecución completa](#ejecución-completa)
 6. [Dashboard BI y Power BI](#dashboard-bi-y-power-bi)
-7. [Automatizacion con Airflow](#automatizacion-con-airflow)
+7. [Automatización con Airflow](#automatización-con-airflow)
 8. [Docker del MVP](#docker-del-mvp)
-9. [Seguridad y proteccion de datos](#seguridad-y-proteccion-de-datos)
+9. [Seguridad y protección de datos](#seguridad-y-protección-de-datos)
 10. [Evidencias de cumplimiento](#evidencias-de-cumplimiento)
 11. [Estructura del repositorio](#estructura-del-repositorio)
 12. [Limitaciones y mejoras](#limitaciones-y-mejoras)
@@ -43,46 +43,46 @@ Pipeline ETL Parcial 2 + calidad + IA + seguridad + rendimiento + BI
 
 Una red social necesita procesar eventos `like`, `comment` y `follow` para
 generar notificaciones confiables. El producto experimenta cada dos semanas,
-por lo que el sistema debe entregar resultados repetibles, metricas y
+por lo que el sistema debe entregar resultados repetibles, métricas y
 evidencias que permitan evaluar cambios sin perder control de calidad.
 
 NotifyOps aplica:
 
-- **DataOps/ETL:** ingesta, limpieza, validacion, carga y monitoreo.
-- **Airflow:** orquestacion quincenal del pipeline completo.
-- **IA:** estimacion de riesgo basada en estructura y comportamiento.
-- **BI:** analisis interactivo de rendimiento, decisiones y seguridad.
+- **DataOps/ETL:** ingesta, limpieza, validación, carga y monitoreo.
+- **Airflow:** orquestación quincenal del pipeline completo.
+- **IA:** estimación de riesgo basada en estructura y comportamiento.
+- **BI:** análisis interactivo de rendimiento, decisiones y seguridad.
 
-La IA no reemplaza las reglas obligatorias. Un evento con fecha invalida,
+La IA no reemplaza las reglas obligatorias. Un evento con fecha inválida,
 usuario ausente, duplicidad o tipo no permitido nunca puede ser aprobado por
 el modelo.
 
-## Evolucion del proyecto
+## Evolución del proyecto
 
 | Componente | Parcial 2 | Parcial 3 |
 |---|---|---|
-| Ingesta y ETL | CSV pequeno, limpieza y transformacion | Excel fijo de 200 eventos, validacion de volumen y rendimiento real |
-| Calidad | Validaciones estructurales | Nulos, duplicados, percentiles, media, mediana, moda e imputacion |
-| Decision | Reglas duras | Reglas duras + probabilidad de riesgo IA |
-| Modelos | No aplicaba | Baseline, regresion logistica y Random Forest |
-| Metricas | KPIs operacionales | Accuracy, precision, recall, F1, ROC-AUC, Gini y matrices |
+| Ingesta y ETL | CSV pequeño, limpieza y transformación | Excel fijo de 200 eventos, validación de volumen y rendimiento real |
+| Calidad | Validaciones estructurales | Nulos, duplicados, percentiles, media, mediana, moda e imputación |
+| Decisión | Reglas duras | Reglas duras + probabilidad de riesgo IA |
+| Modelos | No aplicaba | Baseline, regresión logística y Random Forest |
+| Métricas | KPIs operacionales | Accuracy, precision, recall, F1, ROC-AUC, Gini y matrices |
 | Rendimiento | Latencia simulada del MVP | Tiempo real de ETL, entrenamiento e inferencia |
-| Automatizacion | DAG ETL | DAG ETL + IA + BI + verificacion de salidas |
-| Seguridad | Validacion basica | Seudonimizacion, minimizacion, activos, controles y roles |
-| Visualizacion | CSV y reportes | Dashboard interactivo + Excel para Power BI |
-| Evidencia | Ejecucion y KPIs | Notebook ejecutado, graficos, capturas, CSV, JSON y Excel |
+| Automatización | DAG ETL | DAG ETL + IA + BI + verificación de salidas |
+| Seguridad | Validación básica | Seudonimización, minimización, activos, controles y roles |
+| Visualización | CSV y reportes | Dashboard interactivo + Excel para Power BI |
+| Evidencia | Ejecución y KPIs | Notebook ejecutado, gráficos, capturas, CSV, JSON y Excel |
 
 ### Problemas resueltos en Parcial 3
 
-- La etiqueta historica dejo de ser aleatoria: ahora depende de velocidad de
-  interaccion, antiguedad de cuenta y tasa historica de reportes, con
-  incertidumbre controlada propia de una revision humana historica.
-- La fuente de prueba dejo de recrearse en cada ejecucion: el archivo
+- La etiqueta histórica dejó de ser aleatoria: ahora depende de velocidad de
+  interacción, antigüedad de cuenta y tasa histórica de reportes, con
+  incertidumbre controlada propia de una revisión humana histórica.
+- La fuente de prueba dejó de recrearse en cada ejecución: el archivo
   `data/raw/social_events_200.xlsx` queda versionado y es consumido por ETL e IA.
-- El pipeline detiene la ejecucion si la fuente contiene menos de 200 filas.
-- La IA produce una accion diferenciada: `revision_por_ia`.
-- Los modelos se comparan bajo la misma particion estratificada 70/30.
-- El Excel BI se entrega preconstruido y versionado; una ejecucion completa
+- El pipeline detiene la ejecución si la fuente contiene menos de 200 filas.
+- La IA produce una acción diferenciada: `revision_por_ia`.
+- Los modelos se comparan bajo la misma partición estratificada 70/30.
+- El Excel BI se entrega preconstruido y versionado; una ejecución completa
   puede actualizarlo desde los mismos CSV finales para comprobar consistencia.
 - Los identificadores de usuarios se seudonimizan antes de exportarlos a BI.
 - Airflow ejecuta y verifica tanto ETL como IA y artefactos BI.
@@ -95,9 +95,9 @@ el modelo.
 ```mermaid
 flowchart LR
     A["social_events.csv pequeño"] --> B["Ingesta"]
-    B --> C["Limpieza y transformacion"]
-    C --> D["Validacion por reglas"]
-    D --> E["Eventos validos"]
+    B --> C["Limpieza y transformación"]
+    C --> D["Validación por reglas"]
+    D --> E["Eventos válidos"]
     D --> F["Eventos rechazados"]
     E --> G["Notificaciones"]
     G --> H["SQLite, KPIs y logs"]
@@ -107,27 +107,27 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A["Excel oficial: 200 eventos"] --> B["Control minimo de volumen"]
+    A["Excel oficial: 200 eventos"] --> B["Control mínimo de volumen"]
     B --> C["ETL Parcial 2"]
     C --> D["Control de calidad"]
     D --> E["Feature engineering"]
-    E --> F["Particion estratificada 70/30"]
+    E --> F["Partición estratificada 70/30"]
     F --> G["Baseline"]
-    F --> H["Regresion logistica"]
+    F --> H["Regresión logística"]
     F --> I["Random Forest"]
-    G --> J["Comparacion de metricas"]
+    G --> J["Comparación de métricas"]
     H --> J
     I --> J
     J --> K["Modelo seleccionado"]
     D --> L["Reglas obligatorias"]
-    K --> M["Decision final"]
+    K --> M["Decisión final"]
     L --> M
-    M --> N["Metricas, logs y graficos"]
+    M --> N["Métricas, logs y gráficos"]
     N --> O["Excel Power BI"]
     N --> P["Dashboard interactivo"]
 ```
 
-### Decision final
+### Decisión final
 
 ```text
 Falla una regla obligatoria       -> rechazado_por_reglas
@@ -137,32 +137,32 @@ Pasa reglas y riesgo IA < 0.50    -> aprobado_para_notificar
 
 ## Resultados verificados
 
-La ejecucion oficial usa exactamente 200 eventos versionados en
-`data/raw/social_events_200.xlsx`. La particion usa semilla `42` para que los
+La ejecución oficial usa exactamente 200 eventos versionados en
+`data/raw/social_events_200.xlsx`. La partición usa semilla `42` para que los
 resultados sean reproducibles.
 
-### Comparacion de modelos
+### Comparación de modelos
 
-| Modelo | Accuracy | Precision | Recall | F1 | ROC-AUC | Gini | Seleccion |
+| Modelo | Accuracy | Precision | Recall | F1 | ROC-AUC | Gini | Selección |
 |---|---:|---:|---:|---:|---:|---:|---|
 | Baseline clase mayoritaria | 0.5167 | 0.5167 | 1.0000 | 0.6813 | 0.5000 | 0.0000 | No |
-| Regresion logistica | 0.8833 | 0.9286 | 0.8387 | 0.8814 | 0.9711 | 0.9422 | No |
-| Random Forest | 0.9500 | 0.9118 | 1.0000 | 0.9538 | 0.9967 | 0.9933 | Si |
+| Regresión logística | 0.8833 | 0.9286 | 0.8387 | 0.8814 | 0.9711 | 0.9422 | No |
+| Random Forest | 0.9500 | 0.9118 | 1.0000 | 0.9538 | 0.9967 | 0.9933 | Sí |
 
 Random Forest queda seleccionado porque obtiene el mayor F1 y recall completo
-en la muestra de prueba. La regresion logistica se conserva como alternativa
+en la muestra de prueba. La regresión logística se conserva como alternativa
 interpretable y permite contrastar el costo entre explicabilidad y rendimiento.
 
-### Matriz de confusion del modelo seleccionado
+### Matriz de confusión del modelo seleccionado
 
-| Clase real | Predicho valido | Predicho riesgoso |
+| Clase real | Predicho válido | Predicho riesgoso |
 |---|---:|---:|
-| Valido | 26 | 3 |
+| Válido | 26 | 3 |
 | Riesgoso | 0 | 31 |
 
 ### Decisiones operacionales
 
-| Decision | Cantidad |
+| Decisión | Cantidad |
 |---|---:|
 | `rechazado_por_reglas` | 20 |
 | `revision_por_ia` | 87 |
@@ -175,27 +175,27 @@ interpretable y permite contrastar el costo entre explicabilidad y rendimiento.
 | Filas | 200 |
 | Usuario origen ausente | 1 |
 | Usuario destino ausente | 2 |
-| Fechas invalidas | 2 |
+| Fechas inválidas | 2 |
 | Duplicados | 0 |
 | Tipos no permitidos | 16 |
-| Eventos validos | 97 |
+| Eventos válidos | 97 |
 | Eventos riesgosos | 103 |
 
-La estrategia de imputacion usa mediana para senales numericas y conserva
-indicadores explicitos para nulos estructurales. La ausencia de IDs duplicados
-en la muestra oficial no elimina el control: la deduplicacion se verifica en
+La estrategia de imputación usa mediana para señales numéricas y conserva
+indicadores explícitos para nulos estructurales. La ausencia de IDs duplicados
+en la muestra oficial no elimina el control: la deduplicación se verifica en
 las pruebas automatizadas.
 
 ### Alcance de las mediciones de rendimiento
 
-Las mediciones entregadas corresponden a ejecuciones reales en entorno local y
-contenedor Docker. La rubrica plantea evaluacion en entornos nube/local; este
-proyecto demuestra el escenario local reproducible y no presenta estos
-resultados como una prueba de infraestructura cloud.
+Las mediciones entregadas corresponden a ejecuciones reales en un entorno
+local y en un contenedor Docker. La rúbrica plantea evaluación en entornos de
+nube/locales; este proyecto demuestra el escenario local reproducible y no
+presenta estos resultados como una prueba de infraestructura cloud.
 
-## Ejecucion completa
+## Ejecución completa
 
-Todos los comandos se ejecutan desde la raiz del repositorio.
+Todos los comandos se ejecutan desde la raíz del repositorio.
 
 ### 1. Clonar y entrar al proyecto
 
@@ -231,9 +231,9 @@ Resultado esperado:
 OK
 ```
 
-Las 25 pruebas cubren ETL, Excel oficial, minimo de 200 filas, SQLite, KPIs,
+Las 25 pruebas cubren ETL, Excel oficial, mínimo de 200 filas, SQLite, KPIs,
 fechas, DAG, Compose, calidad, modelos, decisiones, Excel BI,
-seudonimizacion y dashboard.
+seudonimización y dashboard.
 
 ### 4. Ver datos antes de la ETL
 
@@ -241,9 +241,9 @@ seudonimizacion y dashboard.
 python -c "import pandas as pd; df=pd.read_excel(r'data/raw/social_events_200.xlsx', sheet_name='eventos'); print('Filas:', len(df)); print(df.head(20).to_string(index=False))"
 ```
 
-Resultado esperado: `Filas: 200`. Los eventos estan mezclados e incluyen
-fechas invalidas, usuarios ausentes, tipos fuera del caso y senales
-historicas para el modelo.
+Resultado esperado: `Filas: 200`. Los eventos están mezclados e incluyen
+fechas inválidas, usuarios ausentes, tipos fuera del caso y señales
+históricas para el modelo.
 
 ### 5. Ejecutar pipeline ETL
 
@@ -263,7 +263,7 @@ data/notifyops.db
 logs/notifyops.log
 ```
 
-### 6. Ver transformacion, validacion y KPIs
+### 6. Ver transformación, validación y KPIs
 
 ```powershell
 Import-Csv .\data\processed\events_processed.csv |
@@ -281,9 +281,9 @@ Import-Csv .\data\reports\validation_errors.csv |
 Import-Csv .\data\reports\kpi_report.csv | Format-List
 ```
 
-`avg_latency_seconds` es una simulacion operacional del MVP.
+`avg_latency_seconds` es una simulación operacional del MVP.
 `pipeline_execution_seconds` y `processing_rows_per_second` son mediciones
-reales de la ejecucion local.
+reales de la ejecución local.
 
 ### 7. Entrenar, comparar y generar evidencia Parcial 3
 
@@ -291,17 +291,17 @@ reales de la ejecucion local.
 python -m src.notifyops_ai.modeling
 ```
 
-Este comando actualiza de forma determinista en una sola ejecucion:
+Este comando actualiza de forma determinista en una sola ejecución:
 
 - lectura del mismo Excel oficial usado por la ETL;
 - dataset de variables IA;
-- analisis de calidad;
-- comparacion de tres modelos;
-- metricas y matrices de confusion;
+- análisis de calidad;
+- comparación de tres modelos;
+- métricas y matrices de confusión;
 - puntos de curva ROC;
 - rendimiento de entrenamiento e inferencia;
 - decisiones reglas + IA;
-- graficos;
+- gráficos;
 - modelo versionado;
 - Excel BI;
 - JSON y dashboard interactivo.
@@ -329,7 +329,7 @@ notebooks/modelo_validacion_eventos_notifyops.ipynb
 ```
 
 El notebook entregado contiene todas sus celdas ejecutadas y explica calidad,
-particion, analisis uni/bivariado, comparacion, metricas, rendimiento,
+partición, análisis uni/bivariado, comparación, métricas, rendimiento,
 seguridad, BI y limitaciones.
 
 ## Dashboard BI y Power BI
@@ -350,20 +350,20 @@ http://localhost:8000/dashboard/notifyops_ai_dashboard.html
 
 El panel incluye:
 
-- filtros por tipo de evento y decision;
-- tarjetas de metricas;
+- filtros por tipo de evento y decisión;
+- tarjetas de métricas;
 - decisiones y tipos de evento;
-- comparacion de modelos;
+- comparación de modelos;
 - calidad de datos;
 - rendimiento medido;
 - controles de seguridad y roles;
-- vista responsive para movil.
+- vista responsive para móvil.
 
 ![Resumen ejecutivo](docs/evidencias/parcial3/01_dashboard_resumen.png)
 
 ![Modelo y calidad](docs/evidencias/parcial3/02_dashboard_modelo_calidad.png)
 
-![Seguridad y operacion](docs/evidencias/parcial3/03_dashboard_seguridad_operacion.png)
+![Seguridad y operación](docs/evidencias/parcial3/03_dashboard_seguridad_operacion.png)
 
 ### Fuente compatible con Power BI
 
@@ -374,18 +374,18 @@ data/bi/notifyops_powerbi_dataset.xlsx
 ```
 
 El archivo ya viene construido en el repositorio y puede abrirse o importarse
-sin ejecutar ningun comando previo. Al ejecutar el modelo se actualiza de forma
+sin ejecutar ningún comando previo. Al ejecutar el modelo se actualiza de forma
 determinista para mantenerlo coherente con el Excel oficial y los CSV finales.
 Contiene hojas
 tabulares para:
 
-- metricas y comparacion;
-- matriz de confusion y curva ROC;
-- calidad y estadisticas;
+- métricas y comparación;
+- matriz de confusión y curva ROC;
+- calidad y estadísticas;
 - decisiones seudonimizadas;
 - rendimiento ETL e IA;
-- auditoria y roles;
-- guia de paginas, visuales y campos.
+- auditoría y roles;
+- guía de páginas, visuales y campos.
 
 En Power BI Desktop:
 
@@ -393,15 +393,15 @@ En Power BI Desktop:
 2. Elegir `Excel`.
 3. Abrir `data/bi/notifyops_powerbi_dataset.xlsx`.
 4. Cargar las hojas indicadas en `guia_powerbi`.
-5. Crear las paginas `Resumen ejecutivo`, `Modelo y calidad` y
-   `Seguridad y operacion`.
+5. Crear las páginas `Resumen ejecutivo`, `Modelo y calidad` y
+   `Seguridad y operación`.
 
 El repositorio entrega una fuente tabular compatible con Power BI y un
 dashboard BI local interactivo comprobado. No se incluye un archivo `.pbix`,
 porque Power BI Desktop no estaba disponible para generarlo y validarlo; por
 eso el README no afirma que dicho artefacto exista.
 
-## Automatizacion con Airflow
+## Automatización con Airflow
 
 Airflow orquesta:
 
@@ -410,7 +410,7 @@ verificar entrada
 -> ejecutar ETL
 -> verificar ETL
 -> entrenar y comparar IA
--> verificar metricas, Excel y dashboard
+-> verificar métricas, Excel y dashboard
 -> resumir resultados
 ```
 
@@ -421,7 +421,7 @@ docker compose -f docker-compose.airflow.yml up --build -d
 ```
 
 El primer arranque puede tardar entre 3 y 4 minutos mientras Airflow inicializa
-su base y permisos. Para esta demostracion local se usa el servidor `--debug`
+su base y permisos. Para esta demostración local se usa el servidor `--debug`
 de Airflow, que evita una incompatibilidad observada de Gunicorn en Docker
 Desktop. No se utiliza para un despliegue productivo.
 
@@ -438,7 +438,7 @@ Abrir:
 http://localhost:8080
 ```
 
-Credenciales academicas:
+Credenciales académicas:
 
 ```text
 usuario: admin
@@ -451,8 +451,8 @@ DAG:
 notifyops_etl_dag
 ```
 
-El DAG se crea pausado para evitar ejecuciones automaticas al iniciar Docker.
-Para una prueba controlada, despausarlo, disparar una ejecucion y consultar su
+El DAG se crea pausado para evitar ejecuciones automáticas al iniciar Docker.
+Para una prueba controlada, actívalo, dispara una ejecución y consulta su
 estado:
 
 ```powershell
@@ -463,21 +463,21 @@ docker compose -f docker-compose.airflow.yml exec airflow airflow dags pause not
 ```
 
 Evidencia verificada el 15 de junio de 2026: `validation_excel_200_20260615`
-termino en `success`, con 8 de 8 tareas exitosas.
+terminó en `success`, con 8 de 8 tareas exitosas.
 
 ![DagRun Airflow exitoso](docs/evidencias/parcial3/04_airflow_dag_success.png)
 
-El detalle reproducible esta en
+El detalle reproducible está en
 `docs/evidencias/parcial3/05_airflow_validacion.txt`.
 
-Programacion:
+Programación:
 
 ```python
 schedule=timedelta(weeks=2)
 ```
 
-La frecuencia quincenal representa el ciclo de experimentacion del caso. Si se
-desea mantener la automatizacion activa despues de la demostracion:
+La frecuencia quincenal representa el ciclo de experimentación del caso. Si se
+desea mantener la automatización activa después de la demostración:
 
 ```powershell
 docker compose -f docker-compose.airflow.yml exec airflow airflow dags unpause notifyops_etl_dag
@@ -495,7 +495,7 @@ Apagar completamente:
 docker compose -f docker-compose.airflow.yml down -v --remove-orphans
 ```
 
-No existe una politica `restart` automatica.
+No existe una política `restart` automática.
 
 ## Docker del MVP
 
@@ -515,31 +515,31 @@ docker run --rm `
     notifyops-mvp
 ```
 
-## Seguridad y proteccion de datos
+## Seguridad y protección de datos
 
 ### Controles implementados
 
-- Seudonimizacion SHA-256 de usuarios antes de exportar decisiones a BI.
-- Exclusion del contenido textual del dataset BI.
-- Visualizacion principalmente agregada.
-- Separacion de roles y restricciones.
-- Logs sin contrasenas ni contenido de usuarios.
-- Versionamiento de modelo, metricas, particion y fecha.
+- Seudonimización SHA-256 de usuarios antes de exportar decisiones a BI.
+- Exclusión del contenido textual del dataset BI.
+- Visualización principalmente agregada.
+- Separación de roles y restricciones.
+- Logs sin contraseñas ni contenido de usuarios.
+- Versionamiento de modelo, métricas, partición y fecha.
 
 ### Datos considerados
 
 | Activo | Sensibilidad | Tratamiento BI |
 |---|---|---|
-| `event_id` | Baja | Identificador tecnico |
+| `event_id` | Baja | Identificador técnico |
 | `source_user_id` | Media | Clave seudonimizada |
 | `target_user_id` | Media | Clave seudonimizada |
 | `content` | Alta | Excluido |
 | `created_at` | Media | Uso operacional y agregado |
 | logs | Media | Acceso DataOps/Auditor |
-| metricas | Baja | Evidencia tecnica versionada |
+| métricas | Baja | Evidencia técnica versionada |
 
-La estrategia se alinea con finalidad, proporcionalidad, minimizacion,
-seguridad y acceso limitado de la Ley 19.628. Tambien se reconoce la Ley
+La estrategia se alinea con finalidad, proporcionalidad, minimización,
+seguridad y acceso limitado de la Ley 19.628. También se reconoce la Ley
 21.719, publicada el 13 de diciembre de 2024 y cuya entrada en vigencia es el
 1 de diciembre de 2026.
 
@@ -550,25 +550,25 @@ Referencias oficiales:
 
 ## Evidencias de cumplimiento
 
-| Requisito de la rubrica | Evidencia verificable |
+| Requisito de la rúbrica | Evidencia verificable |
 |---|---|
-| Minimo de 200 datos de prueba | `data/raw/social_events_200.xlsx`, prueba automatizada y tarea `verify_input_dataset` |
+| Mínimo de 200 datos de prueba | `data/raw/social_events_200.xlsx`, prueba automatizada y tarea `verify_input_dataset` |
 | Pipeline mejorado | `src/notifyops/pipeline.py`, `dags/notifyops_etl_dag.py` |
-| Calidad e imputacion | `data/reports/ai/quality_summary.csv`, notebook ejecutado |
-| Analisis univariado | `data/reports/ai/charts/event_type_distribution.png`, notebook |
-| Analisis bivariado | `data/reports/ai/charts/risk_by_event_type.png`, `data/reports/ai/charts/correlation_matrix.png` |
-| Particion y entrenamiento | `src/notifyops_ai/modeling.py`, notebook, `data/reports/ai/performance_summary.csv` |
-| Comparacion de modelos | `data/reports/ai/model_comparison.csv`, `data/reports/ai/charts/model_comparison.png` |
+| Calidad e imputación | `data/reports/ai/quality_summary.csv`, notebook ejecutado |
+| Análisis univariado | `data/reports/ai/charts/event_type_distribution.png`, notebook |
+| Análisis bivariado | `data/reports/ai/charts/risk_by_event_type.png`, `data/reports/ai/charts/correlation_matrix.png` |
+| Partición y entrenamiento | `src/notifyops_ai/modeling.py`, notebook, `data/reports/ai/performance_summary.csv` |
+| Comparación de modelos | `data/reports/ai/model_comparison.csv`, `data/reports/ai/charts/model_comparison.png` |
 | Accuracy, precision, recall y F1 | `data/reports/ai/model_metrics.csv` |
-| Matriz de confusion | `data/reports/ai/confusion_matrix.csv`, `data/reports/ai/charts/confusion_matrix.png` |
+| Matriz de confusión | `data/reports/ai/confusion_matrix.csv`, `data/reports/ai/charts/confusion_matrix.png` |
 | ROC-AUC y Gini | `data/reports/ai/roc_curve_points.csv`, `data/reports/ai/charts/roc_curve.png` |
 | Rendimiento | `data/reports/kpi_report.csv`, `data/reports/ai/performance_summary.csv`, `data/reports/ai/charts/runtime_comparison.png` |
 | Seguridad y roles | `data/bi/notifyops_powerbi_dataset.xlsx`, dashboard, `src/notifyops_ai/bi_dataset.py` |
-| Integracion BI | `data/bi/notifyops_powerbi_dataset.xlsx` + `dashboard/notifyops_ai_dashboard.html` |
+| Integración BI | `data/bi/notifyops_powerbi_dataset.xlsx` + `dashboard/notifyops_ai_dashboard.html` |
 | Demo funcional | comandos de este README y DAG completo |
 | Evidencia visual | `docs/evidencias/parcial3/` |
-| Validacion final | `docs/evidencias/parcial3/06_validacion_final.txt` |
-| Limitaciones y mejoras | seccion siguiente |
+| Validación final | `docs/evidencias/parcial3/06_validacion_final.txt` |
+| Limitaciones y mejoras | sección siguiente |
 
 ## Estructura del repositorio
 
@@ -607,41 +607,41 @@ ProyecGEIA/
 
 ### Limitaciones comprobadas
 
-- El Excel de 200 eventos es una muestra academica fija porque no se entregaron
-  historicos productivos.
-- El volumen es academico y no representa trafico masivo en tiempo real.
+- El Excel de 200 eventos es una muestra académica fija porque no se entregaron
+  históricos productivos.
+- El volumen es académico y no representa tráfico masivo en tiempo real.
 - El entorno evaluado es local/Docker, no una nube productiva.
-- La latencia de entrega es simulada; ETL, entrenamiento e inferencia si se
+- La latencia de entrega es simulada; ETL, entrenamiento e inferencia sí se
   miden realmente.
-- El Excel esta listo para Power BI, pero no se entrega un `.pbix`.
-- La autenticacion `admin/admin` es solo para la demostracion local.
+- El Excel está listo para Power BI, pero no se entrega un `.pbix`.
+- La autenticación `admin/admin` es solo para la demostración local.
 
 ### Mejoras viables
 
-- Sustituir la muestra academica por historicos anonimizados.
+- Sustituir la muestra académica por históricos anonimizados.
 - Reentrenar quincenalmente y monitorear drift.
 - Validar umbral de riesgo con costo de falsos negativos.
 - Publicar el panel en Power BI Service o Metabase.
-- Usar PostgreSQL y CeleryExecutor en una implantacion productiva de Airflow.
+- Usar PostgreSQL y CeleryExecutor en una implantación productiva de Airflow.
 - Gestionar secretos y permisos mediante un proveedor de identidad.
-- Aplicar retencion y auditoria formal de accesos.
+- Aplicar retención y auditoría formal de accesos.
 
 ## Secuencia recomendada para la demo
 
 1. Mostrar `data/raw/social_events_200.xlsx` y comprobar que contiene 200 filas.
 2. Ejecutar las pruebas.
 3. Ejecutar la ETL.
-4. Mostrar validos, rechazados y KPIs.
+4. Mostrar válidos, rechazados y KPIs.
 5. Ejecutar el modelo IA.
-6. Mostrar comparacion y explicar la seleccion.
-7. Mostrar matriz de confusion, ROC y Gini.
-8. Mostrar los tres estados de decision.
+6. Mostrar comparación y explicar la selección.
+7. Mostrar matriz de confusión, ROC y Gini.
+8. Mostrar los tres estados de decisión.
 9. Abrir el dashboard y aplicar dos filtros.
 10. Mostrar seguridad, rendimiento y Excel BI.
 11. Abrir Airflow y ejecutar el DAG.
 12. Cerrar con limitaciones y mejoras.
 
-NotifyOps demuestra continuidad real entre evaluaciones: conserva la solucion
-operacional de Parcial 2 y agrega en Parcial 3 una capa analitica, predictiva,
-segura, automatizada y visual, respaldada por codigo, pruebas y artefactos
+NotifyOps demuestra continuidad real entre evaluaciones: conserva la solución
+operacional de Parcial 2 y agrega en Parcial 3 una capa analítica, predictiva,
+segura, automatizada y visual, respaldada por código, pruebas y artefactos
 reproducibles.
