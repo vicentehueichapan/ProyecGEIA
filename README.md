@@ -1,11 +1,11 @@
-# NotifyOps - Evolución del Pipeline DataOps con IA y BI
+# NotifyOps - Proyecto Final DataOps con IA, BI y Estrategia EFT
 
 Proyecto de **Gestión de Datos para IA** basado en el Caso de Estudio 2:
 Motor de Notificaciones para una Red Social.
 
 NotifyOps no es un proyecto nuevo. Esta entrega conserva el pipeline ETL
 funcional desarrollado en la Evaluación Parcial 2 y demuestra su evolución en
-la Evaluación Parcial 3 mediante:
+la Evaluación Parcial 3, y agrega en la Evaluación Final Transversal (EFT) una capa empresarial de infraestructura, monitoreo, gobernanza y despliegue mediante:
 
 - análisis estadístico de calidad de datos;
 - entrenamiento y comparación de tres modelos;
@@ -16,28 +16,33 @@ la Evaluación Parcial 3 mediante:
 - fuente Excel compatible con Power BI;
 - dashboard BI local interactivo y reproducible;
 - notebook ejecutado y evidencias visuales verificables.
-- Excel oficial con 200 eventos usado realmente por ETL e IA.
+- Excel oficial con 200 eventos usado realmente por ETL e IA;
+- requerimiento de infraestructura nube/on-premise;
+- estrategia de monitoreo continuo;
+- protocolos de gobernanza y seguridad;
+- estrategia de despliegue organizacional.
 
 ```text
-Pipeline ETL Parcial 2 + calidad + IA + seguridad + rendimiento + BI
-= Pipeline mejorado Parcial 3
+Pipeline ETL Parcial 2 + IA/BI Parcial 3 + infraestructura/monitoreo/gobernanza EFT
+= Proyecto final DataOps defendible
 ```
 
 ## Índice
 
 1. [Contexto y objetivo](#contexto-y-objetivo)
 2. [Evolución del proyecto](#evolución-del-proyecto)
-3. [Arquitectura](#arquitectura)
-4. [Resultados verificados](#resultados-verificados)
-5. [Ejecución completa](#ejecución-completa)
-6. [Dashboard BI y Power BI](#dashboard-bi-y-power-bi)
-7. [Automatización con Airflow](#automatización-con-airflow)
-8. [Docker del MVP](#docker-del-mvp)
-9. [Seguridad y protección de datos](#seguridad-y-protección-de-datos)
-10. [Evidencias de cumplimiento](#evidencias-de-cumplimiento)
-11. [Estructura del repositorio](#estructura-del-repositorio)
-12. [Limitaciones y mejoras](#limitaciones-y-mejoras)
-13. [Secuencia recomendada para la demo](#secuencia-recomendada-para-la-demo)
+3. [Capa EFT: infraestructura, monitoreo, gobernanza y despliegue](#capa-eft-infraestructura-monitoreo-gobernanza-y-despliegue)
+4. [Arquitectura](#arquitectura)
+5. [Resultados verificados](#resultados-verificados)
+6. [Ejecución completa](#ejecución-completa)
+7. [Dashboard BI y Power BI](#dashboard-bi-y-power-bi)
+8. [Automatización con Airflow](#automatización-con-airflow)
+9. [Docker del MVP](#docker-del-mvp)
+10. [Seguridad y protección de datos](#seguridad-y-protección-de-datos)
+11. [Evidencias de cumplimiento](#evidencias-de-cumplimiento)
+12. [Estructura del repositorio](#estructura-del-repositorio)
+13. [Limitaciones y mejoras](#limitaciones-y-mejoras)
+14. [Secuencia recomendada para la demo EFT](#secuencia-recomendada-para-la-demo-eft)
 
 ## Contexto y objetivo
 
@@ -65,7 +70,7 @@ el modelo.
 | Calidad | Validaciones estructurales | Nulos, duplicados, percentiles, media, mediana, moda e imputación |
 | Decisión | Reglas duras | Reglas duras + probabilidad de riesgo IA |
 | Modelos | No aplicaba | Baseline, regresión logística y Random Forest |
-| Métricas | KPIs operacionales | Accuracy, precision, recall, F1, ROC-AUC, Gini y matrices |
+| Métricas | KPIs operacionales | Accuracy, precisión, recall, F1, ROC-AUC, Gini y matrices |
 | Rendimiento | Latencia simulada del MVP | Tiempo real de ETL, entrenamiento e inferencia |
 | Automatización | DAG ETL | DAG ETL + IA + BI + verificación de salidas |
 | Seguridad | Validación básica | Seudonimización, minimización, activos, controles y roles |
@@ -88,13 +93,66 @@ el modelo.
 - Airflow ejecuta y verifica tanto ETL como IA y artefactos BI.
 - La latencia simulada se diferencia de las mediciones reales del sistema.
 
+
+## Capa EFT: infraestructura, monitoreo, gobernanza y despliegue
+
+La Evaluación Final Transversal no reemplaza el MVP ni la extensión de IA. Agrega una lectura empresarial del mismo sistema para explicar cómo se operaría en una organización real.
+
+| Requisito EFT | Propuesta en NotifyOps | Evidencia en el repositorio |
+|---|---|---|
+| Metodología PMBOK | Alcance, calidad, riesgos, comunicaciones y cierre del proyecto | Informe EFT y esta guía |
+| Infraestructura | MVP local con ruta a staging/producción: Docker, Airflow, PostgreSQL, almacenamiento y BI | `docker-compose.airflow.yml`, `Dockerfile`, `README.md` |
+| Monitoreo | Métricas de disponibilidad, calidad, rendimiento, IA y seguridad; propuesta Prometheus/Grafana y CI | `logs/`, `kpi_report.csv`, `performance_summary.csv`, Airflow |
+| Gobernanza | Roles, minimización, seudonimización, auditoría y control de accesos | `src/notifyops_ai/bi_dataset.py`, dashboard, Excel BI |
+| Seguridad | Protección de datos personales, Ley 19.628 y Ley 21.719, exclusión de contenido sensible | Sección seguridad y `data/bi/notifyops_powerbi_dataset.xlsx` |
+| Despliegue | Piloto, staging, producción limitada y operación continua quincenal | DAG quincenal y estrategia documentada |
+
+### Infraestructura propuesta
+
+```text
+MVP local: Python + Docker + Airflow standalone + SQLite/CSV/Excel
+Staging: contenedores + PostgreSQL + pruebas automáticas + dashboard conectado
+Producción: Airflow administrado, almacenamiento central, IAM, backups y monitoreo
+```
+
+La arquitectura mantiene el mismo flujo lógico validado: entrada de eventos, ETL, reglas, modelo IA, reportes BI y orquestación. La mejora EFT consiste en definir recursos, disponibilidad, escalabilidad y gobierno para una implantación real.
+
+### Estrategia de monitoreo
+
+| Dimensión | Métrica o alerta | Acción esperada |
+|---|---|---|
+| Disponibilidad | DAG fallido, contenedor caído, dashboard inaccesible | Alerta al equipo DataOps y reintento controlado |
+| Calidad | Menos de 200 filas, nulos críticos, tipos inválidos | Bloquear pipeline y generar reporte de error |
+| Rendimiento | ETL o inferencia sobre umbral histórico | Revisar volumen, código y recursos |
+| IA | Caída de recall, F1, ROC-AUC o aumento de revisión por IA | Analizar drift y reentrenar |
+| Seguridad | Acceso indebido o exposición de datos sensibles | Revocar acceso, auditar logs y activar protocolo |
+
+Herramientas propuestas para una organización: Prometheus/Grafana para métricas y alertas, Jenkins o GitHub Actions para validación previa al despliegue, y revisión periódica de logs y drift del modelo.
+
+### Seguridad y gobernanza EFT
+
+- Seudonimización SHA-256 de usuarios antes de BI.
+- Exclusión del contenido textual del dataset BI.
+- Roles sugeridos: DataOps, Analista BI, Auditor, Producto y Administrador.
+- Acceso mínimo necesario y trazabilidad de evidencias.
+- Gestión de secretos fuera del repositorio.
+- Alineación con Ley 19.628 y Ley 21.719.
+
+### Estrategia de despliegue organizacional
+
+1. Piloto académico: validar con 200 eventos, pruebas, métricas y dashboard.
+2. Staging: conectar fuente controlada, ejecutar DAG programado y revisar alertas.
+3. Producción limitada: procesar eventos reales con revisión humana de casos riesgosos.
+4. Operación continua: reentrenar, auditar y mejorar cada dos semanas.
+
+
 ## Arquitectura
 
 ### Arquitectura Parcial 2
 
 ```mermaid
 flowchart LR
-    A["social_events.csv pequeño"] --> B["Ingesta"]
+    A["CSV reducido de Parcial 2"] --> B["Ingesta"]
     B --> C["Limpieza y transformación"]
     C --> D["Validación por reglas"]
     D --> E["Eventos válidos"]
@@ -143,7 +201,7 @@ resultados sean reproducibles.
 
 ### Comparación de modelos
 
-| Modelo | Accuracy | Precision | Recall | F1 | ROC-AUC | Gini | Selección |
+| Modelo | Accuracy | Precisión | Recall | F1 | ROC-AUC | Gini | Selección |
 |---|---:|---:|---:|---:|---:|---:|---|
 | Baseline clase mayoritaria | 0.5167 | 0.5167 | 1.0000 | 0.6813 | 0.5000 | 0.0000 | No |
 | Regresión logística | 0.8833 | 0.9286 | 0.8387 | 0.8814 | 0.9711 | 0.9422 | No |
@@ -188,10 +246,10 @@ las pruebas automatizadas.
 
 ### Alcance de las mediciones de rendimiento
 
-Las mediciones entregadas corresponden a ejecuciones reales en un entorno
-local y en un contenedor Docker. La rúbrica plantea evaluación en entornos de
-nube/locales; este proyecto demuestra el escenario local reproducible y no
-presenta estos resultados como una prueba de infraestructura cloud.
+Las mediciones entregadas corresponden a ejecuciones reales en entorno local y
+contenedor Docker. La rúbrica plantea evaluación en entornos nube/local; este
+proyecto demuestra el escenario local reproducible y no presenta estos
+resultados como una prueba de infraestructura cloud.
 
 ## Ejecución completa
 
@@ -559,7 +617,7 @@ Referencias oficiales:
 | Análisis bivariado | `data/reports/ai/charts/risk_by_event_type.png`, `data/reports/ai/charts/correlation_matrix.png` |
 | Partición y entrenamiento | `src/notifyops_ai/modeling.py`, notebook, `data/reports/ai/performance_summary.csv` |
 | Comparación de modelos | `data/reports/ai/model_comparison.csv`, `data/reports/ai/charts/model_comparison.png` |
-| Accuracy, precision, recall y F1 | `data/reports/ai/model_metrics.csv` |
+| Accuracy, precisión, recall y F1 | `data/reports/ai/model_metrics.csv` |
 | Matriz de confusión | `data/reports/ai/confusion_matrix.csv`, `data/reports/ai/charts/confusion_matrix.png` |
 | ROC-AUC y Gini | `data/reports/ai/roc_curve_points.csv`, `data/reports/ai/charts/roc_curve.png` |
 | Rendimiento | `data/reports/kpi_report.csv`, `data/reports/ai/performance_summary.csv`, `data/reports/ai/charts/runtime_comparison.png` |
@@ -626,7 +684,7 @@ ProyecGEIA/
 - Gestionar secretos y permisos mediante un proveedor de identidad.
 - Aplicar retención y auditoría formal de accesos.
 
-## Secuencia recomendada para la demo
+## Secuencia recomendada para la demo EFT
 
 1. Mostrar `data/raw/social_events_200.xlsx` y comprobar que contiene 200 filas.
 2. Ejecutar las pruebas.
@@ -639,9 +697,7 @@ ProyecGEIA/
 9. Abrir el dashboard y aplicar dos filtros.
 10. Mostrar seguridad, rendimiento y Excel BI.
 11. Abrir Airflow y ejecutar el DAG.
-12. Cerrar con limitaciones y mejoras.
+12. Explicar infraestructura propuesta, monitoreo, gobernanza y despliegue EFT.
+13. Cerrar con limitaciones y mejoras.
 
-NotifyOps demuestra continuidad real entre evaluaciones: conserva la solución
-operacional de Parcial 2 y agrega en Parcial 3 una capa analítica, predictiva,
-segura, automatizada y visual, respaldada por código, pruebas y artefactos
-reproducibles.
+NotifyOps demuestra continuidad real entre evaluaciones: conserva la solución operacional de Parcial 2, agrega en Parcial 3 una capa analítica, predictiva, segura, automatizada y visual, y cierra en EFT con infraestructura, monitoreo, gobernanza y despliegue organizacional respaldados por código, pruebas y artefactos reproducibles.
