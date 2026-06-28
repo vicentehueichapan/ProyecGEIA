@@ -20,7 +20,7 @@ la Evaluación Parcial 3, y agrega en la Evaluación Final Transversal (EFT) una
 - requerimiento de infraestructura nube/on-premise;
 - estrategia de monitoreo continuo;
 - protocolos de gobernanza y seguridad;
-- estrategia de despliegue organizacional.
+- estrategia de despliegue organizaciónal.
 
 ```text
 Pipeline ETL Parcial 2 + IA/BI Parcial 3 + infraestructura/monitoreo/gobernanza EFT
@@ -138,7 +138,7 @@ Herramientas propuestas para una organización: Prometheus/Grafana para métrica
 - Gestión de secretos fuera del repositorio.
 - Alineación con Ley 19.628 y Ley 21.719.
 
-### Estrategia de despliegue organizacional
+### Estrategia de despliegue organizaciónal
 
 1. Piloto académico: validar con 200 eventos, pruebas, métricas y dashboard.
 2. Staging: conectar fuente controlada, ejecutar DAG programado y revisar alertas.
@@ -368,11 +368,11 @@ Este comando actualiza de forma determinista en una sola ejecución:
 
 ```powershell
 Import-Csv .\data\reports\ai\model_comparison.csv |
-    Format-Table model,accuracy,precision,recall,f1_score,roc_auc,gini,selected -AutoSize
+    Format-Table model,accuracy,precisión,recall,f1_score,roc_auc,gini,selected -AutoSize
 
 Import-Csv .\data\reports\ai\model_metrics.csv | Format-List
 
-Import-Csv .\data\reports\ai\confusion_matrix.csv | Format-Table -AutoSize
+Import-Csv .\data\reports\ai\confusión_matrix.csv | Format-Table -AutoSize
 
 Import-Csv .\data\reports\ai\final_event_decisions.csv |
     Group-Object final_decision |
@@ -618,7 +618,7 @@ Referencias oficiales:
 | Partición y entrenamiento | `src/notifyops_ai/modeling.py`, notebook, `data/reports/ai/performance_summary.csv` |
 | Comparación de modelos | `data/reports/ai/model_comparison.csv`, `data/reports/ai/charts/model_comparison.png` |
 | Accuracy, precisión, recall y F1 | `data/reports/ai/model_metrics.csv` |
-| Matriz de confusión | `data/reports/ai/confusion_matrix.csv`, `data/reports/ai/charts/confusion_matrix.png` |
+| Matriz de confusión | `data/reports/ai/confusión_matrix.csv`, `data/reports/ai/charts/confusión_matrix.png` |
 | ROC-AUC y Gini | `data/reports/ai/roc_curve_points.csv`, `data/reports/ai/charts/roc_curve.png` |
 | Rendimiento | `data/reports/kpi_report.csv`, `data/reports/ai/performance_summary.csv`, `data/reports/ai/charts/runtime_comparison.png` |
 | Seguridad y roles | `data/bi/notifyops_powerbi_dataset.xlsx`, dashboard, `src/notifyops_ai/bi_dataset.py` |
@@ -681,7 +681,7 @@ ProyecGEIA/
 - Validar umbral de riesgo con costo de falsos negativos.
 - Publicar el panel en Power BI Service o Metabase.
 - Usar PostgreSQL y CeleryExecutor en una implantación productiva de Airflow.
-- Gestionar secretos y permisos mediante un proveedor de identidad.
+- Gestiónar secretos y permisos mediante un proveedor de identidad.
 - Aplicar retención y auditoría formal de accesos.
 
 ## Secuencia recomendada para la demo EFT
@@ -700,4 +700,4 @@ ProyecGEIA/
 12. Explicar infraestructura propuesta, monitoreo, gobernanza y despliegue EFT.
 13. Cerrar con limitaciones y mejoras.
 
-NotifyOps demuestra continuidad real entre evaluaciones: conserva la solución operacional de Parcial 2, agrega en Parcial 3 una capa analítica, predictiva, segura, automatizada y visual, y cierra en EFT con infraestructura, monitoreo, gobernanza y despliegue organizacional respaldados por código, pruebas y artefactos reproducibles.
+NotifyOps demuestra continuidad real entre evaluaciónes: conserva la solución operacional de Parcial 2, agrega en Parcial 3 una capa analítica, predictiva, segura, automatizada y visual, y cierra en EFT con infraestructura, monitoreo, gobernanza y despliegue organizaciónal respaldados por código, pruebas y artefactos reproducibles.
